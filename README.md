@@ -21,3 +21,4 @@ $ flow-remove-types --pretty --out-dir ./app-no-flow/ ./app/
 
 - <https://github.com/electron-react-boilerplate/electron-react-boilerplate>
 - <https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript>
+- <https://github.com/amaurymartiny/cra-lerna-electron>
