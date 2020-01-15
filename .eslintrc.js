@@ -1,10 +1,13 @@
 module.exports = {
-  extends: 'erb',
+  extends: './eslint.config.js',
   settings: {
     'import/resolver': {
       webpack: {
         config: require.resolve('./configs/webpack.config.eslint.js')
       }
     }
+  },
+  rules: {
+    'react/prop-types': ['off']
   }
-}
+};

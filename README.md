@@ -4,9 +4,10 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 
 ## AIM
 
-- Replace `flow` into `typescript`
-- Mixed `js(x)` and `ts(x)` files when development
-- Maintained with `lerna`
+- [] remove `flow`
+- [] add `typescript`
+- [] allow mixed `js(x)` and `ts(x)`
+- [] use `lerna`
 
 ### Remove `flow` types
 

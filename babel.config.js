@@ -26,7 +26,6 @@ module.exports = api => {
           targets: { electron: require('electron/package.json').version }
         }
       ],
-      require('@babel/preset-flow'),
       [require('@babel/preset-react'), { development }]
     ],
     plugins: [
