@@ -1,7 +1,9 @@
 import path from 'path';
 import { execSync } from 'child_process';
 import fs from 'fs';
-import { dependencies } from '../../app/package.json';
+// import { dependencies } from '../../app/package.json';
+// TODO: read app package json
+const dependencies = {};
 
 (() => {
   const nodeModulesPath = path.join(

@@ -2,13 +2,10 @@
  * Base webpack config used across other specific configs
  */
 
-import path from 'path';
-import webpack from 'webpack';
-import { dependencies as externals } from '../app/package.json';
+const path = require('path');
+const webpack = require('webpack');
 
-export default {
-  externals: [...Object.keys(externals || {})],
-
+module.exports = {
   module: {
     rules: [
       {

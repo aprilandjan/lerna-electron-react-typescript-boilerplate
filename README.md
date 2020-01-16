@@ -4,10 +4,10 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 
 ## AIM
 
-- [] remove `flow`
+- [x] remove `flow`
+- [x] use `lerna`
 - [] add `typescript`
 - [] allow mixed `js(x)` and `ts(x)`
-- [] use `lerna`
 
 ### Remove `flow` types
 

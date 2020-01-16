@@ -9,8 +9,8 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import merge from 'webpack-merge';
 import TerserPlugin from 'terser-webpack-plugin';
-import baseConfig from './webpack.config.base';
-import CheckNodeEnv from '../internals/scripts/CheckNodeEnv';
+import baseConfig from '../../configs/webpack.config.base';
+import CheckNodeEnv from '../../internals/scripts/CheckNodeEnv';
 
 CheckNodeEnv('production');
 
