@@ -19,23 +19,22 @@ module.exports = merge.smart(baseConfig, {
 
   target: 'electron-main',
 
-  entry: './app/main.dev',
+  entry: path.join(__dirname, './src/index'),
 
   output: {
-    path: path.join(__dirname, '..'),
-    filename: './app/main.prod.js'
+    path: path.join(__dirname, 'dist'),
+    publicPath: './dist/',
+    filename: 'main.prod.js'
   },
 
   optimization: {
-    minimizer: process.env.E2E_BUILD
-      ? []
-      : [
-          new TerserPlugin({
-            parallel: true,
-            sourceMap: true,
-            cache: true
-          })
-        ]
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        sourceMap: true,
+        cache: true
+      })
+    ]
   },
 
   plugins: [
@@ -52,11 +51,6 @@ module.exports = merge.smart(baseConfig, {
     })
   ],
 
-  /**
-   * Disables webpack processing of __dirname and __filename.
-   * If you run the bundle in node.js it falls back to these values of node.js.
-   * https://github.com/webpack/webpack/issues/2010
-   */
   node: {
     __dirname: false,
     __filename: false

@@ -17,6 +17,11 @@ install [flow-remove-types](https://github.com/facebookarchive/flow-remove-types
 $ flow-remove-types --pretty --out-dir ./app-no-flow/ ./app/
 ```
 
+## TODO:
+
+- add electron icon
+- ensure `dev` & `build` progress
+
 ## References
 
 - <https://github.com/electron-react-boilerplate/electron-react-boilerplate>

@@ -64,6 +64,8 @@ const createWindow = async () => {
     }
   });
 
+  mainWindow.webContents.openDevTools();
+
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
   // @TODO: Use 'ready-to-show' event
