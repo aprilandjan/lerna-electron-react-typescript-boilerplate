@@ -22,8 +22,9 @@ if (process.env.NODE_ENV === 'production') {
   CheckNodeEnv('development');
 }
 
+// FIXME: extract env variables
 const port = process.env.PORT || 1212;
-const publicPath = `http://localhost:${port}/dist`;
+
 const dllPath = path.join(__dirname, 'dll');
 const manifest = path.resolve(dllPath, 'renderer.json');
 const manifestReady = fs.existsSync(manifest);
@@ -54,14 +55,14 @@ module.exports = merge.smart(baseConfig, {
   target: 'electron-renderer',
 
   entry: [
-    ...(process.env.PLAIN_HMR ? [] : ['react-hot-loader/patch']),
+    'react-hot-loader/patch',
     `webpack-dev-server/client?http://localhost:${port}/`,
     'webpack/hot/only-dev-server',
     require.resolve('./src/index')
   ],
 
   output: {
-    publicPath: `http://localhost:${port}/dist/`,
+    publicPath: '/',
     filename: 'renderer.dev.js'
   },
 
@@ -217,8 +218,10 @@ module.exports = merge.smart(baseConfig, {
       manifest: require(manifest),
       sourceType: 'var'
     }),
+    // https://webpack.js.org/plugins/hot-module-replacement-plugin/
     new webpack.HotModuleReplacementPlugin({
-      multiStep: true
+      // FIXME: disable multi-step
+      // multiStep: true,
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.EnvironmentPlugin({
@@ -232,40 +235,5 @@ module.exports = merge.smart(baseConfig, {
   node: {
     __dirname: false,
     __filename: false
-  },
-
-  devServer: {
-    port,
-    publicPath,
-    compress: true,
-    noInfo: true,
-    stats: 'errors-only',
-    inline: true,
-    lazy: false,
-    hot: true,
-    headers: { 'Access-Control-Allow-Origin': '*' },
-    contentBase: path.join(__dirname, 'dist'),
-    watchOptions: {
-      aggregateTimeout: 300,
-      ignored: /node_modules/,
-      poll: 100
-    },
-    historyApiFallback: {
-      verbose: true,
-      disableDotRule: false
-    },
-    before() {
-      // TODO: ensure main process started
-      // if (process.env.START_HOT) {
-      //   console.log('Starting Main Process...');
-      //   spawn('npm', ['run', 'start-main-dev'], {
-      //     shell: true,
-      //     env: process.env,
-      //     stdio: 'inherit'
-      //   })
-      //     .on('close', code => process.exit(code))
-      //     .on('error', spawnError => console.error(spawnError));
-      // }
-    }
   }
 });

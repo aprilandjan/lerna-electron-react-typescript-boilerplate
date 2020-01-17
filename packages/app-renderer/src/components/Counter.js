@@ -22,7 +22,7 @@ export default class Counter extends Component {
         <div className={`counter ${styles.counter}`} data-tid="counter">
           {counter}
         </div>
-        <div className={styles.btnGroup}>
+        <div className={styles.btnGroup}>s
           <button
             className={styles.btn}
             onClick={increment}

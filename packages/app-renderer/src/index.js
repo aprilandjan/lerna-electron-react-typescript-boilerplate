@@ -7,7 +7,7 @@ import './assets/styles/app.global.css';
 
 const store = configureStore();
 
-const AppContainer = process.env.PLAIN_HMR ? Fragment : ReactHotAppContainer;
+const AppContainer = process.env.NODE_ENV === 'development' ? ReactHotAppContainer : Fragment;
 
 render(
   <AppContainer>

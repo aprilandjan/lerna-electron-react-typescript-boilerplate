@@ -27,6 +27,8 @@ module.exports = {
     'no-console': 'off',
     'no-use-before-define': 'off',
     'no-multi-assign': 'off',
+    'no-param-reassign': 'off',
+    'prefer-template': 'off',
     // 'prettier/prettier': ['error', { singleQuote: true, parser: 'flow' }],
     'prettier/prettier': 'off',
     'promise/param-names': 'error',

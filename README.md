@@ -6,6 +6,8 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 
 - [x] remove `flow`
 - [x] use `lerna`
+- [x] add electron icon, see <https://www.electron.build/icons>
+- [x] ensure `dev` & `build` progress
 - [] add `typescript`
 - [] allow mixed `js(x)` and `ts(x)`
 
@@ -16,11 +18,6 @@ install [flow-remove-types](https://github.com/facebookarchive/flow-remove-types
 ```bash
 $ flow-remove-types --pretty --out-dir ./app-no-flow/ ./app/
 ```
-
-## TODO:
-
-- add electron icon
-- ensure `dev` & `build` progress
 
 ## References
 
