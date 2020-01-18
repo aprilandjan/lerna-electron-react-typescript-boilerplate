@@ -21,6 +21,10 @@ const host = process.env.HOST || '0.0.0.0';
 const publicPath = path.join(__dirname, '../public');
 const dllPath = path.join(__dirname, '../dll');
 
+
+let devServer;
+let ready = false;
+
 const devServerConfig = {
   port,
   host,
@@ -48,12 +52,13 @@ const devServerConfig = {
     // verbose: true,
     disableDotRule: false
   },
-  before() {
-    // app middlewares
+  before(app) {
+    // app middleware
+    app.get('/dev-server-status', (req, res) => {
+      res.send(ready ? 'ready' : 'pending');
+    });
   }
 }
-
-let devServer;
 
 const devSocket = {
   warnings: warnings =>
@@ -67,9 +72,14 @@ const compiler = createWebpackCompiler({
   devSocket,
   useTypeScript: false,
   tscCompileOnError: true,
-  onCompiled: () => {
-    // console.log('is first compiled?', first);
-    // TODO: notify parent process if possible
+  onCompiled: (first) => {
+    if (first) {
+      // console.log('first compiled');
+      ready = true;
+      if (process.send) {
+        process.send('ready');
+      }
+    }
   }
 });
 devServer = new WebpackDevServer(compiler, devServerConfig);

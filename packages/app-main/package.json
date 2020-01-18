@@ -6,7 +6,7 @@
   "description": "Electron app resources for the Electron app",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "dev": "cross-env START_HOT=1 NODE_ENV=development electron -r @babel/register ./src/index.js",
+    "dev": "node ./scripts/dev.js",
     "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.prod.js --colors",
     "start": "cross-env NODE_ENV=production electron ./dist/main.prod.js",
     "package": "electron-builder build --publish never",
