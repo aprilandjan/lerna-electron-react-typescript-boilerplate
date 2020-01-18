@@ -8,6 +8,7 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 - [x] use `lerna`
 - [x] add electron icon, see <https://www.electron.build/icons>
 - [x] ensure `dev` & `build` progress
+- [x] add renderer compile time progress
 - [] add `typescript`
 - [] allow mixed `js(x)` and `ts(x)`
 

@@ -71,6 +71,7 @@ module.exports = function createCompiler({
   compiler.hooks.done.tap('done', async stats => {
     clearConsole();
 
+    const t = stats.endTime - stats.startTime;
     // We have switched off the default Webpack output in WebpackDevServer
     // options so we are going to "massage" the warnings and errors and present
     // them in a readable focused way.
@@ -125,14 +126,14 @@ module.exports = function createCompiler({
     const messages = formatWebpackMessages(statsData);
     const isSuccessful = !messages.errors.length && !messages.warnings.length;
     if (isSuccessful) {
-      console.log(chalk.green('Compiled successfully!'));
+      console.log(chalk.green(`Compiled successfully in ${chalk.yellow(t)} ms!`));
       if (onCompiled) {
         onCompiled(isFirstCompile)
       }
     }
     // if (isSuccessful && (isInteractive || isFirstCompile)) {
     //   printInstructions(appName, urls, useYarn);
-    // }s
+    // }
     isFirstCompile = false;
 
     // If errors exist, only show errors.
