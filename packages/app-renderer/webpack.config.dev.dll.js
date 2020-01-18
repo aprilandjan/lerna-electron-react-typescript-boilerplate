@@ -9,9 +9,6 @@ const path = require('path');
 const merge = require('webpack-merge');
 const baseConfig = require('../../configs/webpack.config.base');
 const { dependencies } = require('./package.json');
-const CheckNodeEnv = require('../../internals/scripts/CheckNodeEnv');
-
-CheckNodeEnv('development');
 
 const dllPath = path.join(__dirname, 'dll');
 
@@ -27,7 +24,7 @@ module.exports = merge.smart(baseConfig, {
   externals: ['fsevents', 'crypto-browserify'],
 
   /**
-   * Use `module` from `webpack.config.renderer.dev.js`
+   * Use `module` from `webpack.config.dev.js`
    */
   module: require('./webpack.config.dev').module,
 
@@ -45,7 +42,7 @@ module.exports = merge.smart(baseConfig, {
   plugins: [
     new webpack.DllPlugin({
       path: path.join(dllPath, '[name].json'),
-      name: '[name]'
+      name: '[name]',
     }),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development'
@@ -54,11 +51,11 @@ module.exports = merge.smart(baseConfig, {
     new webpack.LoaderOptionsPlugin({
       debug: true,
       options: {
-        // context: path.join(__dirname, '..', 'app'),
+        // context: path.join(__dirname, '..'),
         output: {
           path: dllPath,
         }
       }
-    })
+    }),
   ]
 });

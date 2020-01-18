@@ -7,8 +7,10 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
+const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
+const { spawnSync } = require('child_process');
 const WebpackDevServer = require('webpack-dev-server');
 const createWebpackCompiler = require('./utils/createWebpackCompiler');
 const clearConsole = require('./utils/clearConsole');
@@ -16,10 +18,28 @@ const webpackConfig = require('../webpack.config.dev');
 
 // FIXME: extract env variables
 const port = process.env.PORT || 1212;
-const host = process.env.HOST || '0.0.0.0';
+const host = process.env.HOST || 'localhost';
 // const publicPath = `http://localhost:${port}/dist`;
 const publicPath = path.join(__dirname, '../public');
 const dllPath = path.join(__dirname, '../dll');
+const manifest = path.resolve(dllPath, 'renderer.json');
+const manifestReady = fs.existsSync(manifest);
+if (!manifestReady) {
+  console.log(
+    chalk.black.bgYellow.bold(
+      'The DLL files are missing. Sit back while we build them for you',
+    )
+  );
+  spawnSync('node', [
+    path.join(__dirname, './dev-dll.js'),
+  ], {
+    env: {
+      ...process.env,
+      KEEP_CONSOLE: true,
+    },
+    stdio: 'inherit',
+  });
+}
 
 
 let devServer;
@@ -28,7 +48,8 @@ let ready = false;
 const devServerConfig = {
   port,
   host,
-  publicPath: '/',
+  // https://github.com/webpack/webpack-dev-server/issues/1385
+  // publicPath: '/',
   // stats: 'errors-only',
   inline: true,
   lazy: false,

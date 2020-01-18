@@ -110,14 +110,16 @@ module.exports = function createCompiler({
       }
       stats.compilation.warnings.push(...messages.warnings);
 
-      if (messages.errors.length > 0) {
-        if (tscCompileOnError) {
-          devSocket.warnings(messages.errors);
-        } else {
-          devSocket.errors(messages.errors);
+      if (devSocket) {
+        if (messages.errors.length > 0) {
+          if (tscCompileOnError) {
+            devSocket.warnings(messages.errors);
+          } else {
+            devSocket.errors(messages.errors);
+          }
+        } else if (messages.warnings.length > 0) {
+          devSocket.warnings(messages.warnings);
         }
-      } else if (messages.warnings.length > 0) {
-        devSocket.warnings(messages.warnings);
       }
 
       clearConsole();

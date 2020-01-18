@@ -8,44 +8,19 @@
  */
 
 const path = require('path');
-const fs = require('fs-extra');
+// const fs = require('fs-extra');
 const webpack = require('webpack');
 // const chalk = require('chalk');
 const merge = require('webpack-merge');
-// const { spawn, execSync } = require('child_process');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const baseConfig = require('../../configs/webpack.config.base');
-const CheckNodeEnv = require('../../internals/scripts/CheckNodeEnv');
-
-// When an ESLint server is running, we can't set the NODE_ENV so we'll check if it's
-// at the dev webpack config is not accidentally run in a production environment
-if (process.env.NODE_ENV === 'production') {
-  CheckNodeEnv('development');
-}
 
 // FIXME: extract env variables
 const port = process.env.PORT || 1212;
+const host = process.env.HOST || 'localhost';
 
 const dllPath = path.join(__dirname, 'dll');
 const manifest = path.resolve(dllPath, 'renderer.json');
-const manifestReady = fs.existsSync(manifest);
-// const requiredByDLLConfig = module.parent.filename.includes(
-//   'webpack.config.dev.dll'
-// );
-
-/**
- * Warn if the DLL is not built
- */
-// if (
-//   !requiredByDLLConfig &&
-//   !(fs.existsSync(dllPath) && fs.existsSync(manifest))
-// ) {
-//   console.log(
-//     chalk.black.bgYellow.bold(
-//       'The DLL files are missing. Sit back while we build them for you with "yarn build-dll"'
-//     )
-//   );
-//   execSync('yarn build-dll');
-// }
 
 module.exports = merge.smart(baseConfig, {
   devtool: 'inline-source-map',
@@ -58,11 +33,11 @@ module.exports = merge.smart(baseConfig, {
     'react-hot-loader/patch',
     `webpack-dev-server/client?http://localhost:${port}/`,
     'webpack/hot/only-dev-server',
-    require.resolve('./src/index')
+    require.resolve('./src/index'),
   ],
 
   output: {
-    publicPath: '/',
+    publicPath: `http://${host}:${port}/`,
     filename: 'renderer.dev.js'
   },
 
@@ -212,10 +187,10 @@ module.exports = merge.smart(baseConfig, {
     }
   },
   plugins: [
-    manifestReady &&
+    //  make it always ready
     new webpack.DllReferencePlugin({
-      context: dllPath,
-      manifest: require(manifest),
+      // context: '.',
+      manifest,
       sourceType: 'var'
     }),
     // https://webpack.js.org/plugins/hot-module-replacement-plugin/
@@ -229,7 +204,8 @@ module.exports = merge.smart(baseConfig, {
     }),
     new webpack.LoaderOptionsPlugin({
       debug: true
-    })
+    }),
+    // new BundleAnalyzerPlugin(),
   ].filter(Boolean),
 
   node: {
