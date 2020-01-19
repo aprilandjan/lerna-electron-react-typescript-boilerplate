@@ -10,7 +10,7 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 - [x] ensure `dev` & `build` progress
 - [x] add renderer compile time progress
 - [] automatically dll compare & rebuild
-- [] app main watch & reload
+- [x] app main watch & reload: reload: use webpack, listen its compile status, and ask for reload
 - [] add `typescript`
 - [] allow mixed `js(x)` and `ts(x)`
 

@@ -8,9 +8,6 @@ const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer');
 const baseConfig = require('../../configs/webpack.config.base');
-const CheckNodeEnv = require('../../internals/scripts/CheckNodeEnv');
-
-CheckNodeEnv('production');
 
 module.exports = merge.smart(baseConfig, {
   devtool: 'source-map',

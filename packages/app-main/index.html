@@ -8,7 +8,7 @@
         if (process.env.NODE_ENV !== 'development') {
           const link = document.createElement('link');
           link.rel = 'stylesheet';
-          link.href = './dist/style.css';
+          link.href = './style.css';
           document.getElementsByTagName('head')[0].appendChild(link);
         }
       })();
@@ -19,7 +19,6 @@
     <script>
       {
         const scripts = [];
-
         // Dynamically insert the DLL script in development env in the
         // renderer process
         if (process.env.NODE_ENV === 'development') {
@@ -27,7 +26,7 @@
           scripts.push(`http://localhost:${port}/renderer.dev.dll.js`);
           scripts.push(`http://localhost:${port}/renderer.dev.js`);
         } else {
-          scripts.push('./dist/renderer.prod.js');
+          scripts.push('./renderer.prod.js');
         }
 
         document.write(

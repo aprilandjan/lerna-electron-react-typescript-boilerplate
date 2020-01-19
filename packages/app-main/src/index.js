@@ -13,6 +13,8 @@
 import { app, BrowserWindow } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import { format } from 'url';
+import path from 'path';
 import MenuBuilder from './menu';
 
 export default class AppUpdater {
@@ -66,7 +68,11 @@ const createWindow = async () => {
 
   mainWindow.webContents.openDevTools();
 
-  mainWindow.loadURL(`file://${__dirname}/app.html`);
+  mainWindow.loadURL(format({
+    pathname: path.join(__dirname, '../index.html'),
+    protocol: 'file',
+    slashes: true,
+  }));
 
   // @TODO: Use 'ready-to-show' event
   //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
