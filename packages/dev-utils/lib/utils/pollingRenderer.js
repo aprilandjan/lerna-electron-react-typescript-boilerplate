@@ -1,9 +1,11 @@
 // const path = require('path');
 const http = require('http');
+const logger = require('./logger');
+const env = require('./env');
 
 async function isRendererReady() {
   return new Promise((resolve) => {
-    http.get('http://localhost:1212/dev-server-status', (res) => {
+    http.get(`http://${env.host}:${env.port}/dev-server-status`, (res) => {
       let data = '';
       res.on('data', chunk => {
         data += chunk;
@@ -35,6 +37,7 @@ module.exports = async function pollingRenderer(interval = 500, retry = 60) {
     }
     // eslint-disable-next-line
     i++;
+    logger.debug(`check is renderer ready... #${i}/${retry}`);
     // eslint-disable-next-line
     ready = await isRendererReady();
   }

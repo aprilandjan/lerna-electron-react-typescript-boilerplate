@@ -32,7 +32,7 @@ module.exports = {
     // 'prettier/prettier': ['error', { singleQuote: true, parser: 'flow' }],
     'prettier/prettier': 'off',
     'promise/param-names': 'error',
-    'promise/always-return': 'error',
+    'promise/always-return': 'off',
     'promise/catch-or-return': 'error',
     'promise/no-native': 'off',
     'react/static-property-placement': 'off',

@@ -5,7 +5,7 @@
   "description": "Electron app built on Lerna, React, Typescript",
   "scripts": {
     "dev": "node ./scripts/dev",
-    "dev:debug": "lerna run --stream dev",
+    "dev:debug": "lerna run --no-prefix --stream dev",
     "build": "lerna run --stream build",
     "lint": "cross-env NODE_ENV=development eslint --format=pretty .",
     "lint-fix": "yarn --silent lint --fix; exit 0",

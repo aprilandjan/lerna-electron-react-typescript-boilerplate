@@ -1,6 +1,7 @@
-const debug = require('debug')('app-main');
-const path = require('path');
+// const path = require('path');
 const { spawn } = require('child_process');
+const paths = require('./paths');
+const logger = require('./logger');
 
 module.exports = function getElectronRunner(config = {}) {
   const { autoReload, entry, args = [] } = config;
@@ -10,7 +11,7 @@ module.exports = function getElectronRunner(config = {}) {
   let autoKilled = false;
 
   function kill(signal) {
-    debug('kill existed electron process');
+    logger.debug('kill existed electron process');
     autoKilled = true;
     return new Promise((resolve) => {
       electronProcess.on('close', resolve);
@@ -23,18 +24,18 @@ module.exports = function getElectronRunner(config = {}) {
    */
   async function run(hash) {
     if (compileHash === hash) {
-      debug('do not run electron because of same hash', hash);
+      logger.debug('do not run electron because of same hash', hash);
       return;
     }
     if (electronProcess) {
       if (autoReload) {
-        debug('auto reload electron process...');
+        logger.debug('auto reload electron process...');
         autoKilled = true;
         await kill();
         electronProcess = startElectron();
         compileHash = hash;
       } else {
-        debug('wait for user reload key-control');
+        logger.debug('wait for user reload key-control');
       }
     } else {
       electronProcess = startElectron();
@@ -43,33 +44,34 @@ module.exports = function getElectronRunner(config = {}) {
   }
 
   function startElectron () {
-    debug('spawn new electron process');
+    logger.debug('spawn new electron process');
     autoKilled = false
     //  eslint-disable-next-line
-    const p = spawn(require('electron').toString(), [
+    const electronRuntime = require('electron').toString();
+    const p = spawn(electronRuntime, [
       entry,
       ...args,
     ], {
-      cwd: path.join(__dirname, '../'),
+      cwd: paths.appPath,
     });
 
     p.stdout.on('data', data => {
       data = data.toString();
       if (data.trim() !== '') {
-        console.log(`[electron] ${data}`);
+        logger.info(`[electron] ${data}`);
       }
     });
     p.stderr.on('error', data => {
       data = data.toString();
       if (data.trim() !== '') {
-        console.log(`[electron] ${data}`);
+        logger.info(`[electron] ${data}`);
       }
     });
 
     p.on('close', (code, signal) => {
-      debug(`electron process closed with exit code ${code} and signal ${signal}`);
+      logger.debug(`electron process closed with exit code ${code} and signal ${signal}`);
       if (!autoKilled) {
-        debug('exit current process')
+        logger.debug('exit current process')
         process.exit(1);
       }
     });

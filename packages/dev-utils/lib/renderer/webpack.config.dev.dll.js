@@ -4,13 +4,13 @@
  * Builds the DLL for development electron renderer process
  */
 
+// const path = require('path');
 const webpack = require('webpack');
-const path = require('path');
 const merge = require('webpack-merge');
-const baseConfig = require('../../configs/webpack.config.base');
-const { dependencies } = require('./package.json');
+const baseConfig = require('../webpack.config.base');
+const paths = require('../utils/paths');
 
-const dllPath = path.join(__dirname, 'dll');
+const { dependencies } = require(paths.appPackageJson);
 
 module.exports = merge.smart(baseConfig, {
   // context: path.join(__dirname, '..'),
@@ -34,14 +34,14 @@ module.exports = merge.smart(baseConfig, {
 
   output: {
     library: 'renderer',
-    path: dllPath,
+    path: paths.appDLL,
     filename: '[name].dev.dll.js',
     libraryTarget: 'var'
   },
 
   plugins: [
     new webpack.DllPlugin({
-      path: path.join(dllPath, '[name].json'),
+      path: paths.appDLLManifest,
       name: '[name]',
     }),
     new webpack.EnvironmentPlugin({
@@ -51,9 +51,9 @@ module.exports = merge.smart(baseConfig, {
     new webpack.LoaderOptionsPlugin({
       debug: true,
       options: {
-        // context: path.join(__dirname, '..'),
+        context: paths.appPath,
         output: {
-          path: dllPath,
+          path: paths.appDLL,
         }
       }
     }),

@@ -6,9 +6,9 @@
   "description": "Electron app resources for the Electron app",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "dev": "node ./scripts/dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.prod.js --colors",
-    "start": "cross-env NODE_ENV=production electron ./dist/main.prod.js",
+    "dev": "app-main dev",
+    "build": "app-main build",
+    "start": "app-main start",
     "package": "electron-builder build --publish never",
     "package-all": "electron-builder build -mwl",
     "package-ci": "electron-builder --publish always",
@@ -24,7 +24,7 @@
     "source-map-support": "^0.5.16"
   },
   "devDependencies": {
-    "@babel/register": "^7.7.4",
+    "app-dev-utils": "^1.0.0",
     "cross-env": "^6.0.3",
     "debug": "^4.1.1",
     "electron": "7.1.4",

@@ -2,17 +2,15 @@
  * Build config for electron renderer process
  */
 
-const path = require('path');
+// const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
-const baseConfig = require('../../configs/webpack.config.base');
-const CheckNodeEnv = require('../../internals/scripts/CheckNodeEnv');
-
-CheckNodeEnv('production');
+const paths = require('../utils/paths');
+const baseConfig = require('../webpack.config.base');
 
 module.exports = merge.smart(baseConfig, {
   devtool: 'source-map',
@@ -21,10 +19,10 @@ module.exports = merge.smart(baseConfig, {
 
   target: 'electron-renderer',
 
-  entry: path.join(__dirname, 'src/index'),
+  entry: paths.appSrcEntry,
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: paths.appDist,
     publicPath: './dist/',
     filename: 'renderer.prod.js'
   },

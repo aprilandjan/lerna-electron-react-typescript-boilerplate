@@ -1,31 +1,45 @@
 const chalk = require('chalk');
 const webpack = require('webpack');
+const logger = require('./logger');
 const formatWebpackMessages = require('./formatWebpackMessages');
 const typescriptFormatter = require('./typescriptFormatter');
 const clearConsole = require('./clearConsole');
 
-module.exports = function createCompiler({
-  // webpack config
-  config,
-  devSocket,
-  useTypeScript,
-  tscCompileOnError,
-  //  compile callback
-  onCompiled,
-}) {
-  // "Compiler" is a low-level interface to Webpack.
-  // It lets us listen to some events and provide our own custom messages.
+module.exports = function createCompiler(options) {
+  const {
+    // webpack config
+    config,
+    devSocket,
+    useTypeScript,
+    tscCompileOnError,
+    //  compile callback
+    onCompiled,
+    onFirstCompiledSuccess,
+  } = options;
   let compiler;
+  let isFirstCompiledSuccess = true;
+  const handleCompiled = (success, s) => {
+    if (onCompiled) {
+      onCompiled(success, s);
+    }
+  }
+  const handleFirstCompiledSuccess = (s) => {
+    if (!isFirstCompiledSuccess) {
+      return;
+    }
+    isFirstCompiledSuccess = false;
+    if (onFirstCompiledSuccess) {
+      onFirstCompiledSuccess(s)
+    }
+  }
   try {
     compiler = webpack(config);
   } catch (err) {
-    console.log(chalk.red('Failed to compile.'));
-    console.log();
-    console.log(err.message || err);
-    console.log();
-    if (onCompiled) {
-      onCompiled(false);
-    }
+    logger.info(chalk.red('Failed to compile.'));
+    logger.info();
+    logger.info(err.message || err);
+    logger.info();
+    handleCompiled(false);
     process.exit(1);
   }
 
@@ -35,10 +49,9 @@ module.exports = function createCompiler({
   // "invalid" is short for "bundle invalidated", it doesn't imply any errors.
   compiler.hooks.invalid.tap('invalid', () => {
     clearConsole();
-    console.log('Compiling...');
+    logger.info('Compiling...');
   });
 
-  // let isFirstCompile = true;
   let tsMessagesPromise;
   let tsMessagesResolver;
 
@@ -88,7 +101,7 @@ module.exports = function createCompiler({
 
     if (useTypeScript && statsData.errors.length === 0) {
       const delayedMsg = setTimeout(() => {
-        console.log(
+        logger.info(
           chalk.yellow(
             'Files successfully emitted, waiting for typecheck results...'
           )
@@ -131,15 +144,10 @@ module.exports = function createCompiler({
     const messages = formatWebpackMessages(statsData);
     const isSuccessful = !messages.errors.length && !messages.warnings.length;
     if (isSuccessful) {
-      console.log(chalk.green(`Compiled successfully in ${t} ms!`));
-      if (onCompiled) {
-        onCompiled(true, stats)
-      }
+      logger.info(chalk.green(`Compiled successfully in ${t} ms!`));
+      handleCompiled(true, stats)
+      handleFirstCompiledSuccess(stats);
     }
-    // if (isSuccessful && (isInteractive || isFirstCompile)) {
-    //   printInstructions(appName, urls, useYarn);
-    // }
-    // isFirstCompile = false;
 
     // If errors exist, only show errors.
     if (messages.errors.length) {
@@ -148,33 +156,30 @@ module.exports = function createCompiler({
       if (messages.errors.length > 1) {
         messages.errors.length = 1;
       }
-      console.log(chalk.red('Failed to compile.\n'));
-      console.log(messages.errors.join('\n\n'));
-      if (onCompiled) {
-        onCompiled(false);
-      }
+      logger.info(chalk.red('Failed to compile.\n'));
+      logger.info(messages.errors.join('\n\n'));
+      handleCompiled(false);
       return;
     }
 
     // Show warnings if no errors were found.
     if (messages.warnings.length) {
-      console.log(chalk.yellow(`Compiled with warnings in ${t} ms.\n`));
-      console.log(messages.warnings.join('\n\n'));
+      logger.info(chalk.yellow(`Compiled with warnings in ${t} ms.\n`));
+      logger.info(messages.warnings.join('\n\n'));
 
       // Teach some ESLint tricks.
-      console.log(
+      logger.info(
         '\nSearch for the ' +
           chalk.underline(chalk.yellow('keywords')) +
           ' to learn more about each warning.'
       );
-      console.log(
+      logger.info(
         'To ignore, add ' +
           chalk.cyan('// eslint-disable-next-line') +
           ' to the line before.\n'
       );
-      if (onCompiled) {
-        onCompiled(true, stats);
-      }
+      handleCompiled(true, stats);
+      handleFirstCompiledSuccess(stats);
     }
   });
   return compiler;

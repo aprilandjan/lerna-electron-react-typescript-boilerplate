@@ -28,7 +28,7 @@ function formatMessage(message) {
   });
 
   message = lines.join('\n');
-  // Smoosh syntax errors (commonly found in CSS)
+  // Smooth syntax errors (commonly found in CSS)
   message = message.replace(
     /SyntaxError\s+\((\d+):(\d+)\)\s*(.+?)\n/g,
     `${friendlySyntaxErrorLabel} $3 ($1:$2)\n`

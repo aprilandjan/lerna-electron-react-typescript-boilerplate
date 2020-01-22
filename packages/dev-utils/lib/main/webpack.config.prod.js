@@ -2,12 +2,13 @@
  * Webpack config for production electron main process
  */
 
-const path = require('path');
+// const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer');
-const baseConfig = require('../../configs/webpack.config.base');
+const paths = require('../utils/paths');
+const baseConfig = require('../webpack.config.base');
 
 module.exports = merge.smart(baseConfig, {
   devtool: 'source-map',
@@ -16,10 +17,10 @@ module.exports = merge.smart(baseConfig, {
 
   target: 'electron-main',
 
-  entry: path.join(__dirname, './src/index'),
+  entry: paths.appSrcEntry,
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: paths.appDist,
     publicPath: './dist/',
     filename: 'main.prod.js'
   },

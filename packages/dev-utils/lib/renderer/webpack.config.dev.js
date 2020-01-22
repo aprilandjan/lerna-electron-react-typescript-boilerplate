@@ -1,26 +1,14 @@
 /* eslint global-require: off, import/no-dynamic-require: off */
 
-/**
- * Build config for development electron renderer process that uses
- * Hot-Module-Replacement
- *
- * https://webpack.js.org/concepts/hot-module-replacement/
- */
-
-const path = require('path');
+// const path = require('path');
 // const fs = require('fs-extra');
 const webpack = require('webpack');
 // const chalk = require('chalk');
 const merge = require('webpack-merge');
+const paths = require('../utils/paths');
+const env = require('../utils/env');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-const baseConfig = require('../../configs/webpack.config.base');
-
-// FIXME: extract env variables
-const port = process.env.PORT || 1212;
-const host = process.env.HOST || 'localhost';
-
-const dllPath = path.join(__dirname, 'dll');
-const manifest = path.resolve(dllPath, 'renderer.json');
+const baseConfig = require('../webpack.config.base');
 
 module.exports = merge.smart(baseConfig, {
   devtool: 'inline-source-map',
@@ -31,13 +19,13 @@ module.exports = merge.smart(baseConfig, {
 
   entry: [
     'react-hot-loader/patch',
-    `webpack-dev-server/client?http://localhost:${port}/`,
+    `webpack-dev-server/client?http://${env.host}:${env.port}/`,
     'webpack/hot/only-dev-server',
-    require.resolve('./src/index'),
+    paths.appSrcEntry,
   ],
 
   output: {
-    publicPath: `http://${host}:${port}/`,
+    publicPath: `http://${env.host}:${env.port}/`,
     filename: 'renderer.dev.js'
   },
 
@@ -189,8 +177,8 @@ module.exports = merge.smart(baseConfig, {
   plugins: [
     //  make it always ready
     new webpack.DllReferencePlugin({
-      // context: '.',
-      manifest,
+      context: paths.appPath,
+      manifest: paths.appDLLManifest,
       sourceType: 'var'
     }),
     // https://webpack.js.org/plugins/hot-module-replacement-plugin/
