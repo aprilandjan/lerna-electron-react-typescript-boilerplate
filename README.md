@@ -16,6 +16,8 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 - [] fix main bundle build warning
 - [] add `typescript`
 - [] allow mixed `js(x)` and `ts(x)`
+- [] encapsuled eslint config
+- [] encapsuled babel config
 
 ### Remove `flow` types
 
