@@ -29,8 +29,7 @@
     "debug": "^4.1.1",
     "electron": "7.1.4",
     "electron-builder": "^22.2.0",
-    "electron-devtools-installer": "^2.2.4",
-    "prompt": "^1.0.0"
+    "electron-devtools-installer": "^2.2.4"
   },
   "main": "./dist/main.prod.js",
   "build": {
