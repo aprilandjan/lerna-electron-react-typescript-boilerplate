@@ -8,7 +8,7 @@
     "app-main": "./bin/app-main.js"
   },
   "scripts": {
-
+    "test": "echo 'test'"
   },
   "dependencies": {
     "babel-loader": "^8.0.6",

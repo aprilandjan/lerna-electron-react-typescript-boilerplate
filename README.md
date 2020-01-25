@@ -10,7 +10,10 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 - [x] ensure `dev` & `build` progress
 - [x] add renderer compile time progress
 - [] automatically dll compare & rebuild
-- [x] app main watch & reload: reload: use webpack, listen its compile status, and ask for reload
+- [x] app main watch & reload: reload: use webpack, listen its compile status
+- [] main process ask for restart if needed
+- [] main process modules partly hot-reload
+- [] main & renderer communicate through node ipc
 - [x] extract webpack things into dev-utils
 - [x] customizable build step
 - [] fix main bundle build warning
@@ -18,6 +21,8 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 - [] allow mixed `js(x)` and `ts(x)`
 - [] encapsuled eslint config
 - [] encapsuled babel config
+- [] all scripts in `typescript`
+- [] support unittest & e2e test
 
 ### Remove `flow` types
 
