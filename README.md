@@ -16,6 +16,7 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 - [] main & renderer communicate through node ipc
 - [x] extract webpack things into dev-utils
 - [x] customizable build step
+- [x] whole project building process
 - [] fix main bundle build warning
 - [] add `typescript`
 - [] allow mixed `js(x)` and `ts(x)`
