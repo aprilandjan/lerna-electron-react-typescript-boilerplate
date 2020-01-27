@@ -102,7 +102,7 @@ measureFileSizesBeforeBuild(paths.appDist)
           ' to the line before.\n'
       );
     } else {
-      logger.info(chalk.green('Compiled successfully.\n'));
+      logger.info(chalk.green(`Compiled successfully in ${stats.endTime - stats.startTime} ms.\n`));
     }
 
     logger.info('File sizes:\n');
