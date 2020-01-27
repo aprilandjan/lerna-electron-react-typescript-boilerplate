@@ -9,11 +9,12 @@
     "dev": "app-main dev",
     "build": "app-main build",
     "start": "app-main start",
+    "start:prod": "electron ./dist/main.prod.js",
     "package": "electron-builder build --publish never",
-    "package-all": "electron-builder build -mwl",
-    "package-ci": "electron-builder --publish always",
     "package-linux": "electron-builder build --linux",
-    "package-win": "electron-builder build --win --x64"
+    "package-win": "electron-builder build --win --x64",
+    "package-all": "electron-builder build -mwl",
+    "package-ci": "electron-builder --publish always"
   },
   "license": "MIT",
   "dependencies": {

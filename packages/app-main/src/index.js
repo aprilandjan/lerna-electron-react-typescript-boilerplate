@@ -1,13 +1,12 @@
 /* eslint global-require: off */
-/**
- *
- */
 import { app, BrowserWindow } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import { format } from 'url';
 import path from 'path';
 import MenuBuilder from './menu';
+
+const isDev = process.env.NODE_ENV === 'development';
 
 export default class AppUpdater {
   constructor() {
@@ -19,15 +18,12 @@ export default class AppUpdater {
 
 let mainWindow = null;
 
-if (process.env.NODE_ENV === 'production') {
+if (!isDev) {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
 }
 
-if (
-  process.env.NODE_ENV === 'development' ||
-  process.env.DEBUG_PROD === 'true'
-) {
+if (isDev) {
   require('electron-debug')();
 }
 
@@ -42,10 +38,7 @@ const installExtensions = async () => {
 };
 
 const createWindow = async () => {
-  if (
-    process.env.NODE_ENV === 'development' ||
-    process.env.DEBUG_PROD === 'true'
-  ) {
+  if (isDev) {
     await installExtensions();
   }
 
@@ -58,10 +51,8 @@ const createWindow = async () => {
     }
   });
 
-  mainWindow.webContents.openDevTools();
-
   mainWindow.loadURL(format({
-    pathname: path.join(__dirname, '../index.html'),
+    pathname: path.join(__dirname, isDev ? '../index.html' : './index.html'),
     protocol: 'file',
     slashes: true,
   }));
