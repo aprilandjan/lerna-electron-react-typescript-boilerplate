@@ -19,7 +19,7 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 - [x] whole project building process
 - [] fix main bundle build warning
 - [x] pack electron app
-- [] add `typescript`
+- [x] add `typescript`
 - [] allow `typescript` path alias
 - [] allow mixed `js(x)` and `ts(x)`
 - [] encapsuled eslint config

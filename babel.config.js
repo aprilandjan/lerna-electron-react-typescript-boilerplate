@@ -1,16 +1,19 @@
 /* eslint global-require: off */
 
-module.exports = (api, opts, env) => {
+module.exports = (api, opts) => {
   const {
     //  use ts language
     useTypesScript = true,
     //  use react related plugins
     useReact = true,
-  } = opts;
+  } = opts || {};
+  const env = process.env.BABEL_ENV || process.env.NODE_ENV;
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
   const isEnvTest = env === 'test';
   // see docs about api at https://babeljs.io/docs/en/config-files#apicache
+
+  api.cache(true);
 
   return {
     presets: [
@@ -58,25 +61,24 @@ module.exports = (api, opts, env) => {
         require('@babel/plugin-proposal-nullish-coalescing-operator'),
         { loose: false }
       ],
-      [require('@babel/plugin-proposal-class-properties'), { loose: true }],
-      isEnvDevelopment && [
-        require('react-hot-loader/babel')
-      ],
       isEnvTest &&
         // Transform dynamic import to require
         require('babel-plugin-dynamic-import-node'),
-      ...(isEnvProduction && useReact && [
+      ...((isEnvProduction && useReact) ? [
         require('@babel/plugin-transform-react-constant-elements'),
         require('@babel/plugin-transform-react-inline-elements'),
         require('babel-plugin-transform-react-remove-prop-types')
-      ])
+      ] : []),
+      isEnvDevelopment && [
+        require('react-hot-loader/babel')
+      ],
     ].filter(Boolean),
     overrides: [
       useTypesScript && {
         test: /\.tsx?$/,
         plugins: [
           [
-            require('@babel/plugin-proposal-decorators').default,
+            require('@babel/plugin-proposal-decorators'),
             { legacy: true },
           ],
         ],

@@ -9,12 +9,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: true
+            cacheDirectory: true,
+            rootMode: 'upward',
           }
         }
       }
@@ -31,8 +32,8 @@ module.exports = {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
-    modules: [path.join(__dirname, '..'), 'node_modules']
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    modules: [path.join(__dirname, '..'), 'node_modules'],
   },
 
   plugins: [

@@ -5,8 +5,10 @@ import log from 'electron-log';
 import { format } from 'url';
 import path from 'path';
 import MenuBuilder from './menu';
+import { echo } from './utils';
 
 const isDev = process.env.NODE_ENV === 'development';
+echo(isDev);
 
 export default class AppUpdater {
   constructor() {
