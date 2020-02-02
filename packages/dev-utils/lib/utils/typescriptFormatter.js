@@ -25,11 +25,7 @@ function formatter(message, useColors) {
 
   const source = file && fs.existsSync(file) && fs.readFileSync(file, 'utf-8');
   const frame = source
-    ? codeFrame(
-        source,
-        { start: { line, column: character } },
-        { highlightCode: useColors }
-      )
+    ? codeFrame(source, { start: { line, column: character } }, { highlightCode: useColors })
         .split('\n')
         .map(str => '  ' + str)
         .join(os.EOL)
@@ -39,9 +35,7 @@ function formatter(message, useColors) {
     messageColor.bold(`${types[type]} ${severity.toLowerCase()} in `) +
       fileAndNumberColor(`${file}(${line},${character})`) +
       messageColor(':'),
-    content +
-      '  ' +
-      messageColor.underline((type === 'lint' ? 'Rule: ' : 'TS') + code),
+    content + '  ' + messageColor.underline((type === 'lint' ? 'Rule: ' : 'TS') + code),
     '',
     frame,
   ].join(os.EOL);

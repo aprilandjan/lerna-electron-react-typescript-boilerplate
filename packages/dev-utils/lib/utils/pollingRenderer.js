@@ -4,23 +4,25 @@ const logger = require('./logger');
 const env = require('./env');
 
 async function isRendererReady() {
-  return new Promise((resolve) => {
-    http.get(`http://${env.host}:${env.port}/dev-server-status`, (res) => {
-      let data = '';
-      res.on('data', chunk => {
-        data += chunk;
+  return new Promise(resolve => {
+    http
+      .get(`http://${env.host}:${env.port}/dev-server-status`, res => {
+        let data = '';
+        res.on('data', chunk => {
+          data += chunk;
+        });
+        res.on('end', () => {
+          if (data === 'ready') {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
       })
-      res.on('end', () => {
-        if (data === 'ready') {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      })
-    }).on('error', () => {
-      resolve(false);
-    })
-  })
+      .on('error', () => {
+        resolve(false);
+      });
+  });
 }
 
 async function delay(t) {
@@ -30,7 +32,7 @@ async function delay(t) {
 module.exports = async function pollingRenderer(interval = 500, retry = 60) {
   let i = 0;
   let ready = false;
-  while(!ready && i < retry) {
+  while (!ready && i < retry) {
     if (i !== 0) {
       // eslint-disable-next-line
       await delay(interval);
@@ -42,4 +44,4 @@ module.exports = async function pollingRenderer(interval = 500, retry = 60) {
     ready = await isRendererReady();
   }
   return ready;
-}
+};

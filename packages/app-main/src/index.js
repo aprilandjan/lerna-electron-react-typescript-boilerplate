@@ -48,15 +48,17 @@ const createWindow = async () => {
     width: 1024,
     height: 728,
     webPreferences: {
-      nodeIntegration: true
-    }
+      nodeIntegration: true,
+    },
   });
 
-  mainWindow.loadURL(format({
-    pathname: path.join(__dirname, isDev ? '../index.html' : './index.html'),
-    protocol: 'file',
-    slashes: true,
-  }));
+  mainWindow.loadURL(
+    format({
+      pathname: path.join(__dirname, isDev ? '../index.html' : './index.html'),
+      protocol: 'file',
+      slashes: true,
+    })
+  );
 
   // @TODO: Use 'ready-to-show' event
   //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event

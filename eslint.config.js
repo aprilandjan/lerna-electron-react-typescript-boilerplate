@@ -26,24 +26,15 @@ module.exports = {
     // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
-      }
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      },
     },
-    'import/extensions': [
-      '.js',
-      '.jsx',
-      '.ts',
-      '.tsx',
-      '.json'
-    ],
-    'import/ignore': [
-      'node_modules',
-      '\\.(scss|css|less|svg)$',
-    ],
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    'import/ignore': ['node_modules', '\\.(scss|css|less|svg)$'],
   },
   rules: {
     // http://eslint.org/docs/rules/
-    'comma-dangle': 'off',  // default is 'never', so change it
+    'comma-dangle': 'off', // default is 'never', so change it
     'array-callback-return': 'warn',
     'default-case': ['warn', { commentPattern: '^no default$' }],
     'dot-location': ['warn', 'property'],
@@ -164,14 +155,12 @@ module.exports = {
       {
         object: 'require',
         property: 'ensure',
-        message:
-          'Please use import() instead.',
+        message: 'Please use import() instead.',
       },
       {
         object: 'System',
         property: 'import',
-        message:
-          'Please use import() instead.',
+        message: 'Please use import() instead.',
       },
     ],
     'getter-return': 'warn',

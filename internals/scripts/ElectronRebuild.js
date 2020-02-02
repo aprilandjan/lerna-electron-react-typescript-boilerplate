@@ -6,27 +6,16 @@ import fs from 'fs';
 const dependencies = {};
 
 (() => {
-  const nodeModulesPath = path.join(
-    __dirname,
-    '..',
-    '..',
-    'app',
-    'node_modules'
-  );
+  const nodeModulesPath = path.join(__dirname, '..', '..', 'app', 'node_modules');
 
-  if (
-    Object.keys(dependencies || {}).length > 0 &&
-    fs.existsSync(nodeModulesPath)
-  ) {
+  if (Object.keys(dependencies || {}).length > 0 && fs.existsSync(nodeModulesPath)) {
     const electronRebuildCmd =
       '../node_modules/.bin/electron-rebuild --parallel --force --types prod,dev,optional --module-dir .';
     const cmd =
-      process.platform === 'win32'
-        ? electronRebuildCmd.replace(/\//g, '\\')
-        : electronRebuildCmd;
+      process.platform === 'win32' ? electronRebuildCmd.replace(/\//g, '\\') : electronRebuildCmd;
     execSync(cmd, {
       cwd: path.join(__dirname, '..', '..', 'app'),
-      stdio: 'inherit'
+      stdio: 'inherit',
     });
   }
 })();

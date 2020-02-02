@@ -13,9 +13,9 @@ module.exports = function getElectronRunner(config = {}) {
   function kill(signal) {
     logger.debug('kill existed electron process');
     autoKilled = true;
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       electronProcess.on('close', resolve);
-      electronProcess.kill(signal)
+      electronProcess.kill(signal);
     });
   }
 
@@ -43,15 +43,12 @@ module.exports = function getElectronRunner(config = {}) {
     }
   }
 
-  function startElectron () {
+  function startElectron() {
     logger.debug('spawn new electron process');
-    autoKilled = false
+    autoKilled = false;
     //  eslint-disable-next-line
     const electronRuntime = require('electron').toString();
-    const p = spawn(electronRuntime, [
-      entry,
-      ...args,
-    ], {
+    const p = spawn(electronRuntime, [entry, ...args], {
       cwd: paths.appPath,
     });
 
@@ -71,7 +68,7 @@ module.exports = function getElectronRunner(config = {}) {
     p.on('close', (code, signal) => {
       logger.debug(`electron process closed with exit code ${code} and signal ${signal}`);
       if (!autoKilled) {
-        logger.debug('exit current process')
+        logger.debug('exit current process');
         process.exit(1);
       }
     });
@@ -79,4 +76,4 @@ module.exports = function getElectronRunner(config = {}) {
   }
 
   return run;
-}
+};

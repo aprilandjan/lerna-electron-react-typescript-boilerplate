@@ -65,11 +65,14 @@ const webpackConfig = require('./webpack.config.dev');
         //  当前编译失败了，给出错误提示
       }
       compiledSuccess = success;
-    }
+    },
   });
 
-  compiler.watch({
-    aggregateTimeout: 300,
-    poll: undefined,
-  }, () => {});
+  compiler.watch(
+    {
+      aggregateTimeout: 300,
+      poll: undefined,
+    },
+    () => {}
+  );
 })();

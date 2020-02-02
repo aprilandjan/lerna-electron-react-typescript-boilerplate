@@ -6,26 +6,26 @@
   "scripts": {
     "dev": "node ./scripts/dev",
     "build": "node ./scripts/build",
+    "start": "lerna exec --scope=app-main yarn start",
     "package": "lerna exec --scope=app-main yarn package",
     "package-linux": "lerna exec --scope=app-main yarn package-linux",
     "package-win": "lerna exec --scope=app-main yarn package-win",
     "package-all": "lerna exec --scope=app-main yarn package-all",
     "package-ci": "lerna exec --scope=app-main yarn package-ci",
-    "lint": "eslint . --ext .jsx,.js,.tsx,.ts --format=pretty",
-    "lint-fix": "yarn --silent lint --fix; exit 0",
+    "eslint": "eslint . --ext .jsx,.js,.tsx,.ts --format=pretty",
+    "eslint-fix": "yarn --silent lint --fix; exit 0",
     "lint-styles": "stylelint --ignore-path .eslintignore '**/*.*(css|scss)' --syntax scss",
     "lint-styles-fix": "yarn --silent lint-styles --fix; exit 0",
-    "postlint-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.{js,jsx,json,html,css,less,scss,yml}'",
-    "postlint-styles-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.{css,scss}'",
+    "prettify": "prettier --ignore-path .eslintignore '**/*.{js,jsx,json,html,css,less,scss,yml}'",
+    "prettify-fix": "yarn prettify --write",
     "preinstall": "node ./internals/scripts/CheckYarn.js",
-    "start": "cross-env NODE_ENV=production electron ./app/main.prod.js",
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 jest",
     "test-all": "yarn lint && yarn build && yarn test && yarn build-e2e && yarn test-e2e",
     "test-watch": "yarn test --watch"
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "cross-env NODE_ENV=development eslint --cache --format=pretty",
+      "eslint --format=pretty",
       "git add"
     ],
     "{*.json,.{babelrc,eslintrc,prettierrc,stylelintrc}}": [

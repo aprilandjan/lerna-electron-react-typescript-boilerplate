@@ -8,7 +8,14 @@ interface Props {
 export default class Box extends React.Component<Props, any> {
   render() {
     return (
-      <div className={styles.box}>Typescript Box</div>
+      <div className={styles.box}>
+        <span className="text">
+         Typescript Box
+        </span>
+        <span className={styles.text}>
+         Typescript Box
+        </span>
+      </div>
     )
   }
 }

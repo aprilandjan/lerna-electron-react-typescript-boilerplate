@@ -60,4 +60,4 @@ module.exports = {
   appRendererDev: resolveApp('dist/renderer.dev.js'),
   /** renderer prod */
   appRendererProd: resolveApp('dist/renderer.prod.js'),
-}
+};

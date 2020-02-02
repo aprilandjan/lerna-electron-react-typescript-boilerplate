@@ -14,7 +14,10 @@ const paths = require('../utils/paths');
 const logger = require('../utils/logger');
 const formatWebpackMessages = require('../utils/formatWebpackMessages');
 const printError = require('../utils/printError');
-const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = require('../utils/reportFileSize');
+const {
+  measureFileSizesBeforeBuild,
+  printFileSizesAfterBuild,
+} = require('../utils/reportFileSize');
 const webpackConfig = require('./webpack.config.prod');
 
 function build(previousFileSizes) {
@@ -72,8 +75,8 @@ function build(previousFileSizes) {
         previousFileSizes,
         warnings: messages.warnings,
       });
-    })
-  })
+    });
+  });
 }
 
 measureFileSizesBeforeBuild(paths.appDist)
@@ -97,22 +100,17 @@ measureFileSizesBeforeBuild(paths.appDist)
           ' to learn more about each warning.'
       );
       logger.info(
-        'To ignore, add ' +
-          chalk.cyan('// eslint-disable-next-line') +
-          ' to the line before.\n'
+        'To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n'
       );
     } else {
       logger.info(chalk.green(`Compiled successfully in ${stats.endTime - stats.startTime} ms.\n`));
     }
 
     logger.info('File sizes:\n');
-    printFileSizesAfterBuild(
-      stats,
-      previousFileSizes,
-      paths.appDist,
-    );
+    printFileSizesAfterBuild(stats, previousFileSizes, paths.appDist);
     return null;
-  }).catch((err) => {
+  })
+  .catch(err => {
     const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';
     if (tscCompileOnError) {
       logger.info(
@@ -126,4 +124,4 @@ measureFileSizesBeforeBuild(paths.appDist)
       printError(err);
       process.exit(1);
     }
-  })
+  });

@@ -29,14 +29,14 @@ module.exports = merge.smart(baseConfig, {
   module: require('./webpack.config.dev').module,
 
   entry: {
-    renderer: Object.keys(dependencies || {})
+    renderer: Object.keys(dependencies || {}),
   },
 
   output: {
     library: 'renderer',
     path: paths.appDLL,
     filename: '[name].dev.dll.js',
-    libraryTarget: 'var'
+    libraryTarget: 'var',
   },
 
   plugins: [
@@ -45,7 +45,7 @@ module.exports = merge.smart(baseConfig, {
       name: '[name]',
     }),
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development'
+      NODE_ENV: 'development',
     }),
 
     new webpack.LoaderOptionsPlugin({
@@ -54,8 +54,8 @@ module.exports = merge.smart(baseConfig, {
         context: paths.appPath,
         output: {
           path: paths.appDLL,
-        }
-      }
+        },
+      },
     }),
-  ]
+  ],
 });

@@ -18,19 +18,15 @@ module.exports = merge.smart(baseConfig, {
 
   target: 'electron-main',
 
-  entry: [
-    paths.appSrcEntry,
-  ],
+  entry: [paths.appSrcEntry],
 
   output: {
     path: paths.appDist,
     publicPath: './dist/',
-    filename: 'main.dev.js'
+    filename: 'main.dev.js',
   },
 
-  externals: [
-    ...Object.keys(dependencies),
-  ],
+  externals: [...Object.keys(dependencies)],
 
   optimization: {
     //  do not emit resources if error
@@ -45,6 +41,6 @@ module.exports = merge.smart(baseConfig, {
 
   node: {
     __dirname: false,
-    __filename: false
-  }
+    __filename: false,
+  },
 });

@@ -2,25 +2,17 @@ const spawn = require('cross-spawn');
 const logger = require('./logger');
 
 /** { cmd, script } */
-module.exports = function run (map) {
+module.exports = function run(map) {
   const args = process.argv.slice(2);
   const cmdList = Object.keys(map);
-  const cmdIndex = args.findIndex(
-    x => cmdList.includes(x),
-  );
+  const cmdIndex = args.findIndex(x => cmdList.includes(x));
   const cmd = cmdIndex === -1 ? args[0] : args[cmdIndex];
   const nodeArgs = cmdIndex > 0 ? args.slice(0, cmdIndex) : [];
 
   if (cmdList.includes(cmd)) {
-    const result = spawn.sync(
-      'node',
-      nodeArgs
-        .concat(map[cmd])
-        .concat(args.slice(cmdIndex + 1)),
-      {
-        stdio: 'inherit'
-      }
-    );
+    const result = spawn.sync('node', nodeArgs.concat(map[cmd]).concat(args.slice(cmdIndex + 1)), {
+      stdio: 'inherit',
+    });
     if (result.signal) {
       if (result.signal === 'SIGKILL') {
         logger.info(
@@ -41,4 +33,4 @@ module.exports = function run (map) {
   } else {
     logger.info('Unknown command "' + cmd + '".');
   }
-}
+};

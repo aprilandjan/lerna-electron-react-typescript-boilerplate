@@ -6,7 +6,4 @@ import './assets/styles/app.global.css';
 
 const store = configureStore();
 
-render(
-  <Root store={store} history={history} />,
-  document.getElementById('root')
-);
+render(<Root store={store} history={history} />, document.getElementById('root'));

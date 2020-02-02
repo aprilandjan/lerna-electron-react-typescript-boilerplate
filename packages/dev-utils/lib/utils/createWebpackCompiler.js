@@ -22,16 +22,16 @@ module.exports = function createCompiler(options) {
     if (onCompiled) {
       onCompiled(success, s);
     }
-  }
-  const handleFirstCompiledSuccess = (s) => {
+  };
+  const handleFirstCompiledSuccess = s => {
     if (!isFirstCompiledSuccess) {
       return;
     }
     isFirstCompiledSuccess = false;
     if (onFirstCompiledSuccess) {
-      onFirstCompiledSuccess(s)
+      onFirstCompiledSuccess(s);
     }
-  }
+  };
   try {
     compiler = webpack(config);
   } catch (err) {
@@ -70,14 +70,11 @@ module.exports = function createCompiler(options) {
       .getCompilerHooks(compiler)
       .receive.tap('afterTypeScriptCheck', (diagnostics, lints) => {
         const allMsgs = [...diagnostics, ...lints];
-        const format = message =>
-          `${message.file}\n${typescriptFormatter(message, true)}`;
+        const format = message => `${message.file}\n${typescriptFormatter(message, true)}`;
 
         tsMessagesResolver({
           errors: allMsgs.filter(msg => msg.severity === 'error').map(format),
-          warnings: allMsgs
-            .filter(msg => msg.severity === 'warning')
-            .map(format),
+          warnings: allMsgs.filter(msg => msg.severity === 'warning').map(format),
         });
       });
   }
@@ -101,11 +98,7 @@ module.exports = function createCompiler(options) {
 
     if (useTypeScript && statsData.errors.length === 0) {
       const delayedMsg = setTimeout(() => {
-        logger.info(
-          chalk.yellow(
-            'Files successfully emitted, waiting for typecheck results...'
-          )
-        );
+        logger.info(chalk.yellow('Files successfully emitted, waiting for typecheck results...'));
       }, 100);
 
       const messages = await tsMessagesPromise;
@@ -145,7 +138,7 @@ module.exports = function createCompiler(options) {
     const isSuccessful = !messages.errors.length && !messages.warnings.length;
     if (isSuccessful) {
       logger.info(chalk.green(`Compiled successfully in ${t} ms!`));
-      handleCompiled(true, stats)
+      handleCompiled(true, stats);
       handleFirstCompiledSuccess(stats);
     }
 
@@ -174,13 +167,11 @@ module.exports = function createCompiler(options) {
           ' to learn more about each warning.'
       );
       logger.info(
-        'To ignore, add ' +
-          chalk.cyan('// eslint-disable-next-line') +
-          ' to the line before.\n'
+        'To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n'
       );
       handleCompiled(true, stats);
       handleFirstCompiledSuccess(stats);
     }
   });
   return compiler;
-}
+};

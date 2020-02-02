@@ -23,10 +23,7 @@ function removeFileNameHash(buildFolder, fileName) {
   return fileName
     .replace(buildFolder, '')
     .replace(/\\/g, '/')
-    .replace(
-      /\/?(.*)(\.[0-9a-f]+)(\.chunk)?(\.js|\.css)/,
-      (match, p1, p2, p3, p4) => p1 + p4
-    );
+    .replace(/\/?(.*)(\.[0-9a-f]+)(\.chunk)?(\.js|\.css)/, (match, p1, p2, p3, p4) => p1 + p4);
 }
 
 function getDifferenceLabel(currentSize, previousSize) {
@@ -45,7 +42,7 @@ function getDifferenceLabel(currentSize, previousSize) {
   return '';
 }
 
-exports.measureFileSizesBeforeBuild = (buildFolder) => {
+exports.measureFileSizesBeforeBuild = buildFolder => {
   return new Promise(resolve => {
     recursive(buildFolder, (err, fileNames) => {
       let sizes;
@@ -62,10 +59,10 @@ exports.measureFileSizesBeforeBuild = (buildFolder) => {
       });
     });
   });
-}
+};
 
 exports.printFileSizesAfterBuild = (webpackStats, previousSizeMap, buildFolder) => {
-  const{ root, sizes } = previousSizeMap;
+  const { root, sizes } = previousSizeMap;
   const assets = (webpackStats.stats || [webpackStats])
     .map(stats =>
       stats
@@ -76,14 +73,10 @@ exports.printFileSizesAfterBuild = (webpackStats, previousSizeMap, buildFolder) 
           const previousSize = sizes['/' + removeFileNameHash(root, asset.name)];
           const difference = getDifferenceLabel(size, previousSize);
           return {
-            folder: path.join(
-              path.basename(buildFolder),
-              path.dirname(asset.name)
-            ),
+            folder: path.join(path.basename(buildFolder), path.dirname(asset.name)),
             name: path.basename(asset.name),
             size,
-            sizeLabel:
-              filesize(size) + (difference ? ' (' + difference + ')' : ''),
+            sizeLabel: filesize(size) + (difference ? ' (' + difference + ')' : ''),
           };
         })
     )
@@ -98,12 +91,8 @@ exports.printFileSizesAfterBuild = (webpackStats, previousSizeMap, buildFolder) 
       sizeLabel += rightPadding;
     }
     logger.info(
-      '  ' +
-        sizeLabel +
-        '  ' +
-        chalk.dim(asset.folder + path.sep) +
-        chalk.cyan(asset.name)
+      '  ' + sizeLabel + '  ' + chalk.dim(asset.folder + path.sep) + chalk.cyan(asset.name)
     );
   });
   logger.info();
-}
+};

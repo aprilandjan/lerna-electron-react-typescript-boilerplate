@@ -20,8 +20,8 @@ module.exports = (api, opts) => {
       [
         require('@babel/preset-env'),
         {
-          targets: { electron: require('electron/package.json').version }
-        }
+          targets: { electron: require('electron/package.json').version },
+        },
       ],
       useReact && [
         require('@babel/preset-react'),
@@ -30,18 +30,13 @@ module.exports = (api, opts) => {
           // Will use the native built-in instead of trying to polyfill
           // behavior for any plugins that require one.
           useBuiltIns: true,
-        }
+        },
       ],
-      useTypesScript && [
-        require('@babel/preset-typescript'),
-      ],
+      useTypesScript && [require('@babel/preset-typescript')],
     ].filter(Boolean),
     plugins: [
       // Turn on legacy decorators for TypeScript files
-      useTypesScript && [
-        require('@babel/plugin-proposal-decorators'),
-        false,
-      ],
+      useTypesScript && [require('@babel/plugin-proposal-decorators'), false],
       // class { handleClick = () => { } }
       // Enable loose mode to use assignment instead of defineProperty
       // See discussion in https://github.com/facebook/create-react-app/issues/4263
@@ -57,31 +52,23 @@ module.exports = (api, opts) => {
       //  a?.b
       [require('@babel/plugin-proposal-optional-chaining'), { loose: false }],
       //  var foo = object.foo ?? "default"
-      [
-        require('@babel/plugin-proposal-nullish-coalescing-operator'),
-        { loose: false }
-      ],
+      [require('@babel/plugin-proposal-nullish-coalescing-operator'), { loose: false }],
       isEnvTest &&
         // Transform dynamic import to require
         require('babel-plugin-dynamic-import-node'),
-      ...((isEnvProduction && useReact) ? [
-        require('@babel/plugin-transform-react-constant-elements'),
-        require('@babel/plugin-transform-react-inline-elements'),
-        require('babel-plugin-transform-react-remove-prop-types')
-      ] : []),
-      isEnvDevelopment && [
-        require('react-hot-loader/babel')
-      ],
+      ...(isEnvProduction && useReact
+        ? [
+            require('@babel/plugin-transform-react-constant-elements'),
+            require('@babel/plugin-transform-react-inline-elements'),
+            require('babel-plugin-transform-react-remove-prop-types'),
+          ]
+        : []),
+      isEnvDevelopment && [require('react-hot-loader/babel')],
     ].filter(Boolean),
     overrides: [
       useTypesScript && {
         test: /\.tsx?$/,
-        plugins: [
-          [
-            require('@babel/plugin-proposal-decorators'),
-            { legacy: true },
-          ],
-        ],
+        plugins: [[require('@babel/plugin-proposal-decorators'), { legacy: true }]],
       },
     ].filter(Boolean),
   };

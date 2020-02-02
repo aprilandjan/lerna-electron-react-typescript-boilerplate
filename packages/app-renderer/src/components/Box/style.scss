@@ -1,3 +1,13 @@
 .box {
   background-color: blue;
+
+  :global {
+    .text {
+      color: red;
+    }
+  }
+
+  .text {
+    font-size: 16px;
+  }
 }

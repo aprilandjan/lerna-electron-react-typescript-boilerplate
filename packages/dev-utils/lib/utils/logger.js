@@ -9,6 +9,6 @@ module.exports = {
     if (args.length === 0) {
       return console.log();
     }
-    return console.log(`[${chalk.cyan(devTarget)}]`, ...args)
+    return console.log(`[${chalk.cyan(devTarget)}]`, ...args);
   },
-}
+};
