@@ -1,4 +1,3 @@
-/* eslint global-require: off */
 import { app, BrowserWindow } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';

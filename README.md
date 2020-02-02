@@ -21,9 +21,9 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 - [x] pack electron app
 - [x] add `typescript`
 - [] allow `typescript` path alias
-- [] allow mixed `js(x)` and `ts(x)`
-- [] encapsuled eslint config
-- [] encapsuled babel config
+- [x] allow mixed `js(x)` and `ts(x)`
+- [x] encapsuled eslint config
+- [x] encapsuled babel config
 - [] all scripts in `typescript`
 - [] support unittest & e2e test
 
