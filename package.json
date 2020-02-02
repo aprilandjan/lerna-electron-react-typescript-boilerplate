@@ -12,45 +12,28 @@
     "package-win": "lerna exec --scope=app-main yarn package-win",
     "package-all": "lerna exec --scope=app-main yarn package-all",
     "package-ci": "lerna exec --scope=app-main yarn package-ci",
-    "eslint": "eslint . --ext .jsx,.js,.tsx,.ts --format=pretty",
-    "eslint-fix": "yarn --silent lint --fix; exit 0",
+    "lint": "eslint . --ext .jsx,.js,.tsx,.ts --format=pretty",
+    "lint-fix": "yarn --silent lint --fix; exit 0",
     "lint-styles": "stylelint --ignore-path .eslintignore '**/*.*(css|scss)' --syntax scss",
     "lint-styles-fix": "yarn --silent lint-styles --fix; exit 0",
     "prettify": "prettier --ignore-path .eslintignore '**/*.{js,jsx,json,html,css,less,scss,yml}'",
-    "prettify-fix": "yarn prettify --write",
-    "preinstall": "node ./internals/scripts/CheckYarn.js",
+    "prettify-fix": "yarn --silent prettify --write; exit 0",
+    "preinstall": "npx check-npm-client --yarn-only",
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 jest",
     "test-all": "yarn lint && yarn build && yarn test && yarn build-e2e && yarn test-e2e",
     "test-watch": "yarn test --watch"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --format=pretty",
-      "git add"
-    ],
+    "*.{js,jsx,ts,tsx}": ["eslint --format=pretty", "prettier --write", "git add"],
     "{*.json,.{babelrc,eslintrc,prettierrc,stylelintrc}}": [
-      "prettier --ignore-path .eslintignore --parser json --write",
+      "prettier --parser json --write",
       "git add"
     ],
-    "*.{css,scss}": [
-      "stylelint --ignore-path .eslintignore --syntax scss --fix",
-      "prettier --ignore-path .eslintignore --single-quote --write",
-      "git add"
-    ],
-    "*.{html,md,yml}": [
-      "prettier --ignore-path .eslintignore --single-quote --write",
-      "git add"
-    ]
+    "*.{css,scss}": ["stylelint --syntax scss --fix", "prettier --write", "git add"],
+    "*.{html,md,yml}": ["prettier --write", "git add"]
   },
   "license": "MIT",
-  "keywords": [
-    "lerna",
-    "electron",
-    "react",
-    "redux",
-    "sass",
-    "typescript"
-  ],
+  "keywords": ["lerna", "electron", "react", "redux", "sass", "typescript"],
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
@@ -64,17 +47,21 @@
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "^7.7.4",
     "@babel/preset-typescript": "^7.8.3",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chalk": "^3.0.0",
+    "check-npm-client": "^1.1.1",
     "confusing-browser-globals": "^1.0.9",
     "cross-env": "^6.0.3",
     "cross-spawn": "^7.0.1",
     "detect-port": "^1.3.0",
     "eslint": "^6.7.2",
+    "eslint-formatter-pretty": "^3.0.1",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
@@ -103,9 +90,7 @@
     "yarn": ">=1.4.3"
   },
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ],
+    "packages": ["packages/*"],
     "nohoist": [
       "**/electron-builder",
       "**/electron-builder/**",
