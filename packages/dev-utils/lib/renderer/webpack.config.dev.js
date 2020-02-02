@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const paths = require('../utils/paths');
 const env = require('../utils/env');
+const getCSSModuleLocalIdent = require('../utils/getCSSModuleLocalIdent');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const baseConfig = require('../webpack.config.base');
 
@@ -55,7 +56,7 @@ module.exports = merge.smart(baseConfig, {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]',
+                getLocalIdent: getCSSModuleLocalIdent,
               },
               sourceMap: true,
               importLoaders: 1,
@@ -92,7 +93,7 @@ module.exports = merge.smart(baseConfig, {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]',
+                getLocalIdent: getCSSModuleLocalIdent,
               },
               sourceMap: true,
               importLoaders: 1,

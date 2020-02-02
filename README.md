@@ -24,7 +24,7 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 - [x] allow mixed `js(x)` and `ts(x)`
 - [x] encapsuled eslint config
 - [x] encapsuled babel config
-- [] style class name generation
+- [x] style class name generation
 - [] all scripts in `typescript`
 - [] support unittest & e2e test
 

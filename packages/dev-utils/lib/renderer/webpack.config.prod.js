@@ -10,6 +10,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const paths = require('../utils/paths');
+const getCSSModuleLocalIdent = require('../utils/getCSSModuleLocalIdent');
 const baseConfig = require('../webpack.config.base');
 
 module.exports = merge.smart(baseConfig, {
@@ -58,7 +59,7 @@ module.exports = merge.smart(baseConfig, {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]',
+                getLocalIdent: getCSSModuleLocalIdent,
               },
               sourceMap: true,
             },
@@ -98,7 +99,7 @@ module.exports = merge.smart(baseConfig, {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]',
+                getLocalIdent: getCSSModuleLocalIdent,
               },
               importLoaders: 1,
               sourceMap: true,
