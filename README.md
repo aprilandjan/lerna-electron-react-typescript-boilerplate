@@ -1,6 +1,6 @@
-# Play Electron
+# Lerna React Electron App in TypeScript
 
-A React Electron Project Based on [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate).
+A Lerna React Electron App Boilerplate project in TypeScript.
 
 ## AIM
 
@@ -27,6 +27,7 @@ A React Electron Project Based on [electron-react-boilerplate](https://github.co
 - [x] style class name generation
 - [] all scripts in `typescript`
 - [] support unittest & e2e test
+- [] app auto-update
 
 ### Remove `flow` types
 

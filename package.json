@@ -2,7 +2,7 @@
   "name": "play-electron",
   "version": "1.0.0",
   "private": true,
-  "description": "Electron app built on Lerna, React, Typescript",
+  "description": "A Lerna React Electron App Boilerplate project in TypeScript",
   "scripts": {
     "dev": "node ./scripts/dev",
     "build": "node ./scripts/build",
