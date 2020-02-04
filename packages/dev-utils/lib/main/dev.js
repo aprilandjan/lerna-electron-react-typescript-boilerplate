@@ -43,8 +43,8 @@ const webpackConfig = require('./webpack.config.dev');
       ...webpackConfig,
       externals: ensureExternals(webpackConfig.externals),
     },
-    useTypeScript: false, //  FIXME:
-    tscCompileOnError: true,
+    useTypeScript: true,
+    tscCompileOnError: false,
     onCompiled: (success, stats) => {
       if (compiledSuccess === null) {
         //  首次编译

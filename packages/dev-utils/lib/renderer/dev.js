@@ -15,6 +15,7 @@ const logger = require('../utils/logger');
 const paths = require('../utils/paths');
 const createWebpackCompiler = require('../utils/createWebpackCompiler');
 const clearConsole = require('../utils/clearConsole');
+const printError = require('../utils/printError');
 const webpackConfig = require('./webpack.config.dev');
 const webpackDllConfig = require('./webpack.config.dev.dll');
 
@@ -33,8 +34,8 @@ function checkBuildDLL() {
     logger.info(chalk.yellow('The DLL files are missing. Start building dll...'));
     const compiler = createWebpackCompiler({
       config: webpackDllConfig,
-      useTypeScript: false,
-      tscCompileOnError: true,
+      useTypeScript: true,
+      tscCompileOnError: false,
     });
 
     compiler.run((err, stats) => {
@@ -97,8 +98,8 @@ checkBuildDLL()
     const compiler = createWebpackCompiler({
       config: webpackConfig,
       devSocket,
-      useTypeScript: false,
-      tscCompileOnError: true,
+      useTypeScript: true,
+      tscCompileOnError: false,
       onFirstCompiledSuccess: () => {
         logger.debug('first compiled');
         ready = true;
@@ -126,6 +127,7 @@ checkBuildDLL()
       });
     });
   })
-  .catch(() => {
+  .catch(err => {
+    printError(err);
     process.exit(1);
   });

@@ -103,6 +103,7 @@ module.exports = function createCompiler(options) {
 
       const messages = await tsMessagesPromise;
       clearTimeout(delayedMsg);
+      // FIXME: this will make the following 'Teach some ESLint tricks' buggy
       if (tscCompileOnError) {
         statsData.warnings.push(...messages.errors);
       } else {

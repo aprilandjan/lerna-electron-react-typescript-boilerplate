@@ -4,6 +4,12 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const typescriptFormatter = require('./utils/typescriptFormatter');
+const paths = require('./utils/paths');
+
+const isEnvDevelopment = process.env.NODE_ENV === 'development';
+const isEnvProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   module: {
@@ -42,5 +48,20 @@ module.exports = {
     }),
 
     new webpack.NamedModulesPlugin(),
+
+    new ForkTsCheckerWebpackPlugin({
+      // typescript: resolve.sync('typescript', {
+      //   basedir: paths.appNodeModules,
+      // }),
+      typescript: require.resolve('typescript'),
+      async: isEnvDevelopment,
+      useTypescriptIncrementalApi: true,
+      checkSyntacticErrors: true,
+      tsconfig: paths.appTsConfig,
+      reportFiles: ['**', '!**/__tests__/**', '!**/?(*.)(spec|test).*'],
+      silent: true,
+      // The formatter is invoked directly in WebpackDevServerUtils during development
+      formatter: isEnvProduction ? typescriptFormatter : undefined,
+    }),
   ],
 };

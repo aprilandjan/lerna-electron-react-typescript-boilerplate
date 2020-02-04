@@ -28,6 +28,7 @@ A Lerna React Electron App Boilerplate project in TypeScript.
 - [] all scripts in `typescript`
 - [] support unittest & e2e test
 - [] app auto-update
+- [] debug in main process
 
 ### Remove `flow` types
 
