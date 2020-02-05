@@ -10,7 +10,7 @@ interface WrapperProps {
   id: number;
 }
 
-const Wrapper: React.FC = (props: WrapperProps) => {
+const Wrapper: React.FC<WrapperProps> = (props: WrapperProps) => {
   return (
     <div>
       <span>{props.id}</span>
@@ -25,6 +25,7 @@ export default class Box extends React.Component<Props, any> {
       <div className={styles.box}>
         <span className="text">Typescript Box</span>
         <span className={styles.text}>Typescript Box</span>
+        <Wrapper id={99} />
       </div>
     );
   }
