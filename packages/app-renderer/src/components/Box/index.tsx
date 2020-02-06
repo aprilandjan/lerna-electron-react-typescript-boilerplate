@@ -1,6 +1,14 @@
 import React from 'react';
 import styles from './style.scss';
 
+import utils from '@/utils/log';
+import log from '@utils/log';
+
+console.log(utils);
+
+utils(123);
+log(123);
+
 interface Props {
   name: string;
 }

@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import routes from '../constants/routes';
 import styles from './Home.css';
+import log from '@/utils/log';
 
 import Box from './Box';
+
+log(456);
 
 export default class Home extends Component {
   render() {

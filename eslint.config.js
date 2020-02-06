@@ -28,9 +28,18 @@ module.exports = {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       },
+      // https://github.com/alexgorbatchev/eslint-import-resolver-typescript
+      // Multiple tsconfigs (Useful for monorepos)
+      // use an array of glob patterns
+      typescript: {
+        directory: ['packages/*/tsconfig.json'],
+      },
     },
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx', '.json'],
     'import/ignore': ['node_modules', '\\.(scss|css|less|svg)$'],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
   },
   rules: {
     // http://eslint.org/docs/rules/

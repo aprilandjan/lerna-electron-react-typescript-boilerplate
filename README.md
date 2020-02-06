@@ -20,7 +20,7 @@ A Lerna React Electron App Boilerplate project in TypeScript.
 - [] fix main bundle build warning
 - [x] pack electron app
 - [x] add `typescript`
-- [] allow `typescript` path alias
+- [x] allow `typescript` path alias
 - [x] allow mixed `js(x)` and `ts(x)`
 - [x] encapsuled eslint config
 - [x] encapsuled babel config
@@ -28,7 +28,7 @@ A Lerna React Electron App Boilerplate project in TypeScript.
 - [] all scripts in `typescript`
 - [] support unittest & e2e test
 - [] app auto-update
-- [] debug in main process
+- [] attach debugger in main process
 
 ### Remove `flow` types
 

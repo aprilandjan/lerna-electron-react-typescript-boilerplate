@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const typescriptFormatter = require('./utils/typescriptFormatter');
 const paths = require('./utils/paths');
@@ -38,6 +39,11 @@ module.exports = {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: paths.appTsConfig,
+      }),
+    ],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     modules: [path.join(__dirname, '..'), 'node_modules'],
   },
@@ -48,7 +54,6 @@ module.exports = {
     }),
 
     new webpack.NamedModulesPlugin(),
-
     new ForkTsCheckerWebpackPlugin({
       // typescript: resolve.sync('typescript', {
       //   basedir: paths.appNodeModules,
