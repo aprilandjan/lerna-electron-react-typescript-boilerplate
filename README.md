@@ -1,6 +1,6 @@
-# Lerna React Electron App in TypeScript
+# Lerna-React-TypeScript-Electron App
 
-A Lerna React Electron App Boilerplate project in TypeScript.
+A Lerna-React-TypeScript-Electron App Boilerplate project.
 
 ## AIM
 
@@ -10,6 +10,7 @@ A Lerna React Electron App Boilerplate project in TypeScript.
 - [x] ensure `dev` & `build` progress
 - [x] add renderer compile time progress
 - [] automatically dll compare & rebuild
+- [] check dll running speed
 - [x] app main watch & reload: reload: use webpack, listen its compile status
 - [] main process ask for restart if needed
 - [] main process modules partly hot-reload
