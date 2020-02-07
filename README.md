@@ -30,6 +30,7 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [] support unittest & e2e test
 - [] app auto-update
 - [] attach debugger in main process
+- [] webpack resolve and build lerna modules
 
 ### Remove `flow` types
 
