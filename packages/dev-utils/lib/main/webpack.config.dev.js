@@ -8,11 +8,13 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const paths = require('../utils/paths');
 const baseConfig = require('../webpack.config.base');
+const env = require('../utils/env');
 
 const { dependencies } = require(paths.appPackageJson);
 
 module.exports = merge.smart(baseConfig, {
-  devtool: 'eval-source-map',
+  //  vscode support
+  devtool: env.debugElectronInVSC ? 'inline-source-map' : 'eval-source-map',
 
   mode: 'development',
 
@@ -24,6 +26,11 @@ module.exports = merge.smart(baseConfig, {
     path: paths.appDist,
     publicPath: './dist/',
     filename: 'main.dev.js',
+    // https://gist.github.com/jarshwah/389f93f2282a165563990ed60f2b6d6c
+    // https://webpack.js.org/configuration/output/#outputdevtoolmodulefilenametemplate
+    devtoolModuleFilenameTemplate: env.debugElectronInVSC
+      ? 'file:///[absolute-resource-path]'
+      : undefined,
   },
 
   externals: [...Object.keys(dependencies)],

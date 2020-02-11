@@ -40,8 +40,18 @@ install [flow-remove-types](https://github.com/facebookarchive/flow-remove-types
 $ flow-remove-types --pretty --out-dir ./app-no-flow/ ./app/
 ```
 
+### Debug Main Process
+
+`vscode` debugger supports only `inline-source-map`. In order to debug main process in vscode debugger, we should:
+
+- change webpack devtool into `inline-source-map`
+- use `sourceMapPathOverrides` in `launch.json` to correctly map webpack resources into actual resource url
+- alternatively, use webpack [devtoolModuleFilenameTemplate](https://webpack.js.org/configuration/output/#outputdevtoolmodulefilenametemplate) to change generated sourcemap data url
+
 ## References
 
 - <https://github.com/electron-react-boilerplate/electron-react-boilerplate>
 - <https://github.com/electron-react-boilerplate/examples/tree/master/examples/typescript>
 - <https://github.com/amaurymartiny/cra-lerna-electron>
+- <https://webpack.js.org/configuration/devtool/>
+- <https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_source-maps>

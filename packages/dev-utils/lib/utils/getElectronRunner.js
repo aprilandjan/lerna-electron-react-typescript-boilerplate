@@ -48,7 +48,7 @@ module.exports = function getElectronRunner(config = {}) {
     autoKilled = false;
     //  eslint-disable-next-line
     const electronRuntime = require('electron').toString();
-    const p = spawn(electronRuntime, [entry, ...args], {
+    const p = spawn(electronRuntime, [entry, '--inspect', ...args], {
       cwd: paths.appPath,
     });
 
