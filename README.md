@@ -29,7 +29,10 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [] all scripts in `typescript`
 - [] support unittest & e2e test
 - [] app auto-update
-- [] attach debugger in main process
+- [x] attach debugger for main process in vscode
+- [] attach chrome debugger for main process in vscode
+- [] separated eslint rules for node scripts and browser scripts
+- [] allow skip typechecking in webpack compiler
 - [] webpack resolve and build lerna modules
 
 ### Remove `flow` types
