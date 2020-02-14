@@ -32,6 +32,7 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [x] attach debugger for main process in vscode
 - [] attach chrome debugger for main process in vscode
 - [] separated eslint rules for node scripts and browser scripts
+- [] add eslint in webpack compile check
 - [] allow skip typechecking in webpack compiler
 - [] webpack resolve and build lerna modules
 
