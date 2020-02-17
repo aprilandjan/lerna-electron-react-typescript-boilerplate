@@ -35,6 +35,7 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [] add eslint in webpack compile check
 - [] allow skip typechecking in webpack compiler
 - [] webpack resolve and build lerna modules
+- [] electron builder(asar) packing
 
 ### Remove `flow` types
 
