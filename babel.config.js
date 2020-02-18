@@ -36,7 +36,12 @@ module.exports = (api, opts) => {
     ].filter(Boolean),
     plugins: [
       // Turn on legacy decorators for TypeScript files
-      useTypesScript && [require('@babel/plugin-proposal-decorators'), false],
+      useTypesScript && [
+        require('@babel/plugin-proposal-decorators'),
+        {
+          legacy: true,
+        },
+      ],
       // class { handleClick = () => { } }
       // Enable loose mode to use assignment instead of defineProperty
       // See discussion in https://github.com/facebook/create-react-app/issues/4263

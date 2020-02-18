@@ -16,6 +16,8 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
+      // https://github.com/babel/babel-eslint/issues/662
+      legacyDecorators: true,
     },
   },
   settings: {
