@@ -26,6 +26,9 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [x] encapsuled eslint config
 - [x] encapsuled babel config
 - [x] style class name generation
+- [] tsconfig include only src(or exclude `node_modules`) to speed up typechecking
+- [] user customized webpack config merging
+- [] renderer webpack externals be default set as the main package's dependencies
 - [] all scripts in `typescript`
 - [] support unittest & e2e test
 - [] app auto-update
@@ -36,6 +39,7 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [] allow skip typechecking in webpack compiler
 - [] webpack resolve and build lerna modules
 - [] electron builder(asar) packing
+- [] support `require.context` with webpack alias path
 
 ### Remove `flow` types
 
