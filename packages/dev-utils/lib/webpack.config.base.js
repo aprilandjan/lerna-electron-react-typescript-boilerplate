@@ -42,6 +42,7 @@ module.exports = {
     plugins: [
       new TsconfigPathsPlugin({
         configFile: paths.appTsConfig,
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       }),
     ],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
@@ -63,7 +64,7 @@ module.exports = {
       useTypescriptIncrementalApi: true,
       checkSyntacticErrors: true,
       tsconfig: paths.appTsConfig,
-      reportFiles: ['**', '!**/__tests__/**', '!**/?(*.)(spec|test).*'],
+      reportFiles: ['**/*.(ts|tsx)', '!**/__tests__/**', '!**/?(*.)(spec|test).*'],
       silent: true,
       // The formatter is invoked directly in WebpackDevServerUtils during development
       formatter: isEnvProduction ? typescriptFormatter : undefined,

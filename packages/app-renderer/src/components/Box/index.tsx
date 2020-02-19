@@ -3,11 +3,13 @@ import styles from './style.scss';
 
 import utils from '@/utils/log';
 import log from '@utils/log';
+import loggy from '@src/utils/log';
 
 console.log(utils);
 
 utils(123);
 log(123);
+loggy(123);
 
 interface Props {
   name: string;

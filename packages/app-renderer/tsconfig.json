@@ -5,6 +5,7 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"],
+      "@src/*": ["*"],
       //  can define multiple different alias paths
       "@utils/*": ["utils/*"]
     }
