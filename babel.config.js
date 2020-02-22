@@ -35,6 +35,13 @@ module.exports = (api, opts) => {
       useTypesScript && [require('@babel/preset-typescript')],
     ].filter(Boolean),
     plugins: [
+      [
+        require('babel-plugin-add-module-exports'),
+        {
+          addDefaultProperty: false,
+        },
+      ],
+      ['@babel/plugin-transform-modules-commonjs'],
       // Turn on legacy decorators for TypeScript files
       useTypesScript && [
         require('@babel/plugin-proposal-decorators'),
