@@ -41,14 +41,6 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [x] electron builder(asar) packing
 - [x] support `require.context` with webpack alias path
 
-### Remove `flow` types
-
-install [flow-remove-types](https://github.com/facebookarchive/flow-remove-types) and then:
-
-```bash
-$ flow-remove-types --pretty --out-dir ./app-no-flow/ ./app/
-```
-
 ### Debug Main Process
 
 `vscode` debugger supports only `inline-source-map`. In order to debug main process in vscode debugger, we should:
