@@ -36,11 +36,7 @@
   "build": {
     "productName": "ElectronReact",
     "appId": "org.develar.ElectronReact",
-    "files": [
-      "./dist",
-      "node_modules/",
-      "package.json"
-    ],
+    "files": ["./dist", "node_modules/", "package.json"],
     "dmg": {
       "contents": [
         {
@@ -56,18 +52,14 @@
       ]
     },
     "win": {
-      "target": [
-        "nsis",
-        "msi"
-      ]
+      "target": ["nsis", "msi"]
     },
     "linux": {
-      "target": [
-        "deb",
-        "rpm",
-        "AppImage"
-      ],
+      "target": ["deb", "rpm", "AppImage"],
       "category": "Development"
+    },
+    "mac": {
+      "target": "pkg"
     },
     "directories": {
       "buildResources": "resources",

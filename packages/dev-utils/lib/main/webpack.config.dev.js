@@ -33,18 +33,15 @@ module.exports = merge.smart(baseConfig, {
       : undefined,
   },
 
-  externals: [...Object.keys(dependencies)],
+  //  app-main 依赖不需 webpack 打包
+  externals: [...Object.keys(dependencies || {})],
 
   optimization: {
     //  do not emit resources if error
     noEmitOnErrors: true,
   },
 
-  plugins: [
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
-    }),
-  ],
+  plugins: [],
 
   node: {
     __dirname: false,

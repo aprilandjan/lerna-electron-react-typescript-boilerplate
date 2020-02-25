@@ -1,10 +1,15 @@
 const chalk = require('chalk');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 const logger = require('./logger');
 const formatWebpackMessages = require('./formatWebpackMessages');
 const typescriptFormatter = require('./typescriptFormatter');
 const clearConsole = require('./clearConsole');
+const getUserWebpackConfig = require('./getUserWebpackConfig');
 
+const userConfig = getUserWebpackConfig();
+
+/** 生成 webpack compiler。会自动合并用户当前的 webpack 配置 */
 module.exports = function createCompiler(options) {
   const {
     // webpack config
@@ -33,7 +38,7 @@ module.exports = function createCompiler(options) {
     }
   };
   try {
-    compiler = webpack(config);
+    compiler = webpack(merge.smart(config, userConfig));
   } catch (err) {
     logger.info(chalk.red('Failed to compile.'));
     logger.info();

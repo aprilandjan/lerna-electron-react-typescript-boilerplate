@@ -10,7 +10,7 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [x] ensure `dev` & `build` progress
 - [x] add renderer compile time progress
 - [] automatically dll compare & rebuild
-- [] check dll running speed
+- [x] check dll running speed
 - [x] app main watch & reload: reload: use webpack, listen its compile status
 - [] main process ask for restart if needed
 - [] main process modules partly hot-reload
@@ -18,7 +18,7 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [x] extract webpack things into dev-utils
 - [x] customizable build step
 - [x] whole project building process
-- [] fix main bundle build warning
+- [x] fix main bundle build warning
 - [x] pack electron app
 - [x] add `typescript`
 - [x] allow `typescript` path alias
@@ -26,8 +26,8 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [x] encapsuled eslint config
 - [x] encapsuled babel config
 - [x] style class name generation
-- [] tsconfig include only src(or exclude `node_modules`) to speed up typechecking
-- [] user customized webpack config merging
+- [x] tsconfig include only src(or exclude `node_modules`) to speed up typechecking
+- [x] user customized webpack config merging
 - [] renderer webpack externals be default set as the main package's dependencies
 - [] all scripts in `typescript`
 - [] support unittest & e2e test
@@ -36,10 +36,10 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [] attach chrome debugger for main process in vscode
 - [] separated eslint rules for node scripts and browser scripts
 - [] add eslint in webpack compile check
-- [] allow skip typechecking in webpack compiler
+- [x] allow skip typechecking in webpack compiler
 - [] webpack resolve and build lerna modules
-- [] electron builder(asar) packing
-- [] support `require.context` with webpack alias path
+- [x] electron builder(asar) packing
+- [x] support `require.context` with webpack alias path
 
 ### Remove `flow` types
 

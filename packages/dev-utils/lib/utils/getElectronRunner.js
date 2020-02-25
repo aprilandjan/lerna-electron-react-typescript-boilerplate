@@ -1,5 +1,6 @@
 // const path = require('path');
 const { spawn } = require('child_process');
+const exitHook = require('async-exit-hook');
 const paths = require('./paths');
 const logger = require('./logger');
 
@@ -31,7 +32,7 @@ module.exports = function getElectronRunner(config = {}) {
       if (autoReload) {
         logger.debug('auto reload electron process...');
         autoKilled = true;
-        await kill();
+        await kill('SIGINT');
         electronProcess = startElectron();
         compileHash = hash;
       } else {
@@ -46,7 +47,6 @@ module.exports = function getElectronRunner(config = {}) {
   function startElectron() {
     logger.debug('spawn new electron process');
     autoKilled = false;
-    //  eslint-disable-next-line
     const electronRuntime = require('electron').toString();
     const p = spawn(electronRuntime, [entry, '--inspect', ...args], {
       cwd: paths.appPath,
@@ -71,6 +71,9 @@ module.exports = function getElectronRunner(config = {}) {
         logger.debug('exit current process');
         process.exit(1);
       }
+    });
+    exitHook(callback => {
+      kill('SIGINT').then(callback);
     });
     return p;
   }

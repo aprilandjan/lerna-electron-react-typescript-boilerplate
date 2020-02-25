@@ -1,12 +1,16 @@
 /* eslint global-require: off */
 
 module.exports = (api, opts) => {
-  const {
+  let {
     //  use ts language
     useTypesScript = true,
     //  use react related plugins
-    useReact = true,
+    useReact = false,
   } = opts || {};
+  //  if defined via env, then use react configs
+  if (process.env.BABEL_CONFIG_REACT) {
+    useReact = true;
+  }
   const env = process.env.BABEL_ENV || process.env.NODE_ENV;
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
@@ -16,6 +20,11 @@ module.exports = (api, opts) => {
   api.cache(true);
 
   return {
+    env: {
+      development: {
+        compact: false,
+      },
+    },
     presets: [
       [
         require('@babel/preset-env'),
@@ -42,6 +51,8 @@ module.exports = (api, opts) => {
         },
       ],
       ['@babel/plugin-transform-modules-commonjs'],
+      //  support export v from 'xxx'
+      require('@babel/plugin-proposal-export-default-from'),
       // Turn on legacy decorators for TypeScript files
       useTypesScript && [
         require('@babel/plugin-proposal-decorators'),
@@ -75,7 +86,7 @@ module.exports = (api, opts) => {
             require('babel-plugin-transform-react-remove-prop-types'),
           ]
         : []),
-      isEnvDevelopment && [require('react-hot-loader/babel')],
+      isEnvDevelopment && useReact && [require('react-hot-loader/babel')],
     ].filter(Boolean),
     overrides: [
       useTypesScript && {

@@ -10,32 +10,37 @@ process.on('unhandledRejection', err => {
 const fs = require('fs-extra');
 // const path = require('path');
 const chalk = require('chalk');
+const exitHook = require('async-exit-hook');
 const WebpackDevServer = require('webpack-dev-server');
 const logger = require('../utils/logger');
 const paths = require('../utils/paths');
+const env = require('../utils/env');
+const checkPort = require('../utils/checkPort');
 const createWebpackCompiler = require('../utils/createWebpackCompiler');
 const clearConsole = require('../utils/clearConsole');
 const printError = require('../utils/printError');
 const webpackConfig = require('./webpack.config.dev');
 const webpackDllConfig = require('./webpack.config.dev.dll');
 
-// FIXME: extract env variables
-const port = process.env.PORT || 1212;
-const host = process.env.HOST || 'localhost';
-
 function checkBuildDLL() {
   return new Promise((resolve, reject) => {
-    const manifestReady = fs.existsSync(paths.appDLLManifest);
-    if (manifestReady) {
-      logger.debug('dll manifest found. skip build dll');
-      resolve();
-      return;
+    if (env.rebuildDLL) {
+      //  强制重构 DLL
+      logger.info('found env REBUILD_DLL, rebuild dll');
+    } else {
+      //  检查 DLL 是否存在
+      const manifestReady = fs.existsSync(paths.appDLLManifest);
+      if (manifestReady) {
+        logger.debug('dll manifest found. skip build dll');
+        resolve();
+        return;
+      }
+      logger.info(chalk.yellow('The DLL files are missing. Start building dll...'));
     }
-    logger.info(chalk.yellow('The DLL files are missing. Start building dll...'));
     const compiler = createWebpackCompiler({
       config: webpackDllConfig,
-      useTypeScript: true,
-      tscCompileOnError: false,
+      useTypeScript: !env.disableTsCheck,
+      tscCompileOnError: env.compileOnTsError,
     });
 
     compiler.run((err, stats) => {
@@ -51,15 +56,18 @@ function checkBuildDLL() {
   });
 }
 
-checkBuildDLL()
+checkPort(env.port, env.host)
+  .then(() => {
+    return checkBuildDLL();
+  })
   .then(() => {
     //  start dev server
     let devServer;
     let ready = false;
 
     const devServerConfig = {
-      port,
-      host,
+      port: env.port,
+      host: env.host,
       // https://github.com/webpack/webpack-dev-server/issues/1385
       // publicPath: '/',
       // stats: 'errors-only',
@@ -98,8 +106,8 @@ checkBuildDLL()
     const compiler = createWebpackCompiler({
       config: webpackConfig,
       devSocket,
-      useTypeScript: true,
-      tscCompileOnError: false,
+      useTypeScript: !env.disableTsCheck,
+      tscCompileOnError: env.compileOnTsError,
       onFirstCompiledSuccess: () => {
         logger.debug('first compiled');
         ready = true;
@@ -111,20 +119,17 @@ checkBuildDLL()
     devServer = new WebpackDevServer(compiler, devServerConfig);
 
     // start dev server
-    devServer.listen(port, host, err => {
+    devServer.listen(env.port, env.host, err => {
       if (err) {
         return logger.info(err);
       }
       clearConsole();
 
-      logger.info(chalk.cyan('Starting the renderer dev server...\n'));
+      logger.info(chalk.cyan('Starting dev server...\n'));
     });
 
-    ['SIGINT', 'SIGTERM'].forEach(sig => {
-      process.on(sig, () => {
-        devServer.close();
-        process.exit();
-      });
+    exitHook(() => {
+      devServer.close();
     });
   })
   .catch(err => {

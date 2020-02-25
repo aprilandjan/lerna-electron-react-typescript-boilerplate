@@ -1,6 +1,6 @@
 /* eslint global-require: off, import/no-dynamic-require: off */
 
-// const path = require('path');
+const path = require('path');
 // const fs = require('fs-extra');
 const webpack = require('webpack');
 // const chalk = require('chalk');
@@ -8,8 +8,9 @@ const merge = require('webpack-merge');
 const paths = require('../utils/paths');
 const env = require('../utils/env');
 const getCSSModuleLocalIdent = require('../utils/getCSSModuleLocalIdent');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const baseConfig = require('../webpack.config.base');
+
+const cssSourcemap = false;
 
 module.exports = merge.smart(baseConfig, {
   devtool: 'inline-source-map',
@@ -28,6 +29,7 @@ module.exports = merge.smart(baseConfig, {
   output: {
     publicPath: `http://${env.host}:${env.port}/`,
     filename: 'renderer.dev.js',
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
   },
 
   module: {
@@ -41,7 +43,7 @@ module.exports = merge.smart(baseConfig, {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              sourceMap: cssSourcemap,
             },
           },
         ],
@@ -58,7 +60,7 @@ module.exports = merge.smart(baseConfig, {
               modules: {
                 getLocalIdent: getCSSModuleLocalIdent,
               },
-              sourceMap: true,
+              sourceMap: cssSourcemap,
               importLoaders: 1,
             },
           },
@@ -74,7 +76,7 @@ module.exports = merge.smart(baseConfig, {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              sourceMap: cssSourcemap,
             },
           },
           {
@@ -95,7 +97,7 @@ module.exports = merge.smart(baseConfig, {
               modules: {
                 getLocalIdent: getCSSModuleLocalIdent,
               },
-              sourceMap: true,
+              sourceMap: cssSourcemap,
               importLoaders: 1,
             },
           },
@@ -150,7 +152,7 @@ module.exports = merge.smart(baseConfig, {
           },
         },
       },
-      // SVG Font
+      // SVG Icons
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: {
@@ -188,17 +190,12 @@ module.exports = merge.smart(baseConfig, {
     }),
     // https://webpack.js.org/plugins/hot-module-replacement-plugin/
     new webpack.HotModuleReplacementPlugin({
-      // FIXME: disable multi-step
       // multiStep: true,
     }),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
-    }),
     new webpack.LoaderOptionsPlugin({
       debug: true,
     }),
-    // new BundleAnalyzerPlugin(),
   ].filter(Boolean),
 
   node: {

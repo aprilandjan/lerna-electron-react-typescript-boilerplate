@@ -10,12 +10,12 @@ process.on('unhandledRejection', err => {
 // const path = require('path');
 const paths = require('../utils/paths');
 const logger = require('../utils/logger');
-const createWebpackCompiler = require('../utils/createWebpackCompiler');
 // const clearConsole = require('./utils/clearConsole');
 const pollingRenderer = require('../utils/pollingRenderer');
 const ensureExternals = require('../utils/ensureExternals');
 const getElectronRunner = require('../utils/getElectronRunner');
 const webpackConfig = require('./webpack.config.dev');
+const webpackDev = require('../utils/webpackDev');
 
 (async () => {
   let compiledSuccess = null;
@@ -29,23 +29,26 @@ const webpackConfig = require('./webpack.config.dev');
     args: [],
   });
 
-  if (!process.argv.includes('--only')) {
-    logger.debug('start polling app-renderer status');
+  //  如果是并行开发才需要等待
+  if (process.env.MONO_REPO_DEV) {
+    logger.debug('start polling renderer dev server status');
     const result = await pollingRenderer();
     if (!result) {
-      logger.debug('app-renderer failed to response');
+      logger.info('renderer dev server failed to response');
       return;
     }
   }
 
-  const compiler = createWebpackCompiler({
-    config: {
+  webpackDev(
+    {
       ...webpackConfig,
       externals: ensureExternals(webpackConfig.externals),
     },
-    useTypeScript: true,
-    tscCompileOnError: false,
-    onCompiled: (success, stats) => {
+    (success, stats) => {
+      if (process.argv.includes('--only')) {
+        logger.info('do not run electron since `--only` flag founded.');
+        return;
+      }
       if (compiledSuccess === null) {
         //  首次编译
         if (success) {
@@ -65,14 +68,6 @@ const webpackConfig = require('./webpack.config.dev');
         //  当前编译失败了，给出错误提示
       }
       compiledSuccess = success;
-    },
-  });
-
-  compiler.watch(
-    {
-      aggregateTimeout: 300,
-      poll: undefined,
-    },
-    () => {}
+    }
   );
 })();

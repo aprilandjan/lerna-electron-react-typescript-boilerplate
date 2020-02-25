@@ -2,16 +2,17 @@
  * Build config for electron renderer process
  */
 
-// const path = require('path');
+const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const paths = require('../utils/paths');
 const getCSSModuleLocalIdent = require('../utils/getCSSModuleLocalIdent');
 const baseConfig = require('../webpack.config.base');
+
+const cssSourcemap = false;
 
 module.exports = merge.smart(baseConfig, {
   devtool: 'source-map',
@@ -26,6 +27,7 @@ module.exports = merge.smart(baseConfig, {
     path: paths.appDist,
     publicPath: './dist/',
     filename: 'renderer.prod.js',
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
   },
 
   module: {
@@ -43,7 +45,7 @@ module.exports = merge.smart(baseConfig, {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              sourceMap: cssSourcemap,
             },
           },
         ],
@@ -61,7 +63,7 @@ module.exports = merge.smart(baseConfig, {
               modules: {
                 getLocalIdent: getCSSModuleLocalIdent,
               },
-              sourceMap: true,
+              sourceMap: cssSourcemap,
             },
           },
         ],
@@ -76,14 +78,14 @@ module.exports = merge.smart(baseConfig, {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              sourceMap: cssSourcemap,
               importLoaders: 1,
             },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
+              sourceMap: cssSourcemap,
             },
           },
         ],
@@ -102,13 +104,13 @@ module.exports = merge.smart(baseConfig, {
                 getLocalIdent: getCSSModuleLocalIdent,
               },
               importLoaders: 1,
-              sourceMap: true,
+              sourceMap: cssSourcemap,
             },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
+              sourceMap: cssSourcemap,
             },
           },
         ],
@@ -159,7 +161,7 @@ module.exports = merge.smart(baseConfig, {
           },
         },
       },
-      // SVG Font
+      // SVG Icons
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: {
@@ -203,17 +205,9 @@ module.exports = merge.smart(baseConfig, {
   },
 
   plugins: [
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production',
-    }),
-
     new MiniCssExtractPlugin({
       filename: 'style.css',
-    }),
-
-    new BundleAnalyzerPlugin({
-      analyzerMode: process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
-      openAnalyzer: process.env.OPEN_ANALYZER === 'true',
+      ignoreOrder: true,
     }),
   ],
 });

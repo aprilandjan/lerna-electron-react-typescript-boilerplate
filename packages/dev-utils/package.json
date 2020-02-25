@@ -11,11 +11,14 @@
     "test": "echo 'test'"
   },
   "dependencies": {
+    "async-exit-hook": "^2.0.1",
     "babel-loader": "^8.0.6",
     "chalk": "^3.0.0",
     "cross-env": "^6.0.3",
     "cross-spawn": "^7.0.1",
     "css-loader": "^3.3.2",
+    "deglob": "^4.0.1",
+    "detect-port-alt": "^1.1.6",
     "file-loader": "^5.0.2",
     "filesize": "^6.0.1",
     "fork-ts-checker-webpack-plugin": "3.1.0",

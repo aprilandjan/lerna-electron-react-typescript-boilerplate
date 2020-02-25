@@ -29,17 +29,19 @@ async function delay(t) {
   return new Promise(resolve => setTimeout(resolve, t));
 }
 
-module.exports = async function pollingRenderer(interval = 500, retry = 60) {
+/** 轮询确认 dev server 是否已准备好，默认最多轮询 3 分钟 */
+module.exports = async function pollingRenderer(interval = 500, retry = 120 * 3) {
   let i = 0;
   let ready = false;
   while (!ready && i < retry) {
+    if (i % 20 === 0) {
+      logger.info('wait util renderer dev server ready...');
+    }
     if (i !== 0) {
-      // eslint-disable-next-line
       await delay(interval);
     }
-    // eslint-disable-next-line
     i++;
-    logger.debug(`check is renderer ready... #${i}/${retry}`);
+    logger.debug(`check if renderer dev server is ready... #${i}/${retry}`);
     // eslint-disable-next-line
     ready = await isRendererReady();
   }

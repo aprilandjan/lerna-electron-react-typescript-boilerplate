@@ -7,8 +7,8 @@
 // const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const baseConfig = require('../webpack.config.base');
 const paths = require('../utils/paths');
+const baseConfig = require('../webpack.config.base');
 
 const { dependencies } = require(paths.appPackageJson);
 
@@ -21,6 +21,7 @@ module.exports = merge.smart(baseConfig, {
 
   target: 'electron-renderer',
 
+  //  来自 renderer 的直接依赖做成 dependency
   externals: ['fsevents', 'crypto-browserify'],
 
   /**
@@ -43,9 +44,6 @@ module.exports = merge.smart(baseConfig, {
     new webpack.DllPlugin({
       path: paths.appDLLManifest,
       name: '[name]',
-    }),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
     }),
 
     new webpack.LoaderOptionsPlugin({

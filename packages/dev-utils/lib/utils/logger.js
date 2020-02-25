@@ -1,14 +1,13 @@
 const debug = require('debug');
 const chalk = require('chalk');
-
-const devTarget = process.env.APP_DEV_TARGET || 'dev-utils';
+const env = require('./env');
 
 module.exports = {
-  debug: debug(devTarget),
+  debug: debug(env.target),
   info: (...args) => {
     if (args.length === 0) {
       return console.log();
     }
-    return console.log(`[${chalk.cyan(devTarget)}]`, ...args);
+    return console.log(`[${chalk.cyan(env.target)}]`, ...args);
   },
 };

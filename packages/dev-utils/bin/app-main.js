@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-process.env.APP_DEV_TARGET = 'app-main';
 
 process.on('unhandledRejection', err => {
   throw err;
