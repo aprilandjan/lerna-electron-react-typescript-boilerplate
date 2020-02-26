@@ -12,7 +12,7 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [] automatically dll compare & rebuild
 - [x] check dll running speed
 - [x] app main watch & reload: reload: use webpack, listen its compile status
-- [] main process ask for restart if needed
+- [x] main process ask for restart if needed
 - [] main process modules partly hot-reload
 - [] main & renderer communicate through node ipc
 - [x] extract webpack things into dev-utils
@@ -28,7 +28,7 @@ A Lerna-React-TypeScript-Electron App Boilerplate project.
 - [x] style class name generation
 - [x] tsconfig include only src(or exclude `node_modules`) to speed up typechecking
 - [x] user customized webpack config merging
-- [] renderer webpack externals be default set as the main package's dependencies
+- [x] renderer webpack externals be default set as the main package's dependencies
 - [] all scripts in `typescript`
 - [] support unittest & e2e test
 - [] app auto-update

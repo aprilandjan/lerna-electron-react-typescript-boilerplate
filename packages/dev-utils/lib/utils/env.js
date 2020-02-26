@@ -75,4 +75,6 @@ module.exports = {
   compileOnTsError: process.env.COMPILE_ON_TS_ERROR || false,
   /** 是否删除未被 webpack 编译的文件 */
   deleteUnused: process.env.DELETE_UNUSED || false,
+  /** 主进程是否编译后自动重载 */
+  electronAutoReload: process.env.ELECTRON_AUTO_RELOAD || false,
 };

@@ -5,10 +5,9 @@ const paths = require('./paths');
 const logger = require('./logger');
 
 module.exports = function getElectronRunner(config = {}) {
-  const { autoReload, entry, args = [] } = config;
+  const { entry, args = [] } = config;
 
   let electronProcess = null;
-  let compileHash = null;
   let autoKilled = false;
 
   function kill(signal) {
@@ -23,24 +22,14 @@ module.exports = function getElectronRunner(config = {}) {
   /**
    * 启动 Electron. 如果已有 Electron 进程了，则先关掉
    */
-  async function run(hash) {
-    if (compileHash === hash) {
-      logger.debug('do not run electron because of same hash', hash);
-      return;
-    }
+  async function run() {
     if (electronProcess) {
-      if (autoReload) {
-        logger.debug('auto reload electron process...');
-        autoKilled = true;
-        await kill('SIGINT');
-        electronProcess = startElectron();
-        compileHash = hash;
-      } else {
-        logger.debug('wait for user reload key-control');
-      }
+      logger.debug('reload electron process...');
+      autoKilled = true;
+      await kill('SIGINT');
+      electronProcess = startElectron();
     } else {
       electronProcess = startElectron();
-      compileHash = hash;
     }
   }
 

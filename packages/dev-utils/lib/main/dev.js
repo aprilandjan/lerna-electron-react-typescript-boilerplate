@@ -8,21 +8,23 @@ process.on('unhandledRejection', err => {
 });
 
 // const path = require('path');
+const chalk = require('chalk');
 const paths = require('../utils/paths');
+const env = require('../utils/env');
 const logger = require('../utils/logger');
 // const clearConsole = require('./utils/clearConsole');
 const pollingRenderer = require('../utils/pollingRenderer');
 const ensureExternals = require('../utils/ensureExternals');
+const createReadline = require('../utils/createReadline');
 const getElectronRunner = require('../utils/getElectronRunner');
 const webpackConfig = require('./webpack.config.dev');
 const webpackDev = require('../utils/webpackDev');
 
 (async () => {
   let compiledSuccess = null;
+  let compileHash = null;
 
   const runElectron = getElectronRunner({
-    //  重复调用时，是否自动重载 Electron
-    autoReload: true,
     //  入口文件
     entry: paths.appMainDev,
     //  electron 运行的参数
@@ -39,6 +41,8 @@ const webpackDev = require('../utils/webpackDev');
     }
   }
 
+  const rl = createReadline();
+
   webpackDev(
     {
       ...webpackConfig,
@@ -52,17 +56,38 @@ const webpackDev = require('../utils/webpackDev');
       if (compiledSuccess === null) {
         //  首次编译
         if (success) {
+          compileHash = stats.hash;
           logger.debug('initial compile successfully');
           //  成功则启动 Electron
-          runElectron(stats.hash);
+          runElectron();
         } else {
           logger.debug('initial compile failed');
           //  do nothing
         }
       } else if (success) {
         logger.debug('re-compile successfully');
-        //  当前编译成功了，给出提示 “按 R 键重启”
-        runElectron(stats.hash);
+        //  编译结果没有变化
+        if (compileHash === stats.hash) {
+          logger.debug('do not run electron because of same hash', stats.hash);
+          return;
+        }
+        compileHash = stats.hash;
+        if (env.electronAutoReload) {
+          //  自动重启
+          runElectron();
+        } else {
+          //  当前编译成功了，给出提示 “按 R 键重启”
+          rl.prompt({
+            text: `${logger.prefix} Press ${chalk.green('R')} (and then ${chalk.green(
+              'Enter'
+            )}) to restart electron > `,
+            matcher: 'R',
+            callback: () => {
+              logger.debug('restart electron');
+              runElectron();
+            },
+          });
+        }
       } else {
         logger.debug('re-compile failed');
         //  当前编译失败了，给出错误提示

@@ -53,3 +53,7 @@
 ### `COMPILE_ON_TS_ERROR`
 
 TS 报错时依然编译。默认为 `false`
+
+### `ELECTRON_AUTO_RELOAD`
+
+开发环境下 Electron 进程是否在 webpack 编译后自动重启。默认 `false`
