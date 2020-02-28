@@ -19,6 +19,7 @@
     "release": true,
     "node_modules": true,
     "npm-debug.log.*": true,
+    "yarn-error.log": true,
     "test/**/__snapshots__": true
   }
 }
