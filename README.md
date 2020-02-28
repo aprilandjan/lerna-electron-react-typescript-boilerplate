@@ -1,4 +1,4 @@
-# Lerna-Electron-React-TypeScript-Electron Boilerplate
+# Lerna-Electron-React-TypeScript Boilerplate
 
 A full [Lerna](https://github.com/lerna/lerna)-[Electron](https://github.com/electron/electron)-[React](https://github.com/facebook/react)-[TypeScript](https://github.com/microsoft/TypeScript) project boilerplate.
 
