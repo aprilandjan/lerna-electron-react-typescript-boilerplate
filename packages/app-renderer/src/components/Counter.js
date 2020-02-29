@@ -9,7 +9,7 @@ export default class Counter extends Component {
     return (
       <div>
         <div className={styles.backButton} data-tid="backButton">
-          <Link to={routes.HOME}>&lt;</Link>
+          <Link to={routes.HOME}>&lt;Back</Link>
         </div>
         <div className={`counter ${styles.counter}`} data-tid="counter">
           {counter}
