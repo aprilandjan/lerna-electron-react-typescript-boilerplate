@@ -78,6 +78,10 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
+  mainWindow.webContents.on('crashed', evt => {
+    console.log('crashed', evt);
+  });
+
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 

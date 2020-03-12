@@ -5,7 +5,8 @@
   "description": "app dev utils",
   "bin": {
     "app-renderer": "./bin/app-renderer.js",
-    "app-main": "./bin/app-main.js"
+    "app-main": "./bin/app-main.js",
+    "app-module": "./bin/app-module.js"
   },
   "scripts": {
     "test": "echo 'test'"

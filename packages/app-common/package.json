@@ -1,0 +1,17 @@
+{
+  "name": "app-common",
+  "version": "1.0.0",
+  "private": true,
+  "description": "common codes for main and renderer codes",
+  "scripts": {
+    "dev": "app-module dev",
+    "build": "app-module build"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "app-dev-utils": "^1.0.0"
+  }
+}
