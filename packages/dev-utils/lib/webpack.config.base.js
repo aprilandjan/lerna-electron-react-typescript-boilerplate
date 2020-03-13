@@ -66,6 +66,10 @@ module.exports = {
         useTypescriptIncrementalApi: true,
         checkSyntacticErrors: true,
         tsconfig: paths.appTsConfig,
+        compilerOptions: {
+          checkJs: false,
+          allowJs: false,
+        },
         reportFiles: ['**/*.(ts|tsx)', '!**/__tests__/**', '!**/?(*.)(spec|test).*'],
         silent: true,
         // The formatter is invoked directly in WebpackDevServerUtils during development
