@@ -1,4 +1,4 @@
-const { spawn } = require('child_process');
+const spawn = require('cross-spawn');
 const path = require('path');
 const fs = require('fs-extra');
 const resolvePackage = require('./resolvePackage');

@@ -1,5 +1,5 @@
 // const path = require('path');
-const { spawn } = require('child_process');
+const spawn = require('cross-spawn');
 const exitHook = require('async-exit-hook');
 const paths = require('./paths');
 const logger = require('./logger');
