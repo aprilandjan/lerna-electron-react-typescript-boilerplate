@@ -93,7 +93,6 @@ Check more scripts in `package.json` scripts field.
 - [x] renderer webpack externals be default set as the main package's dependencies
 - [ ] all scripts in `typescript`
 - [ ] support unittest & e2e test
-- [ ] app auto-update
 - [x] attach debugger for main process in vscode
 - [ ] attach chrome debugger for main process in vscode
 - [ ] separated eslint rules for node scripts and browser scripts
@@ -103,7 +102,7 @@ Check more scripts in `package.json` scripts field.
 - [x] electron builder(asar) packing
 - [x] support `require.context` with webpack alias path
 - [ ] lerna command registered with dotenv files
-- [ ] find out unused files in main/renderer bundle
+- [x] find out unused files in main/renderer bundle
 - [ ] find out repeat files between main & renderer bundle
 
 ## References
