@@ -1,3 +1,4 @@
+// const path = require('path');
 const spawn = require('cross-spawn');
 const path = require('path');
 const fs = require('fs-extra');
@@ -6,7 +7,7 @@ const resolvePackage = require('./resolvePackage');
 const children = [];
 process.on('exit', function() {
   children.forEach(function([name, child]) {
-    child.kill('SIGINT');
+    child.kill();
   });
 });
 
@@ -25,7 +26,7 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
     //  简单的判断下 bin
     const args = script.split(' ');
     const binName = args.shift();
-    const binPath = path.join(cwd, 'node_modules/.bin', binName);
+    const binPath = path.join(cwd, 'node_modules/.bin', binName + '.js');
     //  是 bin 任务，用 node 去执行
     let cp;
     if (fs.existsSync(binPath)) {
@@ -35,24 +36,33 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
       });
     } else {
       //  不是 bin 任务，用 yarn 去执行
-      cp = spawn('node', [cmd], {
+      cp = spawn('yarn', [cmd], {
         cwd,
         stdio: 'inherit',
       });
     }
+    const child = [`${packageName}:${cmd}`, cp];
+    children.push(child);
     cp.on('exit', code => {
       if (code === 0) {
         resolve();
       } else {
         if (!allowFailure) {
+          children.splice(children.indexOf(child), 1);
+          if (children.length) {
+            //  通知其他进程退出
+            children.forEach(item => {
+              item[1].kill();
+            });
+          } else {
+            process.exit(1);
+          }
           reject(new Error(`${cmd} in ${packageName} failed in code ${code}`));
-          process.exit(code);
         } else {
           console.error(`${packageName}: ${cmd} failed! continue since allowFailure = true`);
           resolve();
         }
       }
     });
-    children.push([`${packageName}:${cmd}`, cp]);
   });
 };

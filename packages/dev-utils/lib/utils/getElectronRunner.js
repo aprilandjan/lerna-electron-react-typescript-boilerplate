@@ -10,12 +10,12 @@ module.exports = function getElectronRunner(config = {}) {
   let electronProcess = null;
   let autoKilled = false;
 
-  function kill(signal) {
+  function kill() {
     logger.debug('kill existed electron process');
     autoKilled = true;
     return new Promise(resolve => {
       electronProcess.on('close', resolve);
-      electronProcess.kill(signal);
+      electronProcess.kill();
     });
   }
 
@@ -26,7 +26,7 @@ module.exports = function getElectronRunner(config = {}) {
     if (electronProcess) {
       logger.debug('reload electron process...');
       autoKilled = true;
-      await kill('SIGINT');
+      await kill();
       electronProcess = startElectron();
     } else {
       electronProcess = startElectron();
@@ -62,7 +62,7 @@ module.exports = function getElectronRunner(config = {}) {
       }
     });
     exitHook(callback => {
-      kill('SIGINT').then(callback);
+      kill().then(callback);
     });
     return p;
   }
