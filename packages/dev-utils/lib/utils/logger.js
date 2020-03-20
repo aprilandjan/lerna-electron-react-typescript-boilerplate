@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const env = require('./env');
 
 const prefix = `[${chalk.cyan(env.target)}]`;
+let last;
 
 module.exports = {
   prefix,
@@ -11,6 +12,9 @@ module.exports = {
     if (args.length === 0) {
       return console.log();
     }
-    return console.log(prefix, ...args);
+    const now = Date.now();
+    const diff = now - (last || now);
+    last = now;
+    return console.log(prefix, chalk.gray(`+${diff}ms`), ...args);
   },
 };
