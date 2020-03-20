@@ -104,6 +104,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] lerna command registered with dotenv files
 - [x] find out unused files in main/renderer bundle
 - [ ] find out repeat files between main & renderer bundle
+- [ ] logger info output time diff in ms like `debugger`
 
 ## References
 
