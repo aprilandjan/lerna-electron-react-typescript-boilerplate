@@ -105,6 +105,7 @@ Check more scripts in `package.json` scripts field.
 - [x] find out unused files in main/renderer bundle
 - [ ] find out repeat files between main & renderer bundle
 - [ ] logger info output time diff in ms like `debugger`
+- [ ] allow filter electron output message
 
 ## References
 
