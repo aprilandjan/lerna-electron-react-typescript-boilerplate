@@ -106,6 +106,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] find out repeat files between main & renderer bundle
 - [ ] logger info output time diff in ms like `debugger`
 - [ ] allow filter electron output message
+- [ ] bug: set env always later than read dotenv files
 
 ## References
 
