@@ -107,6 +107,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] logger info output time diff in ms like `debugger`
 - [ ] allow filter electron output message
 - [ ] bug: set env always later than read dotenv files
+- [ ] allow app-module build without webpack (using tsc and babel only)
 
 ## References
 
