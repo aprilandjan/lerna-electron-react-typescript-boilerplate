@@ -3,7 +3,7 @@ const restrictedGlobals = require('confusing-browser-globals');
 module.exports = {
   root: true,
   parser: 'babel-eslint',
-  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks'],
+  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', 'jest'],
   env: {
     browser: true,
     commonjs: true,
@@ -242,6 +242,11 @@ module.exports = {
 
     // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 'error',
+
+    // https://github.com/jest-community/eslint-plugin-jest#readme
+    'jest/no-disabled-tests': 'warn',
+    'jest/no-focused-tests': 'error',
+    'jest/no-identical-title': 'error',
   },
   overrides: [
     {
