@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const paths = require('../utils/paths');
+const env = require('../utils/env');
 const baseConfig = require('../webpack.config.base');
 
 const { dependencies } = require(paths.appPackageJson);
@@ -18,7 +19,7 @@ module.exports = merge.smart(baseConfig, {
 
   target: 'electron-main',
 
-  entry: paths.appSrcEntry,
+  entry: [env.injectCovReport && paths.appCovReportClient, paths.appSrcEntry].filter(Boolean),
 
   output: {
     path: paths.appDist,

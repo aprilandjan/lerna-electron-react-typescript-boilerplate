@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
+const env = require('../utils/env');
 const paths = require('../utils/paths');
 const getCSSModuleLocalIdent = require('../utils/getCSSModuleLocalIdent');
 const baseConfig = require('../webpack.config.base');
@@ -21,7 +22,7 @@ module.exports = merge.smart(baseConfig, {
 
   target: 'electron-renderer',
 
-  entry: paths.appSrcEntry,
+  entry: [env.injectCovReport && paths.appCovReportClient, paths.appSrcEntry].filter(Boolean),
 
   output: {
     path: paths.appDist,

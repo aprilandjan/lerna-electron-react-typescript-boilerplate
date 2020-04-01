@@ -23,8 +23,9 @@ module.exports = merge.smart(baseConfig, {
     'react-hot-loader/patch',
     `webpack-dev-server/client?http://${env.host}:${env.port}/`,
     'webpack/hot/only-dev-server',
+    env.injectCovReport && paths.appCovReportClient,
     paths.appSrcEntry,
-  ],
+  ].filter(Boolean),
 
   output: {
     publicPath: `http://${env.host}:${env.port}/`,

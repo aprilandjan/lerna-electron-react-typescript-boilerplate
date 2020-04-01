@@ -15,8 +15,9 @@ module.exports = (api, opts) => {
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
   const isEnvTest = env === 'test';
-  // see docs about api at https://babeljs.io/docs/en/config-files#apicache
+  const injectCovReport = process.env.INJECT_COV_REPORT;
 
+  // see docs about api at https://babeljs.io/docs/en/config-files#apicache
   api.cache(true);
 
   return {
@@ -87,6 +88,8 @@ module.exports = (api, opts) => {
           ]
         : []),
       isEnvDevelopment && useReact && [require('react-hot-loader/babel')],
+      //  instrument source codes
+      injectCovReport && require('babel-plugin-istanbul'),
     ].filter(Boolean),
     overrides: [
       useTypesScript && {

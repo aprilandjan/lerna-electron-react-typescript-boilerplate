@@ -1,0 +1,15 @@
+{
+  "name": "cov-collect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "cov-collect for runtime app",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "istanbul-middleware": "^0.2.2"
+  }
+}

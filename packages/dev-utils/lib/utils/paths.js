@@ -83,4 +83,6 @@ module.exports = {
   appRendererDev: resolveRenderer('dist/renderer.dev.js'),
   /** renderer prod */
   appRendererProd: resolveRenderer('dist/renderer.prod.js'),
+  /** 注入上报覆盖率的 js */
+  appCovReportClient: path.join(__dirname, '../cov-collect.js'),
 };

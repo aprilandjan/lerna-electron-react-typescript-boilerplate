@@ -57,3 +57,7 @@ TS 报错时依然编译。默认为 `false`
 ### `ELECTRON_AUTO_RELOAD`
 
 开发环境下 Electron 进程是否在 webpack 编译后自动重启。默认 `false`
+
+### `INJECT_COV_REPORT`
+
+是否注入 Cov Report 上报、采集的代码。注入后，通过 babel 编译的代码将会被 istanbul instrumented，且主、渲染进程 webpack bundle 包会注入上报代码。默认 `false`

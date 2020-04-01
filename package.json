@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node ./scripts/dev",
     "build": "node ./scripts/build",
+    "prestart": "yarn build",
     "start": "lerna exec --scope=app-main yarn start",
     "package": "yarn build && lerna exec --scope=app-main yarn package",
     "package-linux": "yarn build && lerna exec --scope=app-main yarn package-linux",
@@ -57,6 +58,7 @@
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "babel-plugin-add-module-exports": "^1.0.2",
+    "babel-plugin-istanbul": "^6.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chalk": "^3.0.0",
     "check-npm-client": "^1.1.1",

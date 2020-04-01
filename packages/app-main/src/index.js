@@ -49,6 +49,8 @@ const createWindow = async () => {
     height: 728,
     webPreferences: {
       nodeIntegration: true,
+      /** 允许跨域 */
+      // webSecurity: false,
     },
   });
 
@@ -84,6 +86,8 @@ const createWindow = async () => {
 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
+
+  mainWindow.webContents.openDevTools();
 
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line

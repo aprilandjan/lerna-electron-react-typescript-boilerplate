@@ -20,7 +20,7 @@ module.exports = merge.smart(baseConfig, {
 
   target: 'electron-main',
 
-  entry: [paths.appSrcEntry],
+  entry: [env.injectCovReport && paths.appCovReportClient, paths.appSrcEntry].filter(Boolean),
 
   output: {
     path: paths.appDist,

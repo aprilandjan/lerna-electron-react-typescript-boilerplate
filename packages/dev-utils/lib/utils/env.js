@@ -77,4 +77,6 @@ module.exports = {
   deleteUnused: process.env.DELETE_UNUSED || false,
   /** 主进程是否编译后自动重载 */
   electronAutoReload: process.env.ELECTRON_AUTO_RELOAD || true,
+  /** 是否注入 COV_REPORT 的代码 */
+  injectCovReport: process.env.INJECT_COV_REPORT || false,
 };
