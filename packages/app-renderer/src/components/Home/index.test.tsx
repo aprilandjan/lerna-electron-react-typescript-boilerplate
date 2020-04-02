@@ -7,6 +7,9 @@ jest.mock('react-router-dom', () => ({
   Link: (props: any) => <div>{props.children}</div>,
 }));
 
+// css files
+// require context
+// jpg, png, etc
 describe('<Home>', () => {
   it('render successfully', () => {
     const { getByText, queryByText } = render(<Home />);
@@ -16,5 +19,3 @@ describe('<Home>', () => {
     expect(queryByText('not-exist')).toBeNull();
   });
 });
-
-// 2. import png/jpg/yml

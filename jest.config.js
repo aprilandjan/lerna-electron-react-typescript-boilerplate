@@ -10,16 +10,16 @@ module.exports = {
     '!**/__tests__/**',
     '!**/*.{spec,test}.{js,jsx,ts,tsx}',
   ],
-  transform: {
-    '^.+\\.[t|j]sx?$': 'babel-jest',
-    '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/scripts/testing/fileTransform.js',
-  },
+  // transform: {
+  //   '^(?!.*\\.(js|jsx|ts|tsx|css|)$)': 'identity-obj-proxy',
+  //   '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
+  //   '^.+\\.[t|j]sx?$': 'babel-jest',
+  // },
   setupFilesAfterEnv: ['./scripts/testing/setup.js'],
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
   // implied by each sub modules
   moduleNameMapper: {
+    '^(?!.*\\.(js|jsx|ts|tsx|css|)$)': 'identity-obj-proxy',
     '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
   },
 };
