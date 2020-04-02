@@ -4,9 +4,11 @@
 module.exports = {
   projects: ['<rootDir>/packages/*'],
   // the root matches only its test, not sub packages
-  testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
-    '<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}',
+  testMatch: ['<rootDir>/test/**/*.{js,jsx,ts,tsx}', '<rootDir>/test/**/*.{js,jsx,ts,tsx}'],
+  collectCoverageFrom: [
+    '**/src/**/*.{js,jsx,ts,tsx}',
+    '!**/__tests__/**',
+    '!**/*.{spec,test}.{js,jsx,ts,tsx}',
   ],
   transform: {
     '^.+\\.[t|j]sx?$': 'babel-jest',

@@ -19,9 +19,9 @@
     "prettify": "prettier --ignore-path .eslintignore '**/*.{js,jsx,json,html,css,less,scss,yml}'",
     "prettify-fix": "yarn --silent prettify --write; exit 0",
     "preinstall": "npx check-npm-client --yarn-only",
-    "test": "cross-env NODE_ENV=test jest",
-    "test-all": "yarn lint && yarn build && yarn test && yarn build-e2e && yarn test-e2e",
-    "test-watch": "yarn test --watch",
+    "test": "yarn run lint && yarn run test-unit && yarn test-e2e",
+    "test-unit": "cross-env NODE_ENV=test jest",
+    "test-e2e": "cross-env NODE_ENV=test echo \"e2e test\"",
     "postinstall": "lerna link"
   },
   "lint-staged": {
