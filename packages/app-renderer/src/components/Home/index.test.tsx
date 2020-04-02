@@ -17,7 +17,4 @@ describe('<Home>', () => {
   });
 });
 
-// TODO:
-// 1. require.context
 // 2. import png/jpg/yml
-// 3. etc

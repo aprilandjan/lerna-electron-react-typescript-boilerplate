@@ -1,5 +1,3 @@
-/* eslint global-require: off */
-
 module.exports = (api, opts) => {
   let {
     //  use ts language
@@ -7,16 +5,12 @@ module.exports = (api, opts) => {
     //  use react related plugins
     useReact = true,
   } = opts || {};
-  // //  if defined via env, then use react configs
-  // if (process.env.BABEL_CONFIG_REACT) {
-  //   useReact = true;
-  // }
   const env = process.env.BABEL_ENV || process.env.NODE_ENV;
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
   const isEnvTest = env === 'test';
-  // see docs about api at https://babeljs.io/docs/en/config-files#apicache
 
+  // see docs about api at https://babeljs.io/docs/en/config-files#apicache
   api.cache(true);
 
   return {
@@ -76,9 +70,9 @@ module.exports = (api, opts) => {
       [require('@babel/plugin-proposal-optional-chaining'), { loose: false }],
       //  var foo = object.foo ?? "default"
       [require('@babel/plugin-proposal-nullish-coalescing-operator'), { loose: false }],
-      isEnvTest &&
-        // Transform dynamic import to require
-        require('babel-plugin-dynamic-import-node'),
+      // Transform dynamic import to require
+      isEnvTest && require('babel-plugin-dynamic-import-node'),
+      isEnvTest && require('babel-plugin-require-context-hook'),
       ...(isEnvProduction && useReact
         ? [
             require('@babel/plugin-transform-react-constant-elements'),
