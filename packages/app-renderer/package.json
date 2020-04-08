@@ -9,6 +9,7 @@
   },
   "browserslist": "electron 1.6",
   "dependencies": {
+    "classnames": "^2.2.6",
     "connected-react-router": "^6.6.1",
     "history": "^4.10.1",
     "react": "^16.12.0",

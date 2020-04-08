@@ -49,6 +49,7 @@ const createWindow = async () => {
     height: 728,
     webPreferences: {
       nodeIntegration: true,
+      webviewTag: true,
     },
   });
 
