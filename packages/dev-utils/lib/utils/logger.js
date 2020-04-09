@@ -15,6 +15,9 @@ module.exports = {
     const now = Date.now();
     const diff = now - (last || now);
     last = now;
-    return console.log(prefix, chalk.gray(`+${diff}ms`), ...args);
+    // find last of arg
+    const t = chalk.gray(`+${diff}ms`);
+    const lastArg = args.pop();
+    return console.log(prefix, ...args, lastArg.trimRight(), t);
   },
 };
