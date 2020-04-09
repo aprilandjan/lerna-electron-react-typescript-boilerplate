@@ -41,7 +41,19 @@ const webpackDev = require('../utils/webpackDev');
     }
   }
 
-  const rl = createReadline();
+  const rl = createReadline({
+    text: `${logger.prefix} You can press ${chalk.green('R')} (and then ${chalk.green(
+      'Enter'
+    )}) to restart electron at any time\n`,
+    matcher: 'R',
+    callback: () => {
+      if (!compiledSuccess) {
+        return;
+      }
+      logger.info('restart electron');
+      runElectron();
+    },
+  });
 
   webpackDev(
     {
@@ -60,6 +72,7 @@ const webpackDev = require('../utils/webpackDev');
           logger.debug('initial compile successfully');
           //  成功则启动 Electron
           runElectron();
+          rl.prompt();
         } else {
           logger.debug('initial compile failed');
           //  do nothing
@@ -76,17 +89,7 @@ const webpackDev = require('../utils/webpackDev');
           //  自动重启
           runElectron();
         } else {
-          //  当前编译成功了，给出提示 “按 R 键重启”
-          rl.prompt({
-            text: `${logger.prefix} Press ${chalk.green('R')} (and then ${chalk.green(
-              'Enter'
-            )}) to restart electron > `,
-            matcher: 'R',
-            callback: () => {
-              logger.debug('restart electron');
-              runElectron();
-            },
-          });
+          rl.prompt();
         }
       } else {
         logger.debug('re-compile failed');
