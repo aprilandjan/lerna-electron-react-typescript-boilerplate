@@ -50,7 +50,7 @@ const webpackDev = require('../utils/webpackDev');
       if (!compiledSuccess) {
         return;
       }
-      logger.info('restart electron');
+      logger.info('restart electron...');
       runElectron();
     },
   });

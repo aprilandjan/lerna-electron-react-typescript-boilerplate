@@ -3,6 +3,7 @@ const spawn = require('cross-spawn');
 const exitHook = require('async-exit-hook');
 const paths = require('./paths');
 const logger = require('./logger');
+const env = require('./env');
 
 module.exports = function getElectronRunner(config = {}) {
   const { entry, args = [] } = config;
@@ -27,9 +28,17 @@ module.exports = function getElectronRunner(config = {}) {
       logger.debug('reload electron process...');
       autoKilled = true;
       await kill();
-      electronProcess = startElectron();
-    } else {
-      electronProcess = startElectron();
+    }
+    electronProcess = startElectron();
+  }
+
+  function log(data) {
+    data = data.toString();
+    if (data.trim() === '') {
+      return;
+    }
+    if (!env.grepElectron || data.includes(env.grepElectron)) {
+      logger.info(`[electron] ${data}`);
     }
   }
 
@@ -42,16 +51,10 @@ module.exports = function getElectronRunner(config = {}) {
     });
 
     p.stdout.on('data', data => {
-      data = data.toString();
-      if (data.trim() !== '') {
-        logger.info(`[electron] ${data}`);
-      }
+      log(data);
     });
     p.stderr.on('error', data => {
-      data = data.toString();
-      if (data.trim() !== '') {
-        logger.info(`[electron] ${data}`);
-      }
+      log(data);
     });
 
     p.on('close', (code, signal) => {

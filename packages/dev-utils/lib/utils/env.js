@@ -77,4 +77,6 @@ module.exports = {
   deleteUnused: process.env.DELETE_UNUSED || false,
   /** 主进程是否编译后自动重载 */
   electronAutoReload: process.env.ELECTRON_AUTO_RELOAD || true,
+  /** electron 打印信息的过滤 */
+  grepElectron: process.env.GREP_ELECTRON || '',
 };
