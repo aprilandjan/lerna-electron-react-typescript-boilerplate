@@ -101,11 +101,11 @@ Check more scripts in `package.json` scripts field.
 - [x] support `require.context` with webpack alias path
 - [ ] lerna command registered with dotenv files
 - [x] find out unused files in main/renderer bundle
-- [ ] find out repeat files between main & renderer bundle
-- [ ] logger info output time diff in ms like `debugger`
-- [ ] allow filter electron output message
+- [x] logger info output time diff in ms like `debugger`
+- [x] allow filter electron output message
 - [ ] bug: set env always later than read dotenv files
 - [ ] allow app-module build without webpack (using tsc and babel only)
+- [ ] auto find restarted electron process and close it when leaving dev mode
 
 ## References
 
