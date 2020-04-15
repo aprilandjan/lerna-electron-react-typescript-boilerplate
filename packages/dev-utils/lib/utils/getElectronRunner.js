@@ -53,7 +53,7 @@ module.exports = function getElectronRunner(config = {}) {
     p.stdout.on('data', data => {
       log(data);
     });
-    p.stderr.on('error', data => {
+    p.stderr.on('data', data => {
       log(data);
     });
 
