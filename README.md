@@ -105,7 +105,7 @@ Check more scripts in `package.json` scripts field.
 - [x] allow filter electron output message
 - [ ] bug: set env always later than read dotenv files
 - [ ] allow app-module build without webpack (using tsc and babel only)
-- [ ] auto find restarted electron process and close it when leaving dev mode
+- [ ] auto find restarted electron process and restart works with it and close it when leaving dev mode
 
 ## References
 
