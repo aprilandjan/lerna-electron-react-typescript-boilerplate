@@ -106,6 +106,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] bug: set env always later than read dotenv files
 - [ ] allow app-module build without webpack (using tsc and babel only)
 - [ ] auto find restarted electron process and restart works with it and close it when leaving dev mode
+- [ ] configurable electron-builder options for mac/win separately
 
 ## References
 
