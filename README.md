@@ -108,6 +108,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] auto find restarted electron process and restart works with it and close it when leaving dev mode
 - [ ] configurable electron-builder options for mac/win separately
 - [ ] bug: windows cannot quit dev process smoothly
+- [ ] support `func?.()` in js files
 
 ## References
 
