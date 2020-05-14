@@ -15,9 +15,8 @@ process.on('exit', function() {
 module.exports = function run(packageName, cmd, allowFailure = false) {
   // https://github.com/yarnpkg/yarn/issues/4667
   return new Promise((resolve, reject) => {
-    //  从 node_modules/.bin/ 中找到该文件
-    const cwd = resolvePackage(packageName);
-    const pkg = require(path.join(cwd, 'package.json'));
+    const pkg = resolvePackage(packageName);
+    const pkgLocation = pkg.location;
     const script = pkg.scripts[cmd];
     if (!script) {
       reject(new Error(`Cannot find ${cmd} in ${packageName}`));
@@ -26,18 +25,18 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
     //  简单的判断下 bin
     const args = script.split(' ');
     const binName = args.shift();
-    const binPath = path.join(cwd, 'node_modules/.bin', binName + '.js');
+    const binPath = path.join(pkg.binLocation, binName + '.js');
     //  是 bin 任务，用 node 去执行
     let cp;
     if (fs.existsSync(binPath)) {
       cp = spawn('node', [binPath, ...args], {
-        cwd: resolvePackage(packageName),
+        cwd: pkgLocation,
         stdio: 'inherit',
       });
     } else {
       //  不是 bin 任务，用 yarn 去执行
       cp = spawn('yarn', [cmd], {
-        cwd,
+        cwd: pkgLocation,
         stdio: 'inherit',
       });
     }

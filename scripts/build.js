@@ -9,9 +9,9 @@ const run = require('./utils/run');
   await run('app-main', 'build', false);
 
   //  copy renderer dist into main dist
-  const main = resolvePackage('app-main');
+  const main = resolvePackage('app-main').location;
   const mainDist = path.join(main, 'dist');
-  const renderer = resolvePackage('app-renderer');
+  const renderer = resolvePackage('app-renderer').location;
   const rendererDist = path.join(renderer, 'dist');
   fs.copySync(rendererDist, mainDist);
   fs.copySync(path.join(main, 'index.html'), path.join(mainDist, 'index.html'));

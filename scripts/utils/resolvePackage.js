@@ -1,5 +1,7 @@
-const path = require('path');
+const findLernaPackages = require('find-lerna-packages');
+
+const packages = findLernaPackages.sync();
 
 module.exports = function resolvePackage(name) {
-  return path.join(__dirname, '../../packages', name);
+  return packages.find(p => p.name === name);
 };

@@ -109,6 +109,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] configurable electron-builder options for mac/win separately
 - [ ] bug: windows cannot quit dev process smoothly
 - [ ] support `func?.()` in js files
+- [ ] use `find-lerna-package` to locate sub packages
 
 ## References
 
