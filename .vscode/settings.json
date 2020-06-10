@@ -21,5 +21,7 @@
     "npm-debug.log.*": true,
     "yarn-error.log": true,
     "test/**/__snapshots__": true
-  }
+  },
+  "nodeDebugProcessPicker.autoAttach": true,
+  "nodeDebugProcessPicker.match": ["!**/node_modules/electron/**/*"]
 }
