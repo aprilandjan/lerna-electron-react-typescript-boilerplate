@@ -93,6 +93,8 @@ Check more scripts in `package.json` scripts field.
 - [x] renderer webpack externals be default set as the main package's dependencies
 - [ ] support unittest & e2e test
 - [x] attach debugger for main process in vscode
+- [ ] attach debugger for main process while startup
+- [ ] attach debugger for renderer process in vscode
 - [ ] separated eslint rules for node scripts and browser scripts
 - [ ] add eslint in webpack compile check
 - [x] allow skip typechecking in webpack compiler
