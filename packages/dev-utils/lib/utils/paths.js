@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const resolvePackage = require('./resolvePackage');
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
@@ -38,7 +39,7 @@ const resolveMain = filePath => {
   if (appDirectoryName === 'app-main') {
     return resolveApp(filePath);
   } else {
-    return resolveApp(path.join('../app-main', filePath));
+    return resolveApp(resolvePackage('app-main').location, filePath);
   }
 };
 
@@ -46,7 +47,7 @@ const resolveRenderer = filePath => {
   if (appDirectoryName === 'app-renderer') {
     return resolveApp(filePath);
   } else {
-    return resolveApp(path.join('../app-renderer', filePath));
+    return resolveApp(resolvePackage('app-renderer').location, filePath);
   }
 };
 
