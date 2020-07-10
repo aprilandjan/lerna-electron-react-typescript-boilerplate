@@ -5,8 +5,8 @@ const fs = require('fs-extra');
 const resolvePackage = require('./resolvePackage');
 
 const children = [];
-process.on('exit', function() {
-  children.forEach(function([name, child]) {
+process.on('exit', () => {
+  children.forEach(([name, child]) => {
     child.kill();
   });
 });

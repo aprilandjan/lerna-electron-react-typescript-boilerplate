@@ -1,4 +1,5 @@
 const restrictedGlobals = require('confusing-browser-globals');
+const moduleExtensions = ['.js', '.jsx', '.ts', '.tsx', '.json', 'yml', 'scss', 'css'];
 
 module.exports = {
   root: true,
@@ -16,7 +17,6 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
-      // https://github.com/babel/babel-eslint/issues/662
       legacyDecorators: true,
     },
   },
@@ -28,7 +28,7 @@ module.exports = {
     // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+        extensions: moduleExtensions,
       },
       // https://github.com/alexgorbatchev/eslint-import-resolver-typescript
       // Multiple tsconfigs (Useful for monorepos)
@@ -37,7 +37,7 @@ module.exports = {
         directory: ['packages/*/tsconfig.json'],
       },
     },
-    'import/extensions': ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    'import/extensions': moduleExtensions,
     'import/ignore': ['node_modules', '\\.(scss|css|less|svg)$'],
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
@@ -177,7 +177,7 @@ module.exports = {
     'getter-return': 'warn',
 
     // https://github.com/benmosher/eslint-plugin-import/tree/master/docs/rules
-    'import/first': 'error',
+    'import/first': 'warn',
     'import/no-amd': 'error',
     'import/no-webpack-loader-syntax': 'error',
     'import/no-unresolved': [
