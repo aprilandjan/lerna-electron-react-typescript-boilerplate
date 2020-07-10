@@ -39,7 +39,7 @@ const resolveMain = filePath => {
   if (appDirectoryName === 'app-main') {
     return resolveApp(filePath);
   } else {
-    return resolveApp(resolvePackage('app-main').location, filePath);
+    return resolveApp(resolvePackage('app-main').location);
   }
 };
 
@@ -47,7 +47,7 @@ const resolveRenderer = filePath => {
   if (appDirectoryName === 'app-renderer') {
     return resolveApp(filePath);
   } else {
-    return resolveApp(resolvePackage('app-renderer').location, filePath);
+    return resolveApp(resolvePackage('app-renderer').location);
   }
 };
 

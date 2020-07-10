@@ -4,7 +4,7 @@ const moduleExtensions = ['.js', '.jsx', '.ts', '.tsx', '.json', 'yml', 'scss', 
 module.exports = {
   root: true,
   parser: 'babel-eslint',
-  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', 'jest'],
+  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', 'jest', 'sonarjs'],
   env: {
     browser: true,
     commonjs: true,
@@ -154,6 +154,7 @@ module.exports = {
     ],
     'no-with': 'warn',
     'no-whitespace-before-property': 'warn',
+    'no-param-reassign': 'warn',
     'react-hooks/exhaustive-deps': 'warn',
     'require-yield': 'warn',
     'rest-spread-spacing': ['warn', 'never'],
@@ -247,6 +248,36 @@ module.exports = {
     'jest/no-disabled-tests': 'warn',
     'jest/no-focused-tests': 'error',
     'jest/no-identical-title': 'error',
+
+    // sonarjs
+    // https://github.com/SonarSource/eslint-plugin-sonarjs
+    // bugs
+    'sonarjs/no-all-duplicated-branches': 'error',
+    'sonarjs/no-element-overwrite': 'warn',
+    'sonarjs/no-extra-arguments': 'error',
+    'sonarjs/no-identical-conditions': 'error',
+    'sonarjs/no-identical-expressions': 'error',
+    'sonarjs/no-one-iteration-loop': 'error',
+    'sonarjs/no-use-of-empty-return-value': 'error',
+    // code smells
+    'sonarjs/cognitive-complexity': ['warn', 15],
+    'sonarjs/max-switch-cases': ['warn', 10],
+    'sonarjs/no-collapsible-if': 'warn',
+    'sonarjs/no-collection-size-mischeck': 'error',
+    'sonarjs/no-duplicate-string': ['warn', 5],
+    'sonarjs/no-duplicated-branches': 'error',
+    'sonarjs/no-identical-functions': 'error',
+    'sonarjs/no-inverted-boolean-check': 'error',
+    'sonarjs/no-redundant-boolean': 'error',
+    'sonarjs/no-redundant-jump': 'error',
+    'sonarjs/no-same-line-conditional': 'error',
+    'sonarjs/no-small-switch': 'warn',
+    'sonarjs/no-unused-collection': 'error',
+    'sonarjs/no-useless-catch': 'warn',
+    'sonarjs/prefer-immediate-return': 'warn',
+    'sonarjs/prefer-object-literal': 'warn',
+    'sonarjs/prefer-single-boolean-return': 'warn',
+    'sonarjs/prefer-while': 'warn',
   },
   overrides: [
     {
@@ -269,9 +300,9 @@ module.exports = {
         // TypeScript's `noFallthroughCasesInSwitch` option is more robust (#6906)
         'default-case': 'off',
         // 'tsc' already handles this (https://github.com/typescript-eslint/typescript-eslint/issues/291)
-        'no-dupe-class-members': 'off',
+        // 'no-dupe-class-members': 'off',
         // 'tsc' already handles this (https://github.com/typescript-eslint/typescript-eslint/issues/477)
-        'no-undef': 'off',
+        // 'no-undef': 'off',
 
         // Add TypeScript specific rules (and turn off ESLint equivalents)
         '@typescript-eslint/consistent-type-assertions': 'warn',

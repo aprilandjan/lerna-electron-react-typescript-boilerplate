@@ -12,7 +12,9 @@
     "package-win": "yarn build && lerna exec --scope=app-main yarn package-win",
     "package-all": "yarn build && lerna exec --scope=app-main yarn package-all",
     "package-ci": "yarn build && lerna exec --scope=app-main yarn package-ci",
-    "lint": "eslint . --ext .jsx,.js,.tsx,.ts --format=pretty",
+    "lint": "yarn lint-js && yarn lint-ts",
+    "lint-js": "eslint . --ext .jsx,.js --format=pretty",
+    "lint-ts": "eslint . --ext .tsx,.ts --format=pretty",
     "lint-fix": "yarn --silent lint --fix; exit 0",
     "lint-styles": "stylelint --ignore-path .eslintignore '**/*.*(css|scss)' --syntax scss",
     "lint-styles-fix": "yarn --silent lint-styles --fix; exit 0",
@@ -25,7 +27,8 @@
     "postinstall": "lerna link"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["eslint --format=pretty", "prettier --write", "git add"],
+    "*.{js,jsx}": ["eslint --format=pretty", "prettier --write", "git add"],
+    "*.{ts,tsx}": ["eslint --format=pretty --max-warnings=0", "prettier --write", "git add"],
     "{*.json,.{babelrc,eslintrc,prettierrc,stylelintrc}}": [
       "prettier --parser json --write",
       "git add"
@@ -74,6 +77,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
+    "eslint-plugin-sonarjs": "^0.5.0",
     "find-lerna-packages": "^1.1.1",
     "husky": "^3.1.0",
     "identity-obj-proxy": "^3.0.0",
