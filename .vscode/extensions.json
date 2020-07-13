@@ -1,3 +1,12 @@
 {
-  "recommendations": ["aprilandjan.vscode-node-debug-process-picker"]
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "syler.sass-indented",
+    "stylelint.vscode-stylelint",
+    "wayou.vscode-todo-highlight",
+    "aprilandjan.vscode-node-debug-process-picker"
+  ]
 }
