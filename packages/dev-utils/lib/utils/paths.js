@@ -36,19 +36,11 @@ const resolveModule = (resolveFn, filePath) => {
 };
 
 const resolveMain = filePath => {
-  if (appDirectoryName === 'app-main') {
-    return resolveApp(filePath);
-  } else {
-    return resolveApp(resolvePackage('app-main').location);
-  }
+  return resolveApp(path.join(resolvePackage('app-main').location, filePath));
 };
 
 const resolveRenderer = filePath => {
-  if (appDirectoryName === 'app-renderer') {
-    return resolveApp(filePath);
-  } else {
-    return resolveApp(resolvePackage('app-renderer').location);
-  }
+  return resolveApp(path.join(resolvePackage('app-renderer').location, filePath));
 };
 
 module.exports = {

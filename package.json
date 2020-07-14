@@ -21,7 +21,8 @@
     "prettify": "prettier --ignore-path .eslintignore '**/*.{js,jsx,json,html,css,less,scss,yml}'",
     "prettify-fix": "yarn --silent prettify --write; exit 0",
     "preinstall": "npx check-npm-client --yarn-only",
-    "test": "yarn run test-unit && yarn test-e2e",
+    "test": "yarn test-unit && yarn test-e2e",
+    "test-cov": "yarn test-unit --coverage && yarn test-e2e",
     "test-unit": "cross-env NODE_ENV=test jest",
     "test-e2e": "cross-env NODE_ENV=test echo \"e2e test\"",
     "postinstall": "lerna link"
@@ -93,6 +94,7 @@
   },
   "browserslist": "electron 1.6",
   "dependencies": {
+    "eslint-plugin-deprecate": "^0.7.0",
     "fs-extra": "^8.1.0",
     "lerna": "^3.20.2",
     "typescript": "^3.7.5"

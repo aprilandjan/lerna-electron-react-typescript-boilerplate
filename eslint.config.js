@@ -4,7 +4,7 @@ const moduleExtensions = ['.js', '.jsx', '.ts', '.tsx', '.json', 'yml', 'scss', 
 module.exports = {
   root: true,
   parser: 'babel-eslint',
-  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', 'jest', 'sonarjs'],
+  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', 'jest', 'sonarjs', 'deprecate'],
   env: {
     browser: true,
     commonjs: true,
@@ -278,6 +278,16 @@ module.exports = {
     'sonarjs/prefer-object-literal': 'warn',
     'sonarjs/prefer-single-boolean-return': 'warn',
     'sonarjs/prefer-while': 'warn',
+
+    //  deprecate
+    //  https://github.com/AlexMost/eslint-plugin-deprecate
+    // 'deprecate/import': [
+    //   'warn',
+    //   {
+    //     nameRegExp: '^electron',
+    //     use: 'Please use @/router/... instead',
+    //   }
+    // ]
   },
   overrides: [
     {
