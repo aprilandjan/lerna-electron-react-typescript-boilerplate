@@ -6,7 +6,7 @@
   "bin": {
     "app-renderer": "./bin/app-renderer.js",
     "app-main": "./bin/app-main.js",
-    "app-module": "./bin/app-module.js"
+    "app-pack": "./bin/app-pack.js"
   },
   "scripts": {
     "test": "echo 'test'"
