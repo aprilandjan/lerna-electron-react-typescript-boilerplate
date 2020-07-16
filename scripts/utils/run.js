@@ -2,7 +2,7 @@
 const spawn = require('cross-spawn');
 const path = require('path');
 const fs = require('fs-extra');
-const resolvePackage = require('./resolvePackage');
+const findLernaPackages = require('find-lerna-packages');
 
 const children = [];
 process.on('exit', () => {
@@ -15,7 +15,7 @@ process.on('exit', () => {
 module.exports = function run(packageName, cmd, allowFailure = false) {
   // https://github.com/yarnpkg/yarn/issues/4667
   return new Promise((resolve, reject) => {
-    const pkg = resolvePackage(packageName);
+    const pkg = findLernaPackages.getSync(packageName);
     const pkgLocation = pkg.location;
     const script = pkg.scripts[cmd];
     if (!script) {

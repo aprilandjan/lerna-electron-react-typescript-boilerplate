@@ -6494,10 +6494,10 @@ find-cache-dir@^3.1.0:
     make-dir "^3.0.0"
     pkg-dir "^4.1.0"
 
-find-lerna-packages@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npm.taobao.org/find-lerna-packages/download/find-lerna-packages-1.1.1.tgz#cbe74ac52636cd9f8d585d8dade0ab18cc93e625"
-  integrity sha1-y+dKxSY2zZ+NWF2NreCrGMyT5iU=
+find-lerna-packages@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/find-lerna-packages/download/find-lerna-packages-1.2.0.tgz#e01a9fc80939ddd361e2590427687d17fd03fc68"
+  integrity sha1-4BqfyAk53dNh4lkEJ2h9F/0D/Gg=
 
 find-root@^1.0.0:
   version "1.1.0"

@@ -1,11 +1,11 @@
 const path = require('path');
 const fs = require('fs');
-const resolvePackage = require('./resolvePackage');
+const findLernaPackages = require('find-lerna-packages');
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd());
-const appDirectoryName = path.basename(appDirectory);
+// const appDirectoryName = path.basename(appDirectory);
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const moduleFileExtensions = [
@@ -36,11 +36,11 @@ const resolveModule = (resolveFn, filePath) => {
 };
 
 const resolveMain = filePath => {
-  return resolveApp(path.join(resolvePackage('app-main').location, filePath));
+  return resolveApp(path.join(findLernaPackages.getSync('app-main').location, filePath));
 };
 
 const resolveRenderer = filePath => {
-  return resolveApp(path.join(resolvePackage('app-renderer').location, filePath));
+  return resolveApp(path.join(findLernaPackages.getSync('app-renderer').location, filePath));
 };
 
 module.exports = {

@@ -79,7 +79,7 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "eslint-plugin-sonarjs": "^0.5.0",
-    "find-lerna-packages": "^1.1.1",
+    "find-lerna-packages": "^1.2.0",
     "husky": "^3.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.2.4",
