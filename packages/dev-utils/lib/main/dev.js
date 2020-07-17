@@ -27,7 +27,7 @@ function waitIpcClientsReady() {
     ipc.initServer(clients => {
       logger.debug('ipc clients ready:', clients);
       // FIXME: should be more accurate
-      if (clients.length >= 1) {
+      if (clients.length >= 2) {
         resolve();
       }
     });

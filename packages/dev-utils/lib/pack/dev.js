@@ -9,5 +9,10 @@ process.on('unhandledRejection', err => {
 
 const baseConfig = require('../webpack.config.base');
 const webpackDev = require('../utils/webpackDev');
+const ipc = require('../utils/ipc');
 
-webpackDev(baseConfig);
+webpackDev(baseConfig, null, () => {
+  ipc.initClient(() => {
+    ipc.sendToServer('ready');
+  });
+});

@@ -10,7 +10,7 @@ When developing electron applications, perhaps you want to separate main process
 root
 ├── app-main          # main process source codes
 ├── app-renderer      # renderer process source codes
-└── app-common-utils  # some commonly used codes
+└── app-common        # some commonly used codes
 ```
 
 That's why in this boilerplate we use [Lerna](https://github.com/lerna/lerna) to help managing such a `monorepo` structure.
@@ -112,6 +112,8 @@ Check more scripts in `package.json` scripts field.
 - [ ] bug: windows cannot quit dev process smoothly
 - [ ] support `func?.()` in js files
 - [x] use `find-lerna-package` to locate sub packages
+- [ ] ipc server automatically satisfied ipc client count
+- [ ] parallel build sub packages
 
 ## References
 
