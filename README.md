@@ -76,7 +76,7 @@ Check more scripts in `package.json` scripts field.
 - [x] app main watch & reload: reload: use webpack, listen its compile status
 - [x] main process ask for restart if needed
 - [ ] main process modules partly hot-reload
-- [ ] main & renderer communicate through node ipc
+- [x] main & renderer communicate through node ipc
 - [x] extract webpack things into dev-utils
 - [x] customizable build step
 - [x] whole project building process

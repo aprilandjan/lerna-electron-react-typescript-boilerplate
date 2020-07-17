@@ -13,12 +13,26 @@ const paths = require('../utils/paths');
 const env = require('../utils/env');
 const logger = require('../utils/logger');
 // const clearConsole = require('./utils/clearConsole');
-const pollingRenderer = require('../utils/pollingRenderer');
+// const pollingRenderer = require('../utils/pollingRenderer');
 const ensureExternals = require('../utils/ensureExternals');
 const createReadline = require('../utils/createReadline');
 const getElectronRunner = require('../utils/getElectronRunner');
 const webpackConfig = require('./webpack.config.dev');
 const webpackDev = require('../utils/webpackDev');
+const ipc = require('../utils/ipc');
+
+function waitIpcClientsReady() {
+  logger.debug('wait ipc clients ready...');
+  return new Promise(resolve => {
+    ipc.initServer(clients => {
+      logger.debug('ipc clients ready:', clients);
+      // FIXME: should be more accurate
+      if (clients.length >= 1) {
+        resolve();
+      }
+    });
+  });
+}
 
 (async () => {
   let compiledSuccess = null;
@@ -33,12 +47,7 @@ const webpackDev = require('../utils/webpackDev');
 
   //  如果是并行开发才需要等待
   if (process.env.MONO_REPO_DEV) {
-    logger.debug('start polling renderer dev server status');
-    const result = await pollingRenderer();
-    if (!result) {
-      logger.info('renderer dev server failed to response');
-      return;
-    }
+    await waitIpcClientsReady();
   }
 
   const rl = createReadline({

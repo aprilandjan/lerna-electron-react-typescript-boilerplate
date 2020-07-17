@@ -19,6 +19,7 @@ const checkPort = require('../utils/checkPort');
 const createWebpackCompiler = require('../utils/createWebpackCompiler');
 const clearConsole = require('../utils/clearConsole');
 const printError = require('../utils/printError');
+const ipc = require('../utils/ipc');
 const webpackConfig = require('./webpack.config.dev');
 const webpackDllConfig = require('./webpack.config.dev.dll');
 
@@ -63,7 +64,6 @@ checkPort(env.port, env.host)
   .then(() => {
     //  start dev server
     let devServer;
-    let ready = false;
 
     const devServerConfig = {
       port: env.port,
@@ -90,12 +90,6 @@ checkPort(env.port, env.host)
         // verbose: true,
         disableDotRule: false,
       },
-      before(app) {
-        // app middleware
-        app.get('/dev-server-status', (req, res) => {
-          res.send(ready ? 'ready' : 'pending');
-        });
-      },
     };
 
     const devSocket = {
@@ -110,10 +104,9 @@ checkPort(env.port, env.host)
       tscCompileOnError: env.compileOnTsError,
       onFirstCompiledSuccess: () => {
         logger.debug('first compiled');
-        ready = true;
-        if (process.send) {
-          process.send('ready');
-        }
+        ipc.initClient(() => {
+          ipc.sendToServer('ready');
+        });
       },
     });
     devServer = new WebpackDevServer(compiler, devServerConfig);
