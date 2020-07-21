@@ -3483,6 +3483,11 @@ babel-plugin-require-context-hook@^1.0.0:
   resolved "https://registry.npm.taobao.org/babel-plugin-require-context-hook/download/babel-plugin-require-context-hook-1.0.0.tgz#3f0e7cce87c338f53639b948632fd4e73834632d"
   integrity sha1-Pw58zofDOPU2OblIYy/U5zg0Yy0=
 
+babel-plugin-rewire-ts@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.npm.taobao.org/babel-plugin-rewire-ts/download/babel-plugin-rewire-ts-1.3.4.tgz#d3007a7d9c96fc9d2d5818f395c25bf2504f531f"
+  integrity sha1-0wB6fZyW/J0tWBjzlcJb8lBPUx8=
+
 babel-plugin-transform-react-remove-prop-types@^0.4.24:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.24.tgz#f2edaf9b4c6a5fbe5c1d678bfb531078c1555f3a"

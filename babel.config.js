@@ -44,7 +44,8 @@ module.exports = (api, opts) => {
           addDefaultProperty: false,
         },
       ],
-      ['@babel/plugin-transform-modules-commonjs'],
+      // FIXME: this plugin should be removed, since it conflict with
+      !isEnvTest && ['@babel/plugin-transform-modules-commonjs'],
       //  support export v from 'xxx'
       require('@babel/plugin-proposal-export-default-from'),
       // Turn on legacy decorators for TypeScript files
@@ -73,6 +74,7 @@ module.exports = (api, opts) => {
       // Transform dynamic import to require
       isEnvTest && require('babel-plugin-dynamic-import-node'),
       isEnvTest && require('babel-plugin-require-context-hook'),
+      isEnvTest && require('babel-plugin-rewire-ts'),
       ...(isEnvProduction && useReact
         ? [
             require('@babel/plugin-transform-react-constant-elements'),
