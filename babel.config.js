@@ -44,8 +44,6 @@ module.exports = (api, opts) => {
           addDefaultProperty: false,
         },
       ],
-      // FIXME: this plugin should be removed, since it conflict with
-      !isEnvTest && ['@babel/plugin-transform-modules-commonjs'],
       //  support export v from 'xxx'
       require('@babel/plugin-proposal-export-default-from'),
       // Turn on legacy decorators for TypeScript files
