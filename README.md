@@ -75,7 +75,7 @@ Check more scripts in `package.json` scripts field.
 - [x] check dll running speed
 - [x] app main watch & reload: reload: use webpack, listen its compile status
 - [x] main process ask for restart if needed
-- [ ] main process modules partly hot-reload
+- ~~[ ] main process modules partly hot-reload~~
 - [x] main & renderer communicate through node ipc
 - [x] extract webpack things into dev-utils
 - [x] customizable build step
@@ -91,12 +91,13 @@ Check more scripts in `package.json` scripts field.
 - [x] tsconfig include only src(or exclude `node_modules`) to speed up typechecking
 - [x] user customized webpack config merging
 - [x] renderer webpack externals be default set as the main package's dependencies
-- [ ] support unittest & e2e test
+- [x] support unittest
+- [ ] support e2e test
 - [x] attach debugger for main process in vscode
 - [ ] attach debugger for main process while startup
 - [ ] attach debugger for renderer process in vscode
-- [ ] separated eslint rules for node scripts and browser scripts
-- [ ] add eslint in webpack compile check
+- ~~[ ] separated eslint rules for node scripts and browser scripts~~
+- ~~[ ] add eslint in webpack compile check~~
 - [x] allow skip typechecking in webpack compiler
 - [ ] webpack resolve and build lerna modules
 - [x] electron builder(asar) packing
@@ -107,7 +108,6 @@ Check more scripts in `package.json` scripts field.
 - [x] allow filter electron output message
 - [ ] bug: set env always later than read dotenv files
 - [ ] allow app-module build without webpack (using tsc and babel only)
-- [ ] auto find restarted electron process and restart works with it and close it when leaving dev mode
 - [ ] configurable electron-builder options for mac/win separately
 - [ ] bug: windows cannot quit dev process smoothly
 - [x] support `func?.()` in js files
