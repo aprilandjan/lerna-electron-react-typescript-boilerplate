@@ -1,6 +1,4 @@
-/* eslint global-require: off, import/no-dynamic-require: off */
-
-const path = require('path');
+// const path = require('path');
 // const fs = require('fs-extra');
 const webpack = require('webpack');
 // const chalk = require('chalk');
@@ -13,7 +11,7 @@ const baseConfig = require('../webpack.config.base');
 const cssSourcemap = false;
 
 module.exports = merge.smart(baseConfig, {
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-source-map',
 
   mode: 'development',
 

@@ -27,7 +27,7 @@
     "app-dev-utils": "^1.0.0",
     "cross-env": "^6.0.3",
     "debug": "^4.1.1",
-    "electron": "7.1.4",
+    "electron": "8.4.1",
     "electron-builder": "^22.2.0",
     "electron-devtools-installer": "^2.2.4"
   },

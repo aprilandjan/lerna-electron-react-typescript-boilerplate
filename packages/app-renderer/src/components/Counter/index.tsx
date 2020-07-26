@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './style.css';
 import routes from '@/constants/routes.json';
 
-export default class Counter extends Component {
+export default class Counter extends Component<any> {
   render() {
     const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
     return (
