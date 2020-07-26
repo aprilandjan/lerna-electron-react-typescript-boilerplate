@@ -110,7 +110,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] auto find restarted electron process and restart works with it and close it when leaving dev mode
 - [ ] configurable electron-builder options for mac/win separately
 - [ ] bug: windows cannot quit dev process smoothly
-- [ ] support `func?.()` in js files
+- [x] support `func?.()` in js files
 - [x] use `find-lerna-package` to locate sub packages
 - [ ] ipc server automatically satisfied ipc client count
 - [ ] parallel build sub packages

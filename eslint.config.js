@@ -4,7 +4,7 @@ const moduleExtensions = ['.js', '.jsx', '.ts', '.tsx', '.json', 'yml', 'scss', 
 module.exports = {
   root: true,
   parser: 'babel-eslint',
-  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', 'jest', 'sonarjs', 'deprecate'],
+  plugins: ['babel', 'import', 'jsx-a11y', 'react', 'react-hooks', 'jest', 'sonarjs', 'deprecate'],
   env: {
     browser: true,
     commonjs: true,
@@ -116,8 +116,10 @@ module.exports = {
     'no-undef': 'error',
     'no-restricted-globals': ['error'].concat(restrictedGlobals),
     'no-unreachable': 'warn',
+
+    //  to support `a?.b()`, disable the rule in favour of `babel` plugin
     'no-unused-expressions': [
-      'error',
+      'off',
       {
         allowShortCircuit: true,
         allowTernary: true,
@@ -176,6 +178,9 @@ module.exports = {
       },
     ],
     'getter-return': 'warn',
+
+    // https://github.com/babel/eslint-plugin-babel
+    'babel/no-unused-expressions': 'warn',
 
     // https://github.com/benmosher/eslint-plugin-import/tree/master/docs/rules
     'import/first': 'warn',
