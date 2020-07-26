@@ -21,8 +21,7 @@
     "devtron": "^1.4.0",
     "electron-debug": "^3.0.1",
     "electron-log": "^4.0.0",
-    "electron-updater": "^4.2.0",
-    "source-map-support": "^0.5.16"
+    "electron-updater": "^4.2.0"
   },
   "devDependencies": {
     "app-dev-utils": "^1.0.0",
@@ -35,7 +34,7 @@
   "main": "./dist/main.prod.js",
   "build": {
     "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
+    "appId": "org.my.app",
     "files": ["./dist", "node_modules/", "package.json"],
     "dmg": {
       "contents": [
@@ -52,14 +51,14 @@
       ]
     },
     "win": {
-      "target": ["nsis", "msi"]
+      "target": ["nsis"]
     },
     "linux": {
       "target": ["deb", "rpm", "AppImage"],
       "category": "Development"
     },
     "mac": {
-      "target": "pkg"
+      "target": ["dmg"]
     },
     "directories": {
       "buildResources": "resources",

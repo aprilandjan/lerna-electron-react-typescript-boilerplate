@@ -17,11 +17,6 @@ export default class AppUpdater {
 
 let mainWindow = null;
 
-if (!isDev) {
-  const sourceMapSupport = require('source-map-support');
-  sourceMapSupport.install();
-}
-
 if (isDev) {
   require('electron-debug')();
 }
