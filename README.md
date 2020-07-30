@@ -71,7 +71,7 @@ Check more scripts in `package.json` scripts field.
 - [x] add electron icons
 - [x] ensure `dev` & `build` progress
 - [x] add renderer compile time progress
-- [ ] automatically dll compare & rebuild
+- ~~[ ] automatically dll compare & rebuild~~
 - [x] check dll running speed
 - [x] app main watch & reload: reload: use webpack, listen its compile status
 - [x] main process ask for restart if needed
