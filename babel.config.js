@@ -69,6 +69,15 @@ module.exports = (api, opts) => {
       [require('@babel/plugin-proposal-optional-chaining'), { loose: false }],
       //  var foo = object.foo ?? "default"
       [require('@babel/plugin-proposal-nullish-coalescing-operator'), { loose: false }],
+      //  load antd as needed
+      useReact && [
+        require('babel-plugin-import'),
+        {
+          libraryName: 'antd',
+          libraryDirectory: 'es',
+          style: 'css',
+        },
+      ],
       // Transform dynamic import to require
       isEnvTest && require('babel-plugin-dynamic-import-node'),
       isEnvTest && require('babel-plugin-require-context-hook'),

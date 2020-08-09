@@ -33,142 +33,119 @@ module.exports = merge.smart(baseConfig, {
   module: {
     rules: [
       {
-        test: /\.global\.css$/,
-        use: [
+        //  css find order
+        oneOf: [
+          //  the css in appSrc, which not started with global
+          //  are treated as scoped style
           {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: cssSourcemap,
-            },
-          },
-        ],
-      },
-      {
-        test: /^((?!\.global).)*\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                getLocalIdent: getCSSModuleLocalIdent,
+            test: /^((?!\.global).)*\.css$/,
+            include: paths.appSrc,
+            use: [
+              {
+                loader: 'style-loader',
               },
-              sourceMap: cssSourcemap,
-              importLoaders: 1,
-            },
-          },
-        ],
-      },
-      // SASS support - compile all .global.scss files and pipe it to style.css
-      {
-        test: /\.global\.(scss|sass)$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: cssSourcemap,
-            },
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
-      },
-      // SASS support - compile all other .scss files and pipe it to style.css
-      {
-        test: /^((?!\.global).)*\.(scss|sass)$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                getLocalIdent: getCSSModuleLocalIdent,
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: {
+                    getLocalIdent: getCSSModuleLocalIdent,
+                  },
+                  sourceMap: cssSourcemap,
+                  importLoaders: 1,
+                },
               },
-              sourceMap: cssSourcemap,
-              importLoaders: 1,
-            },
+            ],
           },
+          //  other css, no matter where it is, node_modules for example
+          //  are treated as non-scoped style
           {
-            loader: 'sass-loader',
+            test: /\.css$/,
+            use: [
+              {
+                loader: 'style-loader',
+              },
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: cssSourcemap,
+                },
+              },
+            ],
+          },
+          //  the sass in appSrc, which not started with global
+          //  are treated as scoped style
+          {
+            test: /\.global\.(scss|sass)$/,
+            use: [
+              {
+                loader: 'style-loader',
+              },
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: cssSourcemap,
+                },
+              },
+              {
+                loader: 'sass-loader',
+              },
+            ],
+          },
+          //  other sass, no matter where it is, node_modules for example
+          //  are treated as non-scoped style
+          {
+            test: /.(scss|sass)$/,
+            include: paths.appSrc,
+            use: [
+              {
+                loader: 'style-loader',
+              },
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: {
+                    getLocalIdent: getCSSModuleLocalIdent,
+                  },
+                  sourceMap: cssSourcemap,
+                  importLoaders: 1,
+                },
+              },
+              {
+                loader: 'sass-loader',
+              },
+            ],
           },
         ],
       },
-      // WOFF Font
       {
-        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            mimetype: 'application/font-woff',
-            esModule: false,
-          },
-        },
-      },
-      // WOFF2 Font
-      {
-        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            mimetype: 'application/font-woff',
-            esModule: false,
-          },
-        },
-      },
-      // TTF Font
-      {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            mimetype: 'application/octet-stream',
-            esModule: false,
-          },
-        },
-      },
-      // EOT Font
-      {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp|svg)$/,
         use: {
           loader: 'file-loader',
           options: {
             esModule: false,
+            name: 'assets/imgs/[name].[hash:8].[ext]',
           },
         },
       },
-      // SVG Icons
+      // Audios
       {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(ogg|mp3|mp4|wav|mpe?g)$/i,
         use: {
-          loader: 'url-loader',
+          loader: 'file-loader',
           options: {
-            limit: 10000,
-            mimetype: 'image/svg+xml',
             esModule: false,
+            name: 'assets/audios/[name].[hash:8].[ext]',
           },
         },
       },
-      // Common Image Formats
+      // Fonts
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/,
+        test: /\.(woff|woff2|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         use: {
-          loader: 'url-loader',
+          loader: 'file-loader',
           options: {
             esModule: false,
+            name: 'assets/fonts/[name].[hash:8].[ext]',
           },
         },
       },

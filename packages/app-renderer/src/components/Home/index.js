@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import routes from '@/constants/routes.json';
 import icon from '@/assets/img/icon.png';
 import styles from './style.css';
+import { Button } from 'antd';
 
 /** FIXME: make jest support this webpack alias in require.context */
 const files = require.context('../../assets/img', false, /\.svg$/);
@@ -20,6 +21,7 @@ export default class Home extends Component {
         <Link to={routes.COUNTER}>to Counter</Link>
         <div>
           <button onClick={this.handleCrash}>crash</button>
+          <Button>Antd Button</Button>
         </div>
       </div>
     );
