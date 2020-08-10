@@ -3,7 +3,6 @@
  */
 
 // const path = require('path');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const paths = require('../utils/paths');

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node ./scripts/dev",
     "build": "node ./scripts/build",
+    "build-main": "lerna exec --scope=app-main yarn build",
     "build-renderer": "lerna exec --scope=app-renderer yarn build",
     "start": "lerna exec --scope=app-main yarn start",
     "package": "yarn build && lerna exec --scope=app-main yarn package",
