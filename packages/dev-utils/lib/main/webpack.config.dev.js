@@ -9,6 +9,7 @@ const merge = require('webpack-merge');
 const paths = require('../utils/paths');
 const baseConfig = require('../webpack.config.base');
 const env = require('../utils/env');
+const ensureExternals = require('../utils/ensureExternals');
 
 const { dependencies } = require(paths.appPackageJson);
 
@@ -34,7 +35,7 @@ module.exports = merge.smart(baseConfig, {
   },
 
   //  app-main 依赖不需 webpack 打包
-  externals: [...Object.keys(dependencies || {})],
+  externals: [...ensureExternals(), ...Object.keys(dependencies || {})],
 
   optimization: {
     //  do not emit resources if error

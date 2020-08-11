@@ -1,8 +1,9 @@
-module.exports = function ensureExternals(list) {
-  const externals = list.filter(item => !item.startsWith('@types/'));
-  externals.push('electron');
-  externals.push('webpack');
-  // because electron-devtools-installer specified in the devDependencies, but required in the index.dev
-  externals.push('electron-devtools-installer');
-  return externals;
+// https://webpack.js.org/configuration/externals/
+function checkExternals(context, request, callback) {
+  // TODO: external node_module things
+  callback();
+}
+
+module.exports = function ensureExternals() {
+  return [checkExternals, 'electron', 'webpack', 'electron-devtools-installer'];
 };
