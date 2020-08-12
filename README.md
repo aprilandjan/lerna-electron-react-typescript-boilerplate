@@ -115,7 +115,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] ipc server automatically satisfied ipc client count
 - [ ] parallel build sub packages
 - [ ] complete type-safe components with `redux` `react-thunk`, etc
-- [ ] when bundling node codes, automatically external all node_modules packages
+- [x] when bundling node codes, automatically external all node_modules packages
 
 ## References
 
