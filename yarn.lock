@@ -15044,10 +15044,10 @@ webpack-merge@^4.2.2:
   dependencies:
     lodash "^4.17.15"
 
-webpack-node-externals@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.npm.taobao.org/webpack-node-externals/download/webpack-node-externals-2.5.0.tgz#8d50f3289c71bc2b921a8da228e0b652acc503f1"
-  integrity sha1-jVDzKJxxvCuSGo2iKOC2UqzFA/E=
+webpack-node-externals@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.npm.taobao.org/webpack-node-externals/download/webpack-node-externals-2.5.1.tgz?cache=0&sync_timestamp=1597125701686&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fwebpack-node-externals%2Fdownload%2Fwebpack-node-externals-2.5.1.tgz#4718ec08aafa8babe246dbfd477e725c94032ef3"
+  integrity sha1-RxjsCKr6i6viRtv9R35yXJQDLvM=
 
 webpack-sources@^1.1.0, webpack-sources@^1.4.0, webpack-sources@^1.4.1, webpack-sources@^1.4.3:
   version "1.4.3"

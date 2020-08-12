@@ -6,9 +6,8 @@
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const paths = require('../utils/paths');
+const ensureNodeExternals = require('../utils/ensureNodeExternals');
 const baseConfig = require('../webpack.config.base');
-
-const { dependencies } = require(paths.appPackageJson);
 
 module.exports = merge.smart(baseConfig, {
   devtool: 'source-map',
@@ -25,7 +24,7 @@ module.exports = merge.smart(baseConfig, {
     filename: 'main.prod.js',
   },
 
-  externals: [...Object.keys(dependencies || {})],
+  externals: [...ensureNodeExternals()],
 
   optimization: {
     minimizer: [
