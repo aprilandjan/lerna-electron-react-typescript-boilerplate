@@ -1,5 +1,7 @@
 const chalk = require('chalk');
+const path = require('path');
 
+const cwd = process.cwd();
 const friendlySyntaxErrorLabel = 'Syntax error:';
 
 function isLikelyASyntaxError(message) {
@@ -52,6 +54,10 @@ function formatMessage(message) {
   }
   // Clean up file name
   lines[0] = lines[0].replace(/^(.*) \d+:\d+-\d+$/, '$1');
+  // try to display the absolute path
+  if (!path.isAbsolute(lines[0])) {
+    lines[0] = path.join(cwd, lines[0]);
+  }
 
   // Cleans up verbose "module not found" messages for files and packages.
   if (lines[1] && lines[1].indexOf('Module not found: ') === 0) {
