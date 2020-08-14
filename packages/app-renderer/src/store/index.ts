@@ -53,6 +53,7 @@ const configureStore = (initialState?: any) => {
   return createStore(rootReducer, initialState, enhancer);
 
   // TODO: hot replacement for model files
+  // FIXME: does this require really works?
   // if (module.hot) {
   //   module.hot.accept('./reducers', () => store.replaceReducer(require('./reducers').default));
   // }

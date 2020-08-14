@@ -1,6 +1,6 @@
 import { handleActions, createAction } from 'redux-actions';
 
-//=== action types ===//
+//=== the action types ===//
 export enum COUNTER {
   /** 增加 */
   INCREASE = 'counter/increase',
@@ -8,7 +8,7 @@ export enum COUNTER {
   DECREASE = 'counter/decrease',
 }
 
-//=== action creators ===//
+//=== the action creators ===//
 /** increase by specific value */
 export const createIncrease = createAction(COUNTER.INCREASE, (v: number = 1) => v);
 /** decrease by specific value */
@@ -21,7 +21,7 @@ export const actions = {
   createDecrease: createAction(COUNTER.DECREASE, (v: number = 1) => v),
 };
 
-//=== initial state ===//
+//=== the state ===//
 export interface CounterState {
   count: number;
 }

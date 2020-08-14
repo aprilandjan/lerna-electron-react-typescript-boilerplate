@@ -116,6 +116,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] parallel build sub packages
 - [ ] complete type-safe components with `redux` `react-thunk`, etc
 - [x] when bundling node codes, automatically external all node_modules packages
+- [ ] support type-safe node require in webpack bundled files
 
 ## References
 
