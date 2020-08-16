@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { RootState } from '@/store';
+import { RootStates } from '@/store';
 
 interface Props {
   test: any;
@@ -12,7 +12,7 @@ class TestPage extends React.Component<Props> {
   }
 }
 
-export default connect((state: RootState) => {
+export default connect((state: RootStates) => {
   return {
     test: state.counter.count || 'test',
   };

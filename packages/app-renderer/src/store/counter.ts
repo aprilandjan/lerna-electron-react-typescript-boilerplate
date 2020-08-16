@@ -1,10 +1,10 @@
 import { handleActions, createAction } from 'redux-actions';
-
+import { ThunkResult } from '.';
 //=== the action types ===//
 export enum COUNTER {
-  /** 增加 */
+  /** increase */
   INCREASE = 'counter/increase',
-  /** 减少 */
+  /** decrease */
   DECREASE = 'counter/decrease',
 }
 
@@ -14,12 +14,42 @@ export const createIncrease = createAction(COUNTER.INCREASE, (v: number = 1) => 
 /** decrease by specific value */
 export const createDecrease = createAction(COUNTER.DECREASE, (v: number = 1) => v);
 
+/** thunk increase */
+export function createIncreaseIfOdd(): ThunkResult<void> {
+  return (dispatch, getState) => {
+    const { counter } = getState();
+
+    if (counter.count % 2 === 0) {
+      return;
+    }
+
+    dispatch(createIncrease(1));
+  };
+}
+
+/** thunk increase */
+export function createIncreaseAsync(delay: number = 1000): ThunkResult<void> {
+  return (dispatch, getState) => {
+    setTimeout(() => {
+      dispatch(createIncrease(1));
+    }, delay);
+  };
+}
+
+//  just a union for type safe definition
 export const actions = {
-  /** increase by specific value */
-  createIncrease: createAction(COUNTER.INCREASE, (v: number = 1) => v),
-  /** decrease by specific value */
-  createDecrease: createAction(COUNTER.DECREASE, (v: number = 1) => v),
+  createIncrease,
+  createDecrease,
+  createIncreaseIfOdd,
+  createIncreaseAsync,
 };
+
+// export const actions = {
+//   /** increase by specific value */
+//   createIncrease: createAction(COUNTER.INCREASE, (v: number = 1) => v),
+//   /** decrease by specific value */
+//   createDecrease: createAction(COUNTER.DECREASE, (v: number = 1) => v),
+// };
 
 //=== the state ===//
 export interface CounterState {
@@ -33,10 +63,7 @@ export const initialState: CounterState = {
 /** reducer function */
 export const reducers = handleActions(
   {
-    [COUNTER.INCREASE]: (
-      state: CounterState,
-      { payload }: ReturnType<typeof actions.createIncrease>
-    ) => {
+    [COUNTER.INCREASE]: (state: CounterState, { payload }: ReturnType<typeof createIncrease>) => {
       return {
         count: state.count + payload,
       };

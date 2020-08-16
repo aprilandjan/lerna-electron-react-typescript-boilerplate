@@ -1,12 +1,30 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
+import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { createHashHistory } from 'history';
 import { connectRouter, routerMiddleware, routerActions } from 'connected-react-router';
 import * as CounterStore from './counter';
 
 /** the root state */
-export interface RootState {
+export interface RootStates {
   counter: CounterStore.CounterState;
+}
+
+// FIXME: automatically calculated all action types
+type A = ReturnType<typeof CounterStore.createDecrease>;
+type B = ReturnType<typeof CounterStore.createIncrease>;
+
+export type RootActions = A | B;
+
+//  ThunkAction<R, S, E, A>
+//  R: return type
+//  S: type of the root state, also the return value of `getState()`
+//  E: Extra arguments passed to the thunk action
+//  A: the application actions from redux action
+export type ThunkResult<R> = ThunkAction<R, RootStates, null, RootActions>;
+
+//  connected dispatch
+export interface ThunkConnected {
+  dispatch: ThunkDispatch<RootStates, null, RootActions>;
 }
 
 function createRootReducer(history: ReturnType<typeof createHashHistory>) {
