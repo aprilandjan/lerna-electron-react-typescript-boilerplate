@@ -9,7 +9,7 @@ export interface RootStates {
   counter: CounterStore.CounterState;
 }
 
-// FIXME: automatically calculated all action types
+// FIXME: automatically calculated the union type of all actions
 type A = ReturnType<typeof CounterStore.createDecrease>;
 type B = ReturnType<typeof CounterStore.createIncrease>;
 
