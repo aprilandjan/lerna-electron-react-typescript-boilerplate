@@ -9,18 +9,16 @@ export interface RootStates {
   counter: CounterStore.CounterState;
 }
 
-// FIXME: automatically calculated the union type of all actions
-type A = ReturnType<typeof CounterStore.createDecrease>;
-type B = ReturnType<typeof CounterStore.createIncrease>;
-
-export type RootActions = A | B;
+//  FIXME: combine more slices
+type RootActions = MappedReturnType<typeof CounterStore.actions>;
 
 //  ThunkAction<R, S, E, A>
 //  R: return type
 //  S: type of the root state, also the return value of `getState()`
 //  E: Extra arguments passed to the thunk action
-//  A: the application actions from redux action
+//  A: the application actions from redux action()
 export type ThunkResult<R> = ThunkAction<R, RootStates, null, RootActions>;
+// export type ThunkResult<R> = any;
 
 //  connected dispatch
 export interface ThunkConnected {
@@ -52,6 +50,7 @@ const configureStore = (initialState?: any) => {
   // Redux DevTools Configuration
   const actionCreators = {
     ...CounterStore.actions,
+    ...CounterStore.thunks,
     ...routerActions,
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose

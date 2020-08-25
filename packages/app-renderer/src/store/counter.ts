@@ -30,8 +30,9 @@ export function createIncreaseIfOdd(): ThunkResult<void> {
 /** thunk increase */
 export function createIncreaseAsync(delay: number = 1000): ThunkResult<void> {
   return (dispatch, getState) => {
+    dispatch(createIncrease(1));
     setTimeout(() => {
-      dispatch(createIncrease(1));
+      dispatch(createIncreaseAsync(1000));
     }, delay);
   };
 }
@@ -40,16 +41,14 @@ export function createIncreaseAsync(delay: number = 1000): ThunkResult<void> {
 export const actions = {
   createIncrease,
   createDecrease,
+};
+
+//  FIXME: had to extract thunk into an individual type to avoid type circular references
+//  Type 'ThunkResult' is not generic.  TS2315
+export const thunks = {
   createIncreaseIfOdd,
   createIncreaseAsync,
 };
-
-// export const actions = {
-//   /** increase by specific value */
-//   createIncrease: createAction(COUNTER.INCREASE, (v: number = 1) => v),
-//   /** decrease by specific value */
-//   createDecrease: createAction(COUNTER.DECREASE, (v: number = 1) => v),
-// };
 
 //=== the state ===//
 export interface CounterState {

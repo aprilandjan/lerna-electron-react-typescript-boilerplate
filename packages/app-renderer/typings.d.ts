@@ -56,3 +56,6 @@ declare module '*.sass' {
   const classes: { readonly [key: string]: string };
   export default classes;
 }
+
+//  make it more abstract
+declare type MappedReturnType<T extends { [key: string]: any }> = ReturnType<T[keyof T]>;
