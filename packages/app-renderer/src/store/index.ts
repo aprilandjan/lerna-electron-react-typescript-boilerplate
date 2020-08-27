@@ -2,15 +2,19 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { createHashHistory } from 'history';
 import { connectRouter, routerMiddleware, routerActions } from 'connected-react-router';
+import * as GlobalsStore from './globals';
 import * as CounterStore from './counter';
 
 /** the root state */
 export interface RootStates {
+  globals: GlobalsStore.GlobalsState;
   counter: CounterStore.CounterState;
 }
 
-//  FIXME: combine more slices
-type RootActions = MappedReturnType<typeof CounterStore.actions>;
+//  FIXME: automatically combine more slices
+type RootActions =
+  | MappedReturnType<typeof GlobalsStore.actions>
+  | MappedReturnType<typeof CounterStore.actions>;
 
 //  ThunkAction<R, S, E, A>
 //  R: return type
@@ -28,6 +32,7 @@ export interface ThunkConnected {
 function createRootReducer(history: ReturnType<typeof createHashHistory>) {
   return combineReducers({
     router: connectRouter(history),
+    globals: GlobalsStore.reducers,
     counter: CounterStore.reducers,
   });
 }
@@ -49,6 +54,8 @@ const configureStore = (initialState?: any) => {
 
   // Redux DevTools Configuration
   const actionCreators = {
+    ...GlobalsStore.actions,
+    ...GlobalsStore.thunks,
     ...CounterStore.actions,
     ...CounterStore.thunks,
     ...routerActions,

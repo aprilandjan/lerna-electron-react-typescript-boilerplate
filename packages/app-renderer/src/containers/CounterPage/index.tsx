@@ -10,8 +10,10 @@ import {
   createIncreaseIfOdd,
   createIncreaseAsync,
 } from '@/store/counter';
+import { createSetUser } from '@/store/globals';
 
 interface ConnectedProps {
+  user: string;
   count: number;
 }
 
@@ -36,12 +38,20 @@ class CounterPage extends Component<Props> {
     const { dispatch } = this.props;
     dispatch(createIncreaseAsync());
   };
+  handleSetName = () => {
+    const { dispatch } = this.props;
+    dispatch(createSetUser('name ' + Date.now()));
+  };
   render() {
-    const { count } = this.props;
+    const { count, user } = this.props;
     return (
       <div>
         <div className={styles.backButton} data-tid="backButton">
           <Link to={routes.HOME}>&lt;Back</Link>
+        </div>
+        <div>
+          <button onClick={this.handleSetName}>Set name randomly</button>
+          <span>{user}</span>
         </div>
         <div className={`counter ${styles.counter}`} data-tid="counter">
           {count}
@@ -88,6 +98,7 @@ class CounterPage extends Component<Props> {
 export default connect(
   (state: RootStates): ConnectedProps => {
     return {
+      user: state.globals.user,
       count: state.counter.count,
     };
   }
