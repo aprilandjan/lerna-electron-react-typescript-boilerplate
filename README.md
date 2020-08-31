@@ -118,6 +118,8 @@ Check more scripts in `package.json` scripts field.
 - [x] when bundling node codes, automatically external all node_modules packages
 - [x] support ~~type-safe~~ node require in webpack bundled files [references](https://webpack.js.org/api/module-variables/#__non_webpack_require__-webpack-specific)
 - [ ] use `execa` instead of native `child_process`
+- [ ] inject bundle build information, such as `commitId`, `branchName`, `buildTime`, `buildMachine`, `buildPipelineId` into process env
+- [ ] automatically generate changelog
 
 ## References
 

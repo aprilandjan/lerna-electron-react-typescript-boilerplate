@@ -6,7 +6,6 @@ import styles from './style.css';
 import { Button } from 'antd';
 import { dispatch } from '@/store';
 
-/** FIXME: make jest support this webpack alias in require.context */
 const files = require.context('../../assets/img', false, /\.svg$/);
 files.keys().forEach(files);
 

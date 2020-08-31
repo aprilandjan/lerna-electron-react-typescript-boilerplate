@@ -46,8 +46,8 @@ function getInjectedEnv() {
       {
         // TODO: 同时注入一些其他的环境变量
         NODE_ENV: process.env.NODE_ENV || 'development',
-        // APP_NAME: process.env.APP_NAME || pkg.name,
-        // APP_VERSION: process.env.APP_VERSION || pkg.version,
+        APP_NAME: process.env.APP_NAME || pkg.name,
+        APP_VERSION: process.env.APP_VERSION || pkg.version,
       }
     );
   return raw;
