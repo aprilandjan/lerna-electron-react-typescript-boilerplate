@@ -116,7 +116,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] parallel build sub packages
 - [x] complete type-safe components with `redux` `react-thunk`, etc
 - [x] when bundling node codes, automatically external all node_modules packages
-- [ ] support type-safe node require in webpack bundled files
+- [x] support ~~type-safe~~ node require in webpack bundled files [references](https://webpack.js.org/api/module-variables/#__non_webpack_require__-webpack-specific)
 - [ ] use `execa` instead of native `child_process`
 
 ## References
@@ -126,3 +126,4 @@ Check more scripts in `package.json` scripts field.
 - <https://github.com/amaurymartiny/cra-lerna-electron>
 - <https://webpack.js.org/configuration/devtool/>
 - <https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_source-maps>
+- <https://webpack.js.org/api/module-variables/#__non_webpack_require__-webpack-specific>

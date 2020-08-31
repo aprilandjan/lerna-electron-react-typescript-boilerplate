@@ -20,6 +20,9 @@ module.exports = {
       legacyDecorators: true,
     },
   },
+  globals: {
+    __non_webpack_require__: 'readonly',
+  },
   settings: {
     react: {
       version: 'detect',
