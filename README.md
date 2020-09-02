@@ -119,7 +119,7 @@ Check more scripts in `package.json` scripts field.
 - [x] support ~~type-safe~~ node require in webpack bundled files [references](https://webpack.js.org/api/module-variables/#__non_webpack_require__-webpack-specific)
 - [ ] use `execa` instead of native `child_process`
 - [ ] inject bundle build information, such as `commitId`, `branchName`, `buildTime`, `buildMachine`, `buildPipelineId` into process env
-- [ ] automatically generate changelog
+- [ ] automatically generate changelog for different major/minor version
 
 ## References
 
@@ -129,3 +129,4 @@ Check more scripts in `package.json` scripts field.
 - <https://webpack.js.org/configuration/devtool/>
 - <https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_source-maps>
 - <https://webpack.js.org/api/module-variables/#__non_webpack_require__-webpack-specific>
+- <https://github.com/seymen/git-last-commit>
