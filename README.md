@@ -120,6 +120,7 @@ Check more scripts in `package.json` scripts field.
 - [ ] use `execa` instead of native `child_process`
 - [ ] inject bundle build information, such as `commitId`, `branchName`, `buildTime`, `buildMachine`, `buildPipelineId` into process env
 - [ ] automatically generate changelog for different major/minor version
+- [ ] when failed to launching electron, find if existed process is running and print warning
 
 ## References
 
