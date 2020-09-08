@@ -3,5 +3,6 @@ export default function log() {
 }
 
 export function clone<T>(data: T): T {
+  console.log(123);
   return data;
 }

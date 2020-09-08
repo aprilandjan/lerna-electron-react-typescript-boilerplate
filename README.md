@@ -65,6 +65,12 @@ yarn package
 
 Check more scripts in `package.json` scripts field.
 
+## Version & Changelog
+
+```bash
+lerna publish --bump 1.1.0
+```
+
 ## TODO
 
 - [x] use `lerna`

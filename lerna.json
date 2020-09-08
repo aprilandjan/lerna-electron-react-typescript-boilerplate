@@ -1,11 +1,14 @@
 {
-  "version": "1.0.0",
+  "version": "independent",
   "npmClient": "yarn",
   "packages": ["packages/*"],
   "useWorkspaces": true,
   "command": {
+    "version": {
+      "allowBranch": ["master", "release-*"]
+    },
     "publish": {
-      "ignoreChanges": ["ignored-file", "*.md"],
+      "ignoreChanges": ["ignored-file", "*.md", "**/my-ignored-pkg/**"],
       "conventionalCommits": true,
       "message": "chore(release): publish %s"
     }

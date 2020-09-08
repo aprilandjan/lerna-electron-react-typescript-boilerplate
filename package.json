@@ -111,6 +111,11 @@
     "packages": ["packages/*"],
     "nohoist": ["**/electron-builder", "**/electron-builder/**"]
   },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "echo '123'"
+    }
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
