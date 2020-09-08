@@ -65,6 +65,14 @@ yarn package
 
 Check more scripts in `package.json` scripts field.
 
+## Version & Changelog
+
+```bash
+lerna publish --bump 1.1.0
+```
+
+If you want to skip changes for specific files or modules, add [--ignore-changes](https://github.com/lerna/lerna/blob/master/commands/version/README.md#--ignore-changes) to specify them.
+
 ## TODO
 
 - [x] use `lerna`
@@ -119,7 +127,7 @@ Check more scripts in `package.json` scripts field.
 - [x] support ~~type-safe~~ node require in webpack bundled files [references](https://webpack.js.org/api/module-variables/#__non_webpack_require__-webpack-specific)
 - [ ] use `execa` instead of native `child_process`
 - [ ] inject bundle build information, such as `commitId`, `branchName`, `buildTime`, `buildMachine`, `buildPipelineId` into process env
-- [ ] automatically generate changelog for different major/minor version
+- [x] automatically generate changelog files(~~for different major/minor versions~~)
 - [ ] when failed to launching electron, find if existed process is running and print warning
 
 ## References

@@ -4,8 +4,11 @@
   "packages": ["packages/*"],
   "useWorkspaces": true,
   "command": {
+    "version": {
+      "allowBranch": ["master", "release-*"]
+    },
     "publish": {
-      "ignoreChanges": ["ignored-file", "*.md"],
+      "ignoreChanges": ["ignored-file", "*.md", "**/my-ignored-pkg/**"],
       "conventionalCommits": true,
       "message": "chore(release): publish %s"
     }
