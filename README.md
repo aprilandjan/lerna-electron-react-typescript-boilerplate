@@ -129,6 +129,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] inject bundle build information, such as `commitId`, `branchName`, `buildTime`, `buildMachine`, `buildPipelineId` into process env
 - [x] automatically generate changelog files(~~for different major/minor versions~~)
 - [ ] when failed to launching electron, find if existed process is running and print warning
+- [ ] handle with "failed to fetch extension, trying x more times"
 
 ## References
 

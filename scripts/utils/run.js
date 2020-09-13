@@ -1,5 +1,6 @@
 // const path = require('path');
-const spawn = require('cross-spawn');
+// const spawn = require('cross-spawn');
+const execa = require('execa');
 const path = require('path');
 const fs = require('fs-extra');
 const findLernaPackages = require('find-lerna-packages');
@@ -29,13 +30,13 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
     //  是 bin 任务，用 node 去执行
     let cp;
     if (fs.existsSync(binPath)) {
-      cp = spawn('node', [binPath, ...args], {
+      cp = execa('node', [binPath, ...args], {
         cwd: pkgLocation,
         stdio: 'inherit',
       });
     } else {
       //  不是 bin 任务，用 yarn 去执行
-      cp = spawn('yarn', [cmd], {
+      cp = execa('yarn', [cmd], {
         cwd: pkgLocation,
         stdio: 'inherit',
       });

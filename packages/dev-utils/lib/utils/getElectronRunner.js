@@ -1,5 +1,6 @@
 // const path = require('path');
-const spawn = require('cross-spawn');
+// const spawn = require('cross-spawn');
+const execa = require('execa');
 const exitHook = require('async-exit-hook');
 const paths = require('./paths');
 const logger = require('./logger');
@@ -46,7 +47,7 @@ module.exports = function getElectronRunner(config = {}) {
     logger.debug('spawn new electron process');
     autoKilled = false;
     const electronRuntime = require('electron').toString();
-    const p = spawn(electronRuntime, [entry, '--inspect', ...args], {
+    const p = execa(electronRuntime, [entry, '--inspect', ...args], {
       cwd: paths.appPath,
     });
 
