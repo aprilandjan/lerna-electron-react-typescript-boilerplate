@@ -18,6 +18,12 @@ module.exports = {
     // find last of arg
     const t = chalk.gray(`+${diff}ms`);
     const lastArg = args.pop();
-    return console.log(prefix, ...args, lastArg.trimRight(), t);
+    return console.log(
+      `[${chalk.blueBright(new Date().toISOString())}]`,
+      prefix,
+      ...args,
+      lastArg.trimRight(),
+      t
+    );
   },
 };
