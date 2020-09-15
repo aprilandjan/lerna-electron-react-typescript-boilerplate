@@ -63,6 +63,8 @@ module.exports = {
   port: process.env.PORT || '1212',
   /** 是否在 dev 时按 webpack 的信息需要自动刷掉输出 */
   clearConsole: process.env.CLEAR_CONSOLE || false,
+  /** TODO: console 不打印时间 */
+  disableConsoleTime: process.env.DISABLE_CONSOLE_TIMESTAMP || false,
   /** 是否要在 vsc 里调试主进程程序 */
   debugElectronInVSC: process.env.DEBUG_ELECTRON_IN_VSC || true,
   /** 是否要打开 webpack bundle analyzer */
