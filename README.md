@@ -114,7 +114,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] find out unused files in main/renderer bundle
 - [x] logger info output time diff in ms like `debugger`
 - [x] allow filter electron output message
-- [ ] bug: set env always later than read dotenv files
+- [x] bug: set env always later than read dotenv files
 - [ ] allow app-module build without webpack (using tsc and babel only)
 - [ ] configurable electron-builder options for mac/win separately
 - [ ] bug: windows cannot quit dev process smoothly

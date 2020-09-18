@@ -1,7 +1,3 @@
-// const spawn = require('cross-spawn');
-// const exitHook = require('async-exit-hook');
-const logger = require('./logger');
-
 /** { cmd, script } */
 module.exports = function run(map) {
   const args = process.argv.slice(2);
@@ -13,6 +9,6 @@ module.exports = function run(map) {
   if (cmdList.includes(cmd)) {
     require(map[cmd]);
   } else {
-    logger.info('Unknown command "' + cmd + '".');
+    throw new Error('Unknown command "' + cmd + '".');
   }
 };
