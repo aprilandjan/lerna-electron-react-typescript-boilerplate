@@ -11,6 +11,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
+    "@types/node": "^13.9.8",
     "@types/lodash": "^4.14.149",
     "app-dev-utils": "^1.0.0"
   }
