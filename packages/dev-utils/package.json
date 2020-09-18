@@ -20,6 +20,8 @@
     "css-loader": "^3.3.2",
     "deglob": "^4.0.1",
     "detect-port-alt": "^1.1.6",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
     "file-loader": "^5.0.2",
     "filesize": "^6.0.1",
     "find-lerna-packages": "^1.2.0",

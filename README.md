@@ -132,7 +132,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] handle with "failed to fetch extension, trying x more times"
 - [x] add timestamp before each output line
 - [x] outputs from std error are marked as red
-- [ ] allow disable console time prefix & suffix
+- [x] allow disable console time prefix & suffix
 - [ ] bug: somethings press ctrl+c cannot terminate process, for example, when press fn+c
 
 ## References

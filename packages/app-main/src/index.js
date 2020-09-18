@@ -102,3 +102,11 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) createWindow();
 });
+
+console.log({
+  a: 123,
+  b: 456,
+  c: () => {
+    console.log(789);
+  },
+});

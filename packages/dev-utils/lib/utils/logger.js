@@ -18,12 +18,8 @@ module.exports = {
     // find last of arg
     const t = chalk.gray(`+${diff}ms`);
     const lastArg = args.pop();
-    return console.log(
-      `[${chalk.blueBright(new Date().toISOString())}]`,
-      prefix,
-      ...args,
-      lastArg.trimRight(),
-      t
-    );
+    let p = env.disableConsoleTime ? '' : `[${chalk.green(new Date().toISOString())}]` + prefix;
+
+    return console.log(p, ...args, lastArg.trimRight(), t);
   },
 };

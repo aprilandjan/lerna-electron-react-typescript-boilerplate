@@ -34,8 +34,12 @@ node_modules
 release
 dist
 dll
-main.js
-main.js.map
 
 .idea
 npm-debug.log.*
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
