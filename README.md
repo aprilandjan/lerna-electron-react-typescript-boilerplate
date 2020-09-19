@@ -110,7 +110,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] webpack resolve and build lerna modules
 - [x] electron builder(asar) packing
 - [x] support `require.context` with webpack alias path
-- [ ] lerna command registered with dotenv files
+- [x] ~~lerna command registered with dotenv files~~ make `dev-utils` env read from lerna root path prior
 - [x] find out unused files in main/renderer bundle
 - [x] logger info output time diff in ms like `debugger`
 - [x] allow filter electron output message

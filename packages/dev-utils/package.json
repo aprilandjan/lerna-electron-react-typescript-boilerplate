@@ -12,6 +12,7 @@
     "test": "echo 'test'"
   },
   "dependencies": {
+    "@lerna/project": "*",
     "async-exit-hook": "^2.0.1",
     "babel-loader": "^8.0.6",
     "chalk": "^3.0.0",
