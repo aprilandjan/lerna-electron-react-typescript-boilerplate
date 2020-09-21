@@ -26,9 +26,9 @@ function info(...args) {
   return console.log(p, ...trimLastRight(args), t);
 }
 
-if (env.dotenvFiles.length) {
-  info('loaded env files:', env.dotenvFiles);
-}
+// if (env.dotenvFiles.length) {
+//   info('load env files:', env.dotenvFiles);
+// }
 
 module.exports = {
   prefix,
