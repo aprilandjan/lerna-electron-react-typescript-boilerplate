@@ -66,6 +66,7 @@ function getInjectedEnv() {
 }
 
 module.exports = {
+  lernaRootPath,
   /** loaded dot env files */
   dotenvFiles,
   getInjectedEnv,
