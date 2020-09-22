@@ -5,6 +5,7 @@ const exitHook = require('async-exit-hook');
 const paths = require('./paths');
 const logger = require('./logger');
 const env = require('./env');
+const chalk = require('chalk');
 
 module.exports = function getElectronRunner(config = {}) {
   const { entry, args = [] } = config;
@@ -33,14 +34,21 @@ module.exports = function getElectronRunner(config = {}) {
     electronProcess = startElectron();
   }
 
-  function log(data) {
-    data = data.toString();
-    if (data.trim() === '') {
-      return;
-    }
-    if (!env.grepElectron || data.includes(env.grepElectron)) {
-      logger.info(`[electron] ${data}`);
-    }
+  function log(data, isError = false) {
+    const lines = data.toString().split('\n');
+
+    lines.forEach(line => {
+      let text = line.trim();
+      if (text === '') {
+        return;
+      }
+      if (isError) {
+        text = chalk.red(text);
+      }
+      if (!env.grepElectron || text.includes(env.grepElectron)) {
+        logger.info(`[electron] ${text}`);
+      }
+    });
   }
 
   function startElectron() {
@@ -56,7 +64,7 @@ module.exports = function getElectronRunner(config = {}) {
       log(data);
     });
     p.stderr.on('data', data => {
-      log(data);
+      log(data, true);
     });
 
     p.on('close', (code, signal) => {

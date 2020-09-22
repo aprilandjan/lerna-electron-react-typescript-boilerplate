@@ -110,11 +110,11 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] webpack resolve and build lerna modules
 - [x] electron builder(asar) packing
 - [x] support `require.context` with webpack alias path
-- [ ] lerna command registered with dotenv files
+- [x] ~~lerna command registered with dotenv files~~ make `dev-utils` env read from lerna root path prior
 - [x] find out unused files in main/renderer bundle
 - [x] logger info output time diff in ms like `debugger`
 - [x] allow filter electron output message
-- [ ] bug: set env always later than read dotenv files
+- [x] bug: set env always later than read dotenv files
 - [ ] allow app-module build without webpack (using tsc and babel only)
 - [ ] configurable electron-builder options for mac/win separately
 - [ ] bug: windows cannot quit dev process smoothly
@@ -128,9 +128,13 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] use `execa` instead of native `child_process`
 - [ ] inject bundle build information, such as `commitId`, `branchName`, `buildTime`, `buildMachine`, `buildPipelineId` into process env
 - [x] automatically generate changelog files(~~for different major/minor versions~~)
-- [ ] when failed to launching electron, find if existed process is running and print warning
+- [ ] when failed to launching electron, find if existed process is running and print warning (and force kill it in some seconds)
 - [ ] handle with "failed to fetch extension, trying x more times"
 - [ ] skip use of `yarn` to run `dev` & `build`
+- [x] add timestamp before each output line
+- [x] outputs from std error are marked as red
+- [x] allow disable console time prefix & suffix
+- [ ] bug: somethings press ctrl+c cannot terminate process, for example, when press fn+c
 
 ## References
 

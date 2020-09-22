@@ -1,12 +1,18 @@
 const fs = require('fs-extra');
+const path = require('path');
 const paths = require('./paths');
+const getLernaRootPath = require('./getLernaRootPath');
+// IMPORTANT: this file should not call `logger` because it depends on env, thus make env order not working
 // const logger = require('./logger');
 const pkg = require(paths.appPackageJson);
+
+const cwd = process.cwd();
+const lernaRootPath = getLernaRootPath();
 
 const NODE_ENV = process.env.NODE_ENV;
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
-const dotenvFiles = [
+const dotenvPatterns = [
   `.env.${NODE_ENV}.local`,
   `.env.${NODE_ENV}`,
   // Don't include `.env.local` for `test` environment
@@ -15,22 +21,28 @@ const dotenvFiles = [
   NODE_ENV !== 'test' && `.env.local`,
   `.env`,
 ].filter(Boolean);
-// logger.debug('available env files:', dotenvFiles);
 
-// Load environment variables from .env* files. Suppress warnings using silent
-// if this file is missing. dotenv will never modify any environment variables
-// that have already been set.  Variable expansion is supported in .env files.
-// https://github.com/motdotla/dotenv
-// https://github.com/motdotla/dotenv-expand
+//  load these
+const dotenvFiles = [
+  cwd, // load env from cwd prior
+  lernaRootPath, //  also load env from lerna root path
+].reduce((files, dir) => {
+  dotenvPatterns.forEach(p => {
+    const fullPath = path.join(dir, p);
+    if (!files.includes(fullPath) && fs.existsSync(fullPath)) {
+      files.push(fullPath);
+    }
+  });
+  return files;
+}, []);
+
+//  load these env files
 dotenvFiles.forEach(dotenvFile => {
-  if (fs.existsSync(dotenvFile)) {
-    // logger.debug('load env file:', dotenvFile);
-    require('dotenv-expand')(
-      require('dotenv').config({
-        path: dotenvFile,
-      })
-    );
-  }
+  require('dotenv-expand')(
+    require('dotenv').config({
+      path: dotenvFile,
+    })
+  );
 });
 
 /** 获取需要注入到打包的代码里的环境变量 */
@@ -54,6 +66,8 @@ function getInjectedEnv() {
 }
 
 module.exports = {
+  /** loaded dot env files */
+  dotenvFiles,
   getInjectedEnv,
   /** 当前开发调试的目标 */
   target: process.env.DEV_UTILS_TARGET || pkg.name,
@@ -63,6 +77,8 @@ module.exports = {
   port: process.env.PORT || '1212',
   /** 是否在 dev 时按 webpack 的信息需要自动刷掉输出 */
   clearConsole: process.env.CLEAR_CONSOLE || false,
+  /** TODO: console 不打印时间 */
+  disableConsoleTime: process.env.DISABLE_CONSOLE_TIME || false,
   /** 是否要在 vsc 里调试主进程程序 */
   debugElectronInVSC: process.env.DEBUG_ELECTRON_IN_VSC || true,
   /** 是否要打开 webpack bundle analyzer */
