@@ -102,7 +102,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] support unittest
 - [ ] support e2e test
 - [x] attach debugger for main process in vscode
-- [ ] attach debugger for main process while startup
+- [ ] attach debugger for main process while startup: add cmd to disable auto launch electron while dev, and extra vscode launch config
 - [ ] attach debugger for renderer process in vscode
 - ~~[ ] separated eslint rules for node scripts and browser scripts~~
 - ~~[ ] add eslint in webpack compile check~~
