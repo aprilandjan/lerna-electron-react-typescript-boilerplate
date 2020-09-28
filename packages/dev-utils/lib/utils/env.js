@@ -48,7 +48,7 @@ dotenvFiles.forEach(dotenvFile => {
 /** 获取需要注入到打包的代码里的环境变量 */
 function getInjectedEnv() {
   const injectedPrefix = /^CLIENT_/i;
-  const raw = Object.keys(process.env)
+  return Object.keys(process.env)
     .filter(key => injectedPrefix.test(key))
     .reduce(
       (env, key) => {
@@ -62,7 +62,6 @@ function getInjectedEnv() {
         APP_VERSION: process.env.APP_VERSION || pkg.version,
       }
     );
-  return raw;
 }
 
 module.exports = {
