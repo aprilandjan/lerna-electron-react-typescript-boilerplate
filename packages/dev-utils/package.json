@@ -6,7 +6,8 @@
   "bin": {
     "app-renderer": "./bin/app-renderer.js",
     "app-main": "./bin/app-main.js",
-    "app-pack": "./bin/app-pack.js"
+    "app-pack": "./bin/app-pack.js",
+    "app-bundle": "./bin/app-bundle.js"
   },
   "scripts": {
     "test": "echo 'test'"
@@ -23,6 +24,7 @@
     "detect-port-alt": "^1.1.6",
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
+    "electron-builder": "^22.8.0",
     "file-loader": "^5.0.2",
     "filesize": "^6.0.1",
     "find-lerna-packages": "^1.2.0",

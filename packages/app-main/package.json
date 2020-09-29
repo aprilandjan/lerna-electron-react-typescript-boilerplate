@@ -10,14 +10,13 @@
     "build": "app-main build",
     "start": "app-main start",
     "start:prod": "electron ./dist/main.prod.js",
-    "package": "electron-builder build --publish never",
-    "package-linux": "electron-builder build --linux",
-    "package-win": "electron-builder build --win --x64",
-    "package-all": "electron-builder build -mwl",
-    "package-ci": "electron-builder --publish always"
+    "package": "app-bundle --publish never",
+    "package-win": "app-bundle --win --x64",
+    "package-mac": "app-bundle --mac"
   },
   "license": "MIT",
   "dependencies": {
+    "app-common": "1.0.0",
     "devtron": "^1.4.0",
     "electron-debug": "^3.0.1",
     "electron-log": "^4.0.0",
@@ -30,13 +29,13 @@
     "cross-env": "^6.0.3",
     "debug": "^4.1.1",
     "electron": "8.4.1",
-    "electron-builder": "^22.8.0",
     "electron-devtools-installer": "^3.1.1"
   },
   "main": "./dist/main.prod.js",
   "build": {
     "productName": "ElectronReact",
     "appId": "org.my.app",
+    "asar": false,
     "files": ["./dist", "node_modules/", "package.json"],
     "dmg": {
       "contents": [
