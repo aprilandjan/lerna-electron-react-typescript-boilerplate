@@ -1,19 +1,9 @@
 import { app, BrowserWindow } from 'electron';
-import { autoUpdater } from 'electron-updater';
-import log from 'electron-log';
 import { format } from 'url';
 import path from 'path';
 import MenuBuilder from './menu';
 
 const isDev = process.env.NODE_ENV === 'development';
-
-export default class AppUpdater {
-  constructor() {
-    log.transports.file.level = 'info';
-    autoUpdater.logger = log;
-    autoUpdater.checkForUpdatesAndNotify();
-  }
-}
 
 let mainWindow = null;
 
@@ -73,10 +63,6 @@ const createWindow = async () => {
 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
-
-  // Remove this if your app does not use auto updates
-  // eslint-disable-next-line
-  new AppUpdater();
 };
 
 /**

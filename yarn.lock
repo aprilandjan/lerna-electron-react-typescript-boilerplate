@@ -2633,11 +2633,6 @@
   resolved "https://registry.npm.taobao.org/@types/redux-actions/download/@types/redux-actions-2.6.1.tgz#0940e97fa35ad3004316bddb391d8e01d2efa605"
   integrity sha1-CUDpf6Na0wBDFr3bOR2OAdLvpgU=
 
-"@types/semver@^6.0.2":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-6.2.0.tgz#d688d574400d96c5b0114968705366f431831e1a"
-  integrity sha512-1OzrNb4RuAzIT7wHSsgZRlMBlNsJl+do6UblR7JMW4oB7bbR+uBEYtUh7gEc/jM84GGilh68lSOokyM/zNUlBA==
-
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
@@ -3980,14 +3975,6 @@ buffer@^4.3.0:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
     isarray "^1.0.0"
-
-builder-util-runtime@8.4.0:
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/builder-util-runtime/-/builder-util-runtime-8.4.0.tgz#3163fffc078e6b8f3dd5b6eb12a8345573590682"
-  integrity sha512-CJB/eKfPf2vHrkmirF5eicVnbDCkMBbwd5tRYlTlgud16zFeqD7QmrVUAOEXdnsrcNkiLg9dbuUsQKtl/AwsYQ==
-  dependencies:
-    debug "^4.1.1"
-    sax "^1.2.4"
 
 builder-util-runtime@8.7.2:
   version "8.7.2"
@@ -5799,11 +5786,6 @@ electron-localshortcut@^3.1.0:
     keyboardevent-from-electron-accelerator "^2.0.0"
     keyboardevents-areequal "^0.2.1"
 
-electron-log@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.0.0.tgz#9315e4a5e6be5e2a158909856b2d2cb4d760cd6d"
-  integrity sha512-pj5Om0XoImjoq60zgvTv86W+2+7VMQIW0jmKWkXXTTjiC2L2WNfNDfMbpqo8Qj2szY1LsVyFhgRNBLXVrYNDJQ==
-
 electron-publish@22.8.0:
   version "22.8.0"
   resolved "https://registry.npm.taobao.org/electron-publish/download/electron-publish-22.8.0.tgz#7f410fe043abc5d3d896c4ee9eea7a43ea352c7d"
@@ -5827,20 +5809,6 @@ electron-to-chromium@^1.3.322:
   version "1.3.322"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.322.tgz#a6f7e1c79025c2b05838e8e344f6e89eb83213a8"
   integrity sha512-Tc8JQEfGQ1MzfSzI/bTlSr7btJv/FFO7Yh6tanqVmIWOuNCu6/D1MilIEgLtmWqIrsv+o4IjpLAhgMBr/ncNAA==
-
-electron-updater@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-4.2.0.tgz#f9ecfc657f65ead737d42b9efecf628d3756b550"
-  integrity sha512-GuS3g7HDh17x/SaFjxjswlWUaKHczksYkV2Xc5CKj/bZH0YCvTSHtOmnBAdAmCk99u/71p3zP8f0jIqDfGcjww==
-  dependencies:
-    "@types/semver" "^6.0.2"
-    builder-util-runtime "8.4.0"
-    fs-extra "^8.1.0"
-    js-yaml "^3.13.1"
-    lazy-val "^1.0.4"
-    lodash.isequal "^4.5.0"
-    pako "^1.0.10"
-    semver "^6.3.0"
 
 electron@8.4.1:
   version "8.4.1"
@@ -9366,11 +9334,6 @@ lodash.get@^4.4.2:
   resolved "https://registry.npm.taobao.org/lodash.get/download/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
   integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
 
-lodash.isequal@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
-  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
-
 lodash.ismatch@^4.4.0:
   version "4.4.0"
   resolved "https://registry.npm.taobao.org/lodash.ismatch/download/lodash.ismatch-4.4.0.tgz#756cb5150ca3ba6f11085a78849645f188f85f37"
@@ -10788,15 +10751,15 @@ package-json@^6.3.0:
     registry-url "^5.0.0"
     semver "^6.2.0"
 
-pako@^1.0.10, pako@~1.0.5:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.10.tgz#4328badb5086a426aa90f541977d4955da5c9732"
-  integrity sha512-0DTvPVU3ed8+HNXOu5Bs+o//Mbdj9VNQMUOe9oKCwh8l0GNwpTDMKCWbRjgtD291AWnkAgkqA/LOnQS8AmS1tw==
-
 pako@~1.0.2:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
   integrity sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==
+
+pako@~1.0.5:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.10.tgz#4328badb5086a426aa90f541977d4955da5c9732"
+  integrity sha512-0DTvPVU3ed8+HNXOu5Bs+o//Mbdj9VNQMUOe9oKCwh8l0GNwpTDMKCWbRjgtD291AWnkAgkqA/LOnQS8AmS1tw==
 
 parallel-transform@^1.1.0:
   version "1.2.0"

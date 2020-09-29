@@ -51,8 +51,6 @@ module.exports = function(platform, args) {
   }
   config.files = [...config.files, ...extraFiles];
 
-  console.log(config.files);
-
   //  write to local file
   const dir = path.join(process.cwd(), './node_modules/.cache/dev-utils');
   fs.mkdirpSync(dir);
