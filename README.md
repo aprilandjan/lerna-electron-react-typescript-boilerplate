@@ -137,6 +137,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] allow disable console time prefix & suffix
 - [ ] bug: somethings press ctrl+c cannot terminate process, for example, when press fn+c
 - [x] support self-management necessary files when bundled
+- [ ] use rollup to compile & bundle esm modules
 
 ## References
 
