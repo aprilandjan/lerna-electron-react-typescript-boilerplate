@@ -10,6 +10,7 @@ const p = os.platform();
 //  must be mac/win
 //  could add more 'electron-builder' cli arguments as followed
 //  for example: win --ia32
+//  FIXME: make it
 let args = process.argv.splice(2);
 let platform;
 if (args.includes('--mac')) {

@@ -63,6 +63,7 @@ module.exports = function(platform, args) {
     ['--config', tempFile, platform === 'mac' ? '--mac' : '--win', ...args],
     {
       preferLocal: true,
+      localDir: path.join(__dirname, '../../'),
       stdio: 'inherit',
     }
   );
