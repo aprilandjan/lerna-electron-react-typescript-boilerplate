@@ -126,7 +126,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] complete type-safe components with `redux` `react-thunk`, etc
 - [x] when bundling node codes, automatically external all node_modules packages
 - [x] support ~~type-safe~~ node require in webpack bundled files [references](https://webpack.js.org/api/module-variables/#__non_webpack_require__-webpack-specific)
-- [ ] use `execa` instead of native `child_process`
+- [x] use `execa` instead of native `child_process`
 - [ ] inject bundle build information, such as `commitId`, `branchName`, `buildTime`, `buildMachine`, `buildPipelineId` into process env
 - [x] automatically generate changelog files(~~for different major/minor versions~~)
 - [ ] when failed to launching electron, find if existed process is running and print warning (and force kill it in some seconds)

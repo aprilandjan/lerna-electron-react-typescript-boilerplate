@@ -1,16 +1,5 @@
-// const path = require('path');
-// const spawn = require('cross-spawn');
 const execa = require('execa');
-const path = require('path');
-const fs = require('fs-extra');
 const findLernaPackages = require('find-lerna-packages');
-
-const children = [];
-process.on('exit', () => {
-  children.forEach(([name, child]) => {
-    child.kill();
-  });
-});
 
 /** 如果 allowFailure 则允许失败 */
 module.exports = function run(packageName, cmd, allowFailure = false) {
@@ -23,41 +12,21 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
       reject(new Error(`Cannot find ${cmd} in ${packageName}`));
       return;
     }
-    //  简单的判断下 bin
     const args = script.split(' ');
-    const binName = args.shift();
-    const binPath = path.join(pkg.binLocation, binName + '.js');
-    //  是 bin 任务，用 node 去执行
-    let cp;
-    if (fs.existsSync(binPath)) {
-      cp = execa('node', [binPath, ...args], {
-        cwd: pkgLocation,
-        stdio: 'inherit',
-      });
-    } else {
-      //  不是 bin 任务，用 yarn 去执行
-      cp = execa('yarn', [cmd], {
-        cwd: pkgLocation,
-        stdio: 'inherit',
-      });
-    }
-    const child = [`${packageName}:${cmd}`, cp];
-    children.push(child);
+    const bin = args.shift();
+    //  the execa automatically helps find bin & process dies
+    let cp = execa(bin, args, {
+      cwd: pkgLocation,
+      stdio: 'inherit',
+    });
+    console.log(script, cp.pid);
     cp.on('exit', code => {
       if (code === 0) {
         resolve();
       } else {
-        if (!allowFailure) {
-          children.splice(children.indexOf(child), 1);
-          if (children.length) {
-            //  通知其他进程退出
-            children.forEach(item => {
-              item[1].kill();
-            });
-          } else {
-            process.exit(1);
-          }
+        if (allowFailure) {
           reject(new Error(`${cmd} in ${packageName} failed in code ${code}`));
+          process.exit(1);
         } else {
           console.error(`${packageName}: ${cmd} failed! continue since allowFailure = true`);
           resolve();
