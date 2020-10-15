@@ -138,6 +138,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] bug: somethings press ctrl+c cannot terminate process, for example, when press fn+c
 - [x] the resources of each sub-modules when bundled support
 - [ ] use rollup to compile & bundle esm modules
+- [ ] create bundle at the root directory of the workspace
 
 ## References
 
