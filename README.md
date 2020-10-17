@@ -79,11 +79,11 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] add electron icons
 - [x] ensure `dev` & `build` progress
 - [x] add renderer compile time progress
-- ~~[ ] automatically dll compare & rebuild~~
+- [ ] ~~automatically dll compare & rebuild~~
 - [x] check dll running speed
 - [x] app main watch & reload: reload: use webpack, listen its compile status
 - [x] main process ask for restart if needed
-- ~~[ ] main process modules partly hot-reload~~
+- [ ] ~~main process modules partly hot-reload~~
 - [x] main & renderer communicate through node ipc
 - [x] extract webpack things into dev-utils
 - [x] customizable build step
@@ -102,12 +102,12 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] support unittest
 - [ ] support e2e test
 - [x] attach debugger for main process in vscode
-- [ ] attach debugger for main process while startup: add cmd to disable auto launch electron while dev, and extra vscode launch config
+- [x] attach debugger for main process while startup: add cmd to disable auto launch electron while dev, and extra vscode launch config
 - [ ] attach debugger for renderer process in vscode
-- ~~[ ] separated eslint rules for node scripts and browser scripts~~
-- ~~[ ] add eslint in webpack compile check~~
+- [ ] ~~separated eslint rules for node scripts and browser scripts~~
+- [ ] ~~add eslint in webpack compile check~~
 - [x] allow skip typechecking in webpack compiler
-- [ ] webpack resolve and build lerna modules
+- [x] webpack resolve and build lerna modules
 - [x] electron builder(asar) packing
 - [x] support `require.context` with webpack alias path
 - [x] ~~lerna command registered with dotenv files~~ make `dev-utils` env read from lerna root path prior
@@ -131,7 +131,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] automatically generate changelog files(~~for different major/minor versions~~)
 - [x] when failed to launching electron, find if existed process is running and print warning (and force kill it in some seconds)
 - [ ] ~~handle with "failed to fetch extension, trying x more times"~~
-- [ ] skip use of `yarn` to run `dev` & `build`
+- [x] skip use of `yarn` to run `dev` & `build`
 - [x] add timestamp before each output line
 - [x] outputs from std error are marked as red
 - [x] allow disable console time prefix & suffix

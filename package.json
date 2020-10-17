@@ -5,6 +5,7 @@
   "description": "A complete Lerna-Electron-React-TypeScript project boilerplate.",
   "scripts": {
     "dev": "node ./scripts/dev",
+    "dev-watch": "cross-env ELECTRON_AUTO_START=false node ./scripts/dev",
     "build": "node ./scripts/build",
     "build-main": "lerna exec --scope=app-main yarn build",
     "build-renderer": "lerna exec --scope=app-renderer yarn build",

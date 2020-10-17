@@ -25,6 +25,11 @@ module.exports = function getElectronRunner(config = {}) {
    * 启动 Electron. 如果已有 Electron 进程了，则先关掉
    */
   async function run() {
+    if (!env.electronAutoStart) {
+      //  该信息会被 vscode background task 用来判断 dev-watch ready
+      logger.info('electron ready');
+      return;
+    }
     if (electronProcess) {
       logger.debug('reload electron process...');
       autoKilled = true;

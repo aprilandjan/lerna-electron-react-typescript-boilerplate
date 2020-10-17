@@ -23,5 +23,6 @@
     "test/**/__snapshots__": true
   },
   "nodeDebugProcessPicker.autoAttach": true,
-  "nodeDebugProcessPicker.match": ["!**/node_modules/electron/**/*"]
+  "nodeDebugProcessPicker.match": ["!**/node_modules/electron/**/*"],
+  "npm.packageManager": "yarn"
 }
