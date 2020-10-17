@@ -5,7 +5,6 @@
   "author": "aprilandjan",
   "description": "Electron app resources for the Electron app",
   "scripts": {
-    "postinstall": "electron-builder install-app-deps",
     "dev": "app-main dev",
     "build": "app-main build",
     "start": "app-main start",

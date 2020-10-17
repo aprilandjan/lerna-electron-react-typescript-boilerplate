@@ -19,7 +19,6 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
       cwd: pkgLocation,
       stdio: 'inherit',
     });
-    console.log(script, cp.pid);
     cp.on('exit', code => {
       if (code === 0) {
         resolve();
