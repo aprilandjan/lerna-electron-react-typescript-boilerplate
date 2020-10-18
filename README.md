@@ -79,11 +79,11 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] add electron icons
 - [x] ensure `dev` & `build` progress
 - [x] add renderer compile time progress
-- ~~[ ] automatically dll compare & rebuild~~
+- [ ] ~~automatically dll compare & rebuild~~
 - [x] check dll running speed
 - [x] app main watch & reload: reload: use webpack, listen its compile status
 - [x] main process ask for restart if needed
-- ~~[ ] main process modules partly hot-reload~~
+- [ ] ~~main process modules partly hot-reload~~
 - [x] main & renderer communicate through node ipc
 - [x] extract webpack things into dev-utils
 - [x] customizable build step
@@ -102,12 +102,12 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] support unittest
 - [ ] support e2e test
 - [x] attach debugger for main process in vscode
-- [ ] attach debugger for main process while startup
+- [x] attach debugger for main process while startup: add cmd to disable auto launch electron while dev, and extra vscode launch config
 - [ ] attach debugger for renderer process in vscode
-- ~~[ ] separated eslint rules for node scripts and browser scripts~~
-- ~~[ ] add eslint in webpack compile check~~
+- [ ] ~~separated eslint rules for node scripts and browser scripts~~
+- [ ] ~~add eslint in webpack compile check~~
 - [x] allow skip typechecking in webpack compiler
-- [ ] webpack resolve and build lerna modules
+- [x] webpack resolve and build lerna modules
 - [x] electron builder(asar) packing
 - [x] support `require.context` with webpack alias path
 - [x] ~~lerna command registered with dotenv files~~ make `dev-utils` env read from lerna root path prior
@@ -116,6 +116,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] allow filter electron output message
 - [x] bug: set env always later than read dotenv files
 - [ ] allow app-module build without webpack (using tsc and babel only)
+- [ ] allow workspace code compile altogether
 - [ ] configurable electron-builder options for mac/win separately
 - [ ] bug: windows cannot quit dev process smoothly
 - [x] support `func?.()` in js files
@@ -125,16 +126,19 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] complete type-safe components with `redux` `react-thunk`, etc
 - [x] when bundling node codes, automatically external all node_modules packages
 - [x] support ~~type-safe~~ node require in webpack bundled files [references](https://webpack.js.org/api/module-variables/#__non_webpack_require__-webpack-specific)
-- [ ] use `execa` instead of native `child_process`
+- [x] use `execa` instead of native `child_process`
 - [ ] inject bundle build information, such as `commitId`, `branchName`, `buildTime`, `buildMachine`, `buildPipelineId` into process env
 - [x] automatically generate changelog files(~~for different major/minor versions~~)
-- [ ] when failed to launching electron, find if existed process is running and print warning (and force kill it in some seconds)
-- [ ] handle with "failed to fetch extension, trying x more times"
-- [ ] skip use of `yarn` to run `dev` & `build`
+- [x] when failed to launching electron, find if existed process is running and print warning (and force kill it in some seconds)
+- [ ] ~~handle with "failed to fetch extension, trying x more times"~~
+- [x] skip use of `yarn` to run `dev` & `build`
 - [x] add timestamp before each output line
 - [x] outputs from std error are marked as red
 - [x] allow disable console time prefix & suffix
 - [ ] bug: somethings press ctrl+c cannot terminate process, for example, when press fn+c
+- [x] the resources of each sub-modules when bundled support
+- [ ] use rollup to compile & bundle esm modules
+- [ ] create bundle at the root directory of the workspace
 
 ## References
 

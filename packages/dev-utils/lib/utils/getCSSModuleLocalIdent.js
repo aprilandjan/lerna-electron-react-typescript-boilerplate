@@ -14,12 +14,11 @@ module.exports = function getLocalIdent(context, localIdentName, localName, opti
     5
   );
   // Use loaderUtils to find the file or folder name
-  const className = loaderUtils.interpolateName(
+  return loaderUtils.interpolateName(
     context,
     fileNameOrFolder + '_' + localName + '__' + hash,
     options
   );
-  return className;
   // remove the .module that appears in every classname when based on the file.
   // return className.replace('.module_', '_');
 };

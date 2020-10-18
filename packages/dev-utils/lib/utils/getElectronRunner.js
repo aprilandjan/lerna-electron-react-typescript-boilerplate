@@ -1,6 +1,5 @@
 // const path = require('path');
-const spawn = require('cross-spawn');
-// const execa = require('execa');
+const execa = require('execa');
 const exitHook = require('async-exit-hook');
 const paths = require('./paths');
 const logger = require('./logger');
@@ -26,6 +25,11 @@ module.exports = function getElectronRunner(config = {}) {
    * 启动 Electron. 如果已有 Electron 进程了，则先关掉
    */
   async function run() {
+    if (!env.electronAutoStart) {
+      //  该信息会被 vscode background task 用来判断 dev-watch ready
+      logger.info('electron ready');
+      return;
+    }
     if (electronProcess) {
       logger.debug('reload electron process...');
       autoKilled = true;
@@ -54,10 +58,9 @@ module.exports = function getElectronRunner(config = {}) {
   function startElectron() {
     logger.debug('spawn new electron process');
     autoKilled = false;
-    const electronRuntime = require('electron').toString();
-    // FIXME: use execa to ensure kill works?
-    const p = spawn(electronRuntime, [entry, '--inspect', ...args], {
+    const p = execa('electron', [entry, '--inspect', ...args], {
       cwd: paths.appPath,
+      preferLocal: true,
     });
 
     p.stdout.on('data', data => {

@@ -1,0 +1,27 @@
+{
+  "tasks": [
+    {
+      // https://stackoverflow.com/questions/44242048/how-to-make-vscode-not-wait-for-finishing-a-prelaunchtask
+      // this task can be used as pretask for debugging at electron entry
+      "label": "dev-watch",
+      "type": "npm",
+      "script": "dev-watch",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": ".",
+            "file": 1,
+            "location": 2,
+            "message": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".",
+          "endsPattern": "electron ready"
+        }
+      }
+    }
+  ]
+}

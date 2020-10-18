@@ -48,7 +48,7 @@ dotenvFiles.forEach(dotenvFile => {
 /** 获取需要注入到打包的代码里的环境变量 */
 function getInjectedEnv() {
   const injectedPrefix = /^CLIENT_/i;
-  const raw = Object.keys(process.env)
+  return Object.keys(process.env)
     .filter(key => injectedPrefix.test(key))
     .reduce(
       (env, key) => {
@@ -62,7 +62,25 @@ function getInjectedEnv() {
         APP_VERSION: process.env.APP_VERSION || pkg.version,
       }
     );
-  return raw;
+}
+
+/** 获取环境变量的值。如果没定义，则返回默认值 */
+function getEnvValue(v, d) {
+  if (v === undefined) {
+    return d;
+  }
+  return v;
+}
+
+/**
+ * 获取 Boolean 类型的环境变量的值。如果没定义，则返回默认值
+ * 如果有定义且完全等于 'false'， 则返回 false, 其他都认为是 true
+ **/
+function getEnvBooleanValue(v, d = false) {
+  if (v === undefined) {
+    return d;
+  }
+  return v !== 'false';
 }
 
 module.exports = {
@@ -71,29 +89,31 @@ module.exports = {
   dotenvFiles,
   getInjectedEnv,
   /** 当前开发调试的目标 */
-  target: process.env.DEV_UTILS_TARGET || pkg.name,
+  target: getEnvValue(process.env.DEV_UTILS_TARGET, pkg.name),
   /** 渲染进程 dev server 的 host */
-  host: process.env.HOST || 'localhost',
+  host: getEnvValue(process.env.HOST, 'localhost'),
   /** 渲染进程 dev server 的 port */
-  port: process.env.PORT || '1212',
+  port: getEnvValue(process.env.PORT, '1212'),
   /** 是否在 dev 时按 webpack 的信息需要自动刷掉输出 */
-  clearConsole: process.env.CLEAR_CONSOLE || false,
-  /** TODO: console 不打印时间 */
-  disableConsoleTime: process.env.DISABLE_CONSOLE_TIME || false,
+  clearConsole: getEnvBooleanValue(process.env.CLEAR_CONSOLE, false),
+  /** console 不打印时间 */
+  disableConsoleTime: getEnvBooleanValue(process.env.DISABLE_CONSOLE_TIME, false),
   /** 是否要在 vsc 里调试主进程程序 */
-  debugElectronInVSC: process.env.DEBUG_ELECTRON_IN_VSC || true,
+  debugElectronInVSC: getEnvBooleanValue(process.env.DEBUG_ELECTRON_IN_VSC, true),
   /** 是否要打开 webpack bundle analyzer */
-  openAnalyzer: process.env.OPEN_ANALYZER || false,
+  openAnalyzer: getEnvBooleanValue(process.env.OPEN_ANALYZER, false),
   /** 在运行 `app-renderer dev` 时重新构建 webpack DLL */
-  rebuildDLL: process.env.REBUILD_DLL || false,
+  rebuildDLL: getEnvBooleanValue(process.env.REBUILD_DLL, false),
   /** 关掉 webpack 编译时的 `typescript` 类型检查 */
-  disableTsCheck: process.env.DISABLE_TS_CHECK || false,
+  disableTsCheck: getEnvBooleanValue(process.env.DISABLE_TS_CHECK, false),
   /** TS 报错时依然编译 */
-  compileOnTsError: process.env.COMPILE_ON_TS_ERROR || false,
+  compileOnTsError: getEnvBooleanValue(process.env.COMPILE_ON_TS_ERROR, false),
   /** 是否删除未被 webpack 编译的文件 */
-  deleteUnused: process.env.DELETE_UNUSED || false,
+  deleteUnused: getEnvBooleanValue(process.env.DELETE_UNUSED, false),
+  /** 主进程是否编译后自动启动 */
+  electronAutoStart: getEnvBooleanValue(process.env.ELECTRON_AUTO_START, true),
   /** 主进程是否编译后自动重载 */
-  electronAutoReload: process.env.ELECTRON_AUTO_RELOAD || true,
+  electronAutoReload: getEnvBooleanValue(process.env.ELECTRON_AUTO_RELOAD, true),
   /** electron 打印信息的过滤 */
-  grepElectron: process.env.GREP_ELECTRON || '',
+  grepElectron: getEnvValue(process.env.GREP_ELECTRON, ''),
 };

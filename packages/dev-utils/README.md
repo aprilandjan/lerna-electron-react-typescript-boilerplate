@@ -24,6 +24,13 @@
 - `app-module dev`: 开发运行
 - `app-module build`: 构建打包
 
+### `app-bundle`
+
+A wrapper for `electron-builder` CLI, which will try to read `electron-builder` field from the `package.json` file of each local monorepo packages, and then merge the `files` field altogether, for self-management purpose.
+
+- `app-bundle --mac`: build for package
+- `app-bundle --win`: build win package
+
 ## 环境变量配置
 
 ### `HOST`
