@@ -24,11 +24,11 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
         resolve();
       } else {
         if (allowFailure) {
-          reject(new Error(`${cmd} in ${packageName} failed in code ${code}`));
-          process.exit(1);
-        } else {
           console.error(`${packageName}: ${cmd} failed! continue since allowFailure = true`);
           resolve();
+        } else {
+          reject(new Error(`${cmd} in ${packageName} failed in code ${code}`));
+          process.exit(1);
         }
       }
     });
