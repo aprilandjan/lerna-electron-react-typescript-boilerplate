@@ -27,7 +27,7 @@ module.exports = function getElectronRunner(config = {}) {
   async function run() {
     if (!env.electronAutoStart) {
       //  该信息会被 vscode background task 用来判断 dev-watch ready
-      logger.info('electron ready');
+      logger.info('do not run electron since `ELECTRON_AUTO_START` set as `false`.');
       return;
     }
     if (electronProcess) {

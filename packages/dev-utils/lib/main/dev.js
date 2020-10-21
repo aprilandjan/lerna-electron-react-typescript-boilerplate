@@ -63,11 +63,14 @@ function waitIpcClientsReady() {
     },
   });
 
-  webpackDev(webpackConfig, (success, stats) => {
-    if (process.argv.includes('--only')) {
-      logger.info('do not run electron since `--only` flag founded.');
+  function promptReload() {
+    if (!env.electronAutoStart) {
       return;
     }
+    rl.prompt();
+  }
+
+  webpackDev(webpackConfig, (success, stats) => {
     if (compiledSuccess === null) {
       //  首次编译
       if (success) {
@@ -75,7 +78,7 @@ function waitIpcClientsReady() {
         logger.debug('initial compile successfully');
         //  成功则启动 Electron
         runElectron();
-        rl.prompt();
+        promptReload();
       } else {
         logger.debug('initial compile failed');
         //  do nothing
@@ -92,7 +95,7 @@ function waitIpcClientsReady() {
         //  自动重启
         runElectron();
       } else {
-        rl.prompt();
+        promptReload();
       }
     } else {
       logger.debug('re-compile failed');

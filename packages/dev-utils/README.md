@@ -61,6 +61,10 @@ A wrapper for `electron-builder` CLI, which will try to read `electron-builder` 
 
 TS 报错时依然编译。默认为 `false`
 
+### `ELECTRON_AUTO_START`
+
+开发环境下 Electron 进程是否在 webpack 编译后自动启动。默认为 `true`
+
 ### `ELECTRON_AUTO_RELOAD`
 
 开发环境下 Electron 进程是否在 webpack 编译后自动重启。也可以通过输入 `R` + `Enter` 随时手动重启。默认 `false`

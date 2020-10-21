@@ -19,7 +19,7 @@
         "background": {
           "activeOnStart": true,
           "beginsPattern": ".",
-          "endsPattern": "electron ready"
+          "endsPattern": "do not run electron since"
         }
       }
     }

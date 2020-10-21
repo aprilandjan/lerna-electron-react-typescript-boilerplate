@@ -34,8 +34,8 @@
       "cwd": "${workspaceFolder}/packages/app-main",
       "windows": {
         "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
-      }
-      // "preLaunchTask": "dev-watch",
+      },
+      "preLaunchTask": "dev-watch"
     },
     {
       "name": "Electron: Renderer",
