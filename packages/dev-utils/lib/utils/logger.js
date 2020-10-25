@@ -22,7 +22,9 @@ function info(...args) {
   last = now;
   // find last of arg
   const t = chalk.gray(`+${diff}ms`);
-  let p = (env.disableConsoleTime ? '' : `[${chalk.green(new Date().toISOString())}]`) + prefix;
+  let p =
+    (env.disableConsoleTime ? '' : `[${chalk.green(new Date().toLocaleTimeString('en-US'))}]`) +
+    prefix;
   return console.log(p, ...trimLastRight(args), t);
 }
 
