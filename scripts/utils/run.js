@@ -1,5 +1,6 @@
 const execa = require('execa');
 const findLernaPackages = require('find-lerna-packages');
+const treeKill = require('tree-kill');
 
 /** 如果 allowFailure 则允许失败 */
 module.exports = function run(packageName, cmd, allowFailure = false) {
@@ -14,7 +15,7 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
     }
     const args = script.split(' ');
     const bin = args.shift();
-    //  the execa automatically helps find bin & process dies
+    //  the execa automatically helps find bins
     let cp = execa(bin, args, {
       cwd: pkgLocation,
       stdio: 'inherit',
@@ -23,12 +24,11 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
       if (code === 0) {
         resolve();
       } else {
+        console.error(`[${packageName}: ${cmd}] exit unexpected with code ${code}`);
         if (allowFailure) {
-          console.error(`${packageName}: ${cmd} failed! continue since allowFailure = true`);
           resolve();
         } else {
-          reject(new Error(`${cmd} in ${packageName} failed in code ${code}`));
-          process.exit(1);
+          treeKill(process.pid);
         }
       }
     });

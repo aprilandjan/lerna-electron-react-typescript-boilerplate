@@ -139,7 +139,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] the resources of each sub-modules when bundled support
 - [ ] use rollup to compile & bundle esm modules
 - [ ] create bundle at the root directory of the workspace
-- [ ] bug: spawned child process did not exit when terminated in windows
+- [x] bug: spawned child process did not exit when terminated in windows
 - [ ] add unittest for dev scripts
 
 ## References

@@ -85,6 +85,7 @@
     "eslint-plugin-sonarjs": "^0.5.0",
     "execa": "^4.0.3",
     "find-lerna-packages": "^1.2.0",
+    "fs-extra": "^8.1.0",
     "husky": "^3.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.2.4",
@@ -95,10 +96,10 @@
     "stylelint-config-prettier": "^8.0.0",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-config-standard": "^19.0.0",
-    "stylelint-scss": "^3.14.2"
+    "stylelint-scss": "^3.14.2",
+    "tree-kill": "^1.2.2"
   },
   "dependencies": {
-    "fs-extra": "^8.1.0",
     "lerna": "^3.20.2",
     "typescript": "^3.7.5"
   },

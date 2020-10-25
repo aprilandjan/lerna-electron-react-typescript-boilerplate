@@ -1,5 +1,6 @@
 // const path = require('path');
 const execa = require('execa');
+const treeKill = require('tree-kill');
 const exitHook = require('async-exit-hook');
 const paths = require('./paths');
 const logger = require('./logger');
@@ -13,11 +14,20 @@ module.exports = function getElectronRunner(config = {}) {
   let autoKilled = false;
 
   function kill() {
+    if (electronProcess && electronProcess.killed) {
+      logger.debug('electron process already killed');
+      return Promise.resolve();
+    }
     logger.debug('kill existed electron process');
     autoKilled = true;
-    return new Promise(resolve => {
-      electronProcess.on('close', resolve);
-      electronProcess.kill();
+    return new Promise((resolve, reject) => {
+      treeKill(electronProcess.pid, err => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
     });
   }
 
@@ -70,7 +80,8 @@ module.exports = function getElectronRunner(config = {}) {
       log(data, true);
     });
 
-    p.on('close', (code, signal) => {
+    p.on('exit', (code, signal) => {
+      p.removeAllListeners();
       logger.debug(`electron process closed with exit code ${code} and signal ${signal}`);
       if (!autoKilled) {
         logger.debug('exit current process');
