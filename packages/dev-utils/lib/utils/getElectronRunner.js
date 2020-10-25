@@ -20,13 +20,9 @@ module.exports = function getElectronRunner(config = {}) {
     }
     logger.debug('kill existed electron process');
     autoKilled = true;
-    return new Promise((resolve, reject) => {
-      treeKill(electronProcess.pid, err => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
+    return new Promise(resolve => {
+      treeKill(electronProcess.pid, () => {
+        resolve();
       });
     });
   }
