@@ -118,7 +118,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] allow app-module build without webpack (using tsc and babel only)
 - [ ] allow workspace code compile altogether
 - [ ] configurable electron-builder options for mac/win separately
-- [ ] bug: windows cannot quit dev process smoothly
+- [x] bug: windows cannot quit dev process smoothly
 - [x] support `func?.()` in js files
 - [x] use `find-lerna-package` to locate sub packages
 - [ ] ipc server automatically satisfied ipc client count
@@ -141,6 +141,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] create bundle at the root directory of the workspace
 - [x] bug: spawned child process did not exit when terminated in windows
 - [ ] add unittest for dev scripts
+- [ ] make execa not spawn process with extra shell processes
 
 ## References
 
