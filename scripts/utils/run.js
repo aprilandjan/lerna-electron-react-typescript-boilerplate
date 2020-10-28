@@ -1,3 +1,5 @@
+const fs = require('fs-extra');
+const path = require('path');
 const execa = require('execa');
 const findLernaPackages = require('find-lerna-packages');
 const treeKill = require('tree-kill');
@@ -14,12 +16,22 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
       return;
     }
     const args = script.split(' ');
-    const bin = args.shift();
-    //  the execa automatically helps find bins
-    let cp = execa(bin, args, {
-      cwd: pkgLocation,
-      stdio: 'inherit',
-    });
+    const binName = args.shift();
+    const binPath = path.join(pkg.binLocation, binName);
+    let cp;
+    if (fs.existsSync(binPath)) {
+      //  binPath exists, run as node script to skip prevent shell options
+      cp = execa.node(binPath, args, {
+        cwd: pkgLocation,
+        stdio: 'inherit',
+      });
+    } else {
+      //  binPath not exits, run as normal yarn task
+      cp = execa('yarn', [cmd], {
+        cwd: pkgLocation,
+        stdio: 'inherit',
+      });
+    }
     cp.on('exit', code => {
       if (code === 0) {
         resolve();

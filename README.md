@@ -141,7 +141,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] create bundle at the root directory of the workspace
 - [x] bug: spawned child process did not exit when terminated in windows
 - [ ] add unittest for dev scripts
-- [ ] make execa not spawn process with extra shell processes
+- [x] make execa not spawn process with extra shell processes
 
 ## References
 
