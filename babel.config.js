@@ -74,7 +74,7 @@ module.exports = (api, opts) => {
         require('babel-plugin-import'),
         {
           libraryName: 'antd',
-          libraryDirectory: 'es',
+          libraryDirectory: 'lib',
           style: 'css',
         },
       ],

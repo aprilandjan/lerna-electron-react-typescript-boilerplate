@@ -50,11 +50,12 @@
       "request": "launch",
       "name": "Jest Current File",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": ["${relativeFile}"],
-      "smartStep": false,
+      "args": ["${fileBasenameNoExtension}", "--config", "jest.config.js"],
       "console": "integratedTerminal",
-      "outputCapture": "console",
       "internalConsoleOptions": "neverOpen",
+      "smartStep": false,
+      "outputCapture": "console",
+      "disableOptimisticBPs": true,
       "windows": {
         "program": "${workspaceFolder}/node_modules/jest/bin/jest"
       }
@@ -67,6 +68,7 @@
       "args": ["--runInBand"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
       "windows": {
         "program": "${workspaceFolder}/node_modules/jest/bin/jest"
       }
