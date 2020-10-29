@@ -21,7 +21,7 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
     let cp;
     if (fs.existsSync(binPath)) {
       //  binPath exists, run as node script to skip prevent shell options
-      cp = execa.node(binPath, args, {
+      cp = execa(binName, args, {
         cwd: pkgLocation,
         stdio: 'inherit',
       });
