@@ -5,6 +5,7 @@ module.exports = {
   projects: ['<rootDir>/packages/*'],
   // the root matches only its test, not sub packages
   testMatch: ['<rootDir>/test/**/*.{js,jsx,ts,tsx}', '<rootDir>/test/**/*.{js,jsx,ts,tsx}'],
+  testPathIgnorePatterns: ['/node_modules/', '/release/', '/dist/', '/build/'],
   collectCoverageFrom: [
     '**/src/**/*.{js,jsx,ts,tsx}',
     '!**/__tests__/**',
