@@ -152,3 +152,5 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - <https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_source-maps>
 - <https://webpack.js.org/api/module-variables/#__non_webpack_require__-webpack-specific>
 - <https://github.com/seymen/git-last-commit>
+- <https://github.com/electron-userland/spectron>
+- <http://v4.webdriver.io/api.html>

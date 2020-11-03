@@ -16,7 +16,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className={styles.container} data-tid="container">
-        <h2>Home</h2>
+        <h2 data-testid="home">Home</h2>
         <Link to={routes.COUNTER}>GO TO Counter PAGE</Link>
         <div>
           <Button onClick={this.handleClick}>GO TO COUNTER PAGE</Button>
