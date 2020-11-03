@@ -2,7 +2,7 @@
 // https://jestjs.io/docs/en/configuration#projects-arraystring--projectconfig
 // https://github.com/entria/entria-fullstack/blob/master/jest.config.js
 module.exports = {
-  projects: ['<rootDir>/packages/*'],
+  projects: ['<rootDir>/jest.config.root.js', '<rootDir>/packages/*/jest.config.js'],
   // the root matches only its test, not sub packages
   testMatch: ['<rootDir>/test/**/*.{js,jsx,ts,tsx}', '<rootDir>/test/**/*.{js,jsx,ts,tsx}'],
   testPathIgnorePatterns: ['/node_modules/', '/release/', '/dist/', '/build/'],
