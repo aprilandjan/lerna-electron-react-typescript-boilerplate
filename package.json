@@ -24,8 +24,8 @@
     "preinstall": "npx check-npm-client --yarn-only",
     "test": "yarn test-unit && yarn test-e2e",
     "test-cov": "yarn test-unit --coverage && yarn test-e2e",
-    "test-unit": "cross-env NODE_ENV=test jest --config ./jest.config.unit.js",
-    "test-e2e": "cross-env NODE_ENV=test jest --config ./jest.config.e2e.js",
+    "test-unit": "cross-env NODE_ENV=test jest --config ./test/config/jest.config.unit.js",
+    "test-e2e": "cross-env NODE_ENV=test jest --config ./test/config/jest.config.e2e.js",
     "postinstall": "lerna link"
   },
   "lint-staged": {
