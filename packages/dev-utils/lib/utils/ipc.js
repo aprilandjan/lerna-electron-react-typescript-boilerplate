@@ -26,7 +26,7 @@ function initServer(onReady) {
       if (payload.data === 'ready') {
         clients.push(payload.id);
         if (onReady) {
-          onReady(clients);
+          onReady(payload.id, clients);
         }
       }
     });
@@ -70,9 +70,32 @@ function broadcast(data) {
   ipc.server.broadcast('message', data);
 }
 
+function waitClientsReady() {
+  logger.debug(`wait ipc clients ${env.devIpcClients} ready...`);
+  const waitClients = env.devIpcClients
+    .split(';')
+    .map(item => item.trim())
+    .filter(Boolean);
+  const readyClients = [];
+
+  return new Promise(resolve => {
+    initServer(client => {
+      if (!waitClients.includes(client) || readyClients.includes(client)) {
+        return;
+      }
+      readyClients.push(client);
+      logger.info(`[${readyClients.length}/${waitClients.length}] ${client} dev client ready`);
+      if (readyClients.length === waitClients.length) {
+        resolve();
+      }
+    });
+  });
+}
+
 module.exports = {
   initServer,
   initClient,
   sendToServer,
   broadcast,
+  waitClientsReady,
 };

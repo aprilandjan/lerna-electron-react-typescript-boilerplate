@@ -1,5 +1,5 @@
 {
-  "name": "app-dev-utils",
+  "name": "dev-utils",
   "version": "1.0.0",
   "private": true,
   "description": "app dev utils",
@@ -24,6 +24,7 @@
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
     "electron-builder": "^22.8.0",
+    "execa": "^4.0.3",
     "file-loader": "^5.0.2",
     "filesize": "^6.0.1",
     "find-lerna-packages": "^1.2.0",

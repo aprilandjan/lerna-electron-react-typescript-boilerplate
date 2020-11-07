@@ -121,7 +121,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] bug: windows cannot quit dev process smoothly
 - [x] support `func?.()` in js files
 - [x] use `find-lerna-package` to locate sub packages
-- [ ] ipc server automatically satisfied ipc client count
+- [x] ipc server automatically satisfied ipc client count
 - [ ] parallel build sub packages
 - [x] complete type-safe components with `redux` `react-thunk`, etc
 - [x] when bundling node codes, automatically external all node_modules packages

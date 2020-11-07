@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.149",
-    "app-dev-utils": "^1.0.0"
+    "dev-utils": "^1.0.0"
   },
   "electron-builder": {
     "files": ["!**/*", "package.json"],

@@ -20,19 +20,6 @@ const webpackConfig = require('./webpack.config.dev');
 const webpackDev = require('../utils/webpackDev');
 const ipc = require('../utils/ipc');
 
-function waitIpcClientsReady() {
-  logger.debug('wait ipc clients ready...');
-  return new Promise(resolve => {
-    ipc.initServer(clients => {
-      logger.debug('ipc clients ready:', clients);
-      // FIXME: should be more accurate
-      if (clients.length >= 2) {
-        resolve();
-      }
-    });
-  });
-}
-
 (async () => {
   let compiledSuccess = null;
   let compileHash = null;
@@ -46,7 +33,7 @@ function waitIpcClientsReady() {
 
   //  如果是并行开发才需要等待
   if (process.env.MONO_REPO_DEV) {
-    await waitIpcClientsReady();
+    await ipc.waitClientsReady();
   }
 
   const rl = createReadline({

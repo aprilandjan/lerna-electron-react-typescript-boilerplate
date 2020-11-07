@@ -110,6 +110,8 @@ module.exports = {
   compileOnTsError: getEnvBooleanValue(process.env.COMPILE_ON_TS_ERROR, false),
   /** 是否删除未被 webpack 编译的文件 */
   deleteUnused: getEnvBooleanValue(process.env.DELETE_UNUSED, false),
+  /** 开发模式下启动 electron 前等待连接的 ipc clients */
+  devIpcClients: getEnvValue(process.env.DEV_IPC_CLIENTS, 'app-renderer; app-common'),
   /** 主进程是否编译后自动启动 */
   electronAutoStart: getEnvBooleanValue(process.env.ELECTRON_AUTO_START, true),
   /** 主进程是否编译后自动重载 */
