@@ -100,7 +100,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] user customized webpack config merging
 - [x] renderer webpack externals be default set as the main package's dependencies
 - [x] support unittest
-- [ ] support e2e test
+- [x] support e2e test
 - [x] attach debugger for main process in vscode
 - [x] attach debugger for main process while startup: add cmd to disable auto launch electron while dev, and extra vscode launch config
 - [ ] attach debugger for renderer process in vscode
