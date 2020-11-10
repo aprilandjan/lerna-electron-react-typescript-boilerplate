@@ -54,7 +54,7 @@ module.exports = function getElectronRunner(config = {}) {
     const lines = data.toString().split('\n');
 
     lines.forEach(line => {
-      let text = line.trim();
+      let text = line.trimRight();
       if (text === '') {
         return;
       }
