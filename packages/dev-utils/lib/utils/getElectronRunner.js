@@ -59,7 +59,9 @@ module.exports = function getElectronRunner(config = {}) {
         return;
       }
       if (isError) {
-        text = chalk.red(text);
+        //  do not grep error outputs
+        logger.info(`[electron] ${chalk.red(text)}`);
+        return;
       }
       if (!env.grepElectron || text.includes(env.grepElectron)) {
         logger.info(`[electron] ${text}`);
