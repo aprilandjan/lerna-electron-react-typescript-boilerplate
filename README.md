@@ -142,6 +142,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] bug: spawned child process did not exit when terminated in windows
 - [ ] add unittest for dev scripts
 - [x] make execa not spawn process with extra shell processes
+- [ ] customize testing-library `data-testid`([ref](https://github.com/testing-library/react-testing-library/issues/204))
 
 ## References
 
