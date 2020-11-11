@@ -32,7 +32,7 @@ describe('application launch', () => {
   });
 
   it('should display correct page content', async () => {
-    const header = await app.client.getText(`[data-testid="home"]`);
+    const header = await app.client.getText(`[data-tid="home"]`);
     expect(header).toEqual('Home');
   });
 });
