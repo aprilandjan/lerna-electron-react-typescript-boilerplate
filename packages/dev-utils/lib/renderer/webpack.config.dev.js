@@ -11,7 +11,8 @@ const baseConfig = require('../webpack.config.base');
 const cssSourcemap = false;
 
 module.exports = merge.smart(baseConfig, {
-  devtool: 'cheap-module-source-map',
+  //  vscode support
+  devtool: env.debugElectronInVSC ? 'inline-source-map' : 'cheap-module-source-map',
 
   mode: 'development',
 
@@ -28,6 +29,11 @@ module.exports = merge.smart(baseConfig, {
     publicPath: `http://${env.host}:${env.port}/`,
     filename: 'renderer.dev.js',
     chunkFilename: '[name].[chunkhash:8].chunk.js',
+    // https://gist.github.com/jarshwah/389f93f2282a165563990ed60f2b6d6c
+    // https://webpack.js.org/configuration/output/#outputdevtoolmodulefilenametemplate
+    devtoolModuleFilenameTemplate: env.debugElectronInVSC
+      ? 'file:///[absolute-resource-path]'
+      : undefined,
   },
 
   module: {

@@ -103,7 +103,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] support e2e test
 - [x] attach debugger for main process in vscode
 - [x] attach debugger for main process while startup: add cmd to disable auto launch electron while dev, and extra vscode launch config
-- [ ] attach debugger for renderer process in vscode
+- [x] attach debugger for renderer process in vscode
 - [ ] ~~separated eslint rules for node scripts and browser scripts~~
 - [ ] ~~add eslint in webpack compile check~~
 - [x] allow skip typechecking in webpack compiler
@@ -142,7 +142,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] bug: spawned child process did not exit when terminated in windows
 - [ ] add unittest for dev scripts
 - [x] make execa not spawn process with extra shell processes
-- [ ] customize testing-library `data-testid`([ref](https://github.com/testing-library/react-testing-library/issues/204))
+- [x] customize testing-library `data-testid`([ref](https://github.com/testing-library/react-testing-library/issues/204))
 
 ## References
 
