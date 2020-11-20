@@ -5972,10 +5972,10 @@ electron-to-chromium@^1.3.322:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.322.tgz#a6f7e1c79025c2b05838e8e344f6e89eb83213a8"
   integrity sha512-Tc8JQEfGQ1MzfSzI/bTlSr7btJv/FFO7Yh6tanqVmIWOuNCu6/D1MilIEgLtmWqIrsv+o4IjpLAhgMBr/ncNAA==
 
-electron@8.4.1:
-  version "8.4.1"
-  resolved "https://registry.npm.taobao.org/electron/download/electron-8.4.1.tgz?cache=0&sync_timestamp=1595559590738&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Felectron%2Fdownload%2Felectron-8.4.1.tgz#124d6c65d02a644b389f498d549f2411a0a94c27"
-  integrity sha1-Ek1sZdAqZEs4n0mNVJ8kEaCpTCc=
+electron@8.3.2:
+  version "8.3.2"
+  resolved "https://registry.npm.taobao.org/electron/download/electron-8.3.2.tgz#4b0c02e6e1b2194c37220e42d13d08f7b74fd2ea"
+  integrity sha1-SwwC5uGyGUw3Ig5C0T0I97dP0uo=
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^12.0.12"
