@@ -144,6 +144,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] make execa not spawn process with extra shell processes
 - [x] customize testing-library `data-testid`([ref](https://github.com/testing-library/react-testing-library/issues/204))
 - [ ] make clear electron app running environments while e2e tests
+- [ ] when electron process exit as expected, do not quit dev process automatically
 
 ## References
 
