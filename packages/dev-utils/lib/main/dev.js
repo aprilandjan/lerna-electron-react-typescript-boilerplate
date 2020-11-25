@@ -57,6 +57,8 @@ const ipc = require('../utils/ipc');
     rl.prompt();
   }
 
+  runElectron.setExitCallback(promptReload);
+
   webpackDev(webpackConfig, (success, stats) => {
     if (compiledSuccess === null) {
       //  首次编译

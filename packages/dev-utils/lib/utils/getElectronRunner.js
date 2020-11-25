@@ -12,6 +12,7 @@ module.exports = function getElectronRunner(config = {}) {
 
   let electronProcess = null;
   let autoKilled = false;
+  let exitCallback = null;
 
   function kill() {
     if (electronProcess && electronProcess.killed) {
@@ -86,10 +87,18 @@ module.exports = function getElectronRunner(config = {}) {
 
     p.on('exit', (code, signal) => {
       p.removeAllListeners();
-      logger.debug(`electron process closed with exit code ${code} and signal ${signal}`);
-      if (!autoKilled) {
-        logger.debug('exit current process');
+      if (autoKilled) {
+        return;
+      }
+      if (env.exitDevElectronQuit) {
+        logger.info('exit dev process');
         process.exit(1);
+      } else {
+        logger.info(`electron process exit with code ${code}`);
+        electronProcess = null;
+        if (exitCallback) {
+          exitCallback();
+        }
       }
     });
     exitHook(callback => {
@@ -97,6 +106,10 @@ module.exports = function getElectronRunner(config = {}) {
     });
     return p;
   }
+
+  run.setExitCallback = cb => {
+    exitCallback = cb;
+  };
 
   return run;
 };

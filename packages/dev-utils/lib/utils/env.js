@@ -116,6 +116,8 @@ module.exports = {
   electronAutoStart: getEnvBooleanValue(process.env.ELECTRON_AUTO_START, true),
   /** 主进程是否编译后自动重载 */
   electronAutoReload: getEnvBooleanValue(process.env.ELECTRON_AUTO_RELOAD, true),
+  /** electron 关掉后自动退出开发进程 */
+  exitDevWhenElectronQuit: getEnvBooleanValue(process.env.EXIT_DEV_WHEN_ELECTRON_QUIT, false),
   /** electron 打印信息的过滤 */
   grepElectron: getEnvValue(process.env.GREP_ELECTRON, ''),
 };
