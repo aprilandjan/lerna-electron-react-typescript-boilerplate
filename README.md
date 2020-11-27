@@ -145,6 +145,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] customize testing-library `data-testid`([ref](https://github.com/testing-library/react-testing-library/issues/204))
 - [ ] make clear electron app running environments while e2e tests
 - [x] when electron process exit as expected, do not quit dev process automatically
+- [ ] renderer webpack automatically exclude main dependencies
 
 ## References
 
