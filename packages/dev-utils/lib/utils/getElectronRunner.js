@@ -15,7 +15,7 @@ module.exports = function getElectronRunner(config = {}) {
   let exitCallback = null;
 
   function kill() {
-    if (electronProcess && electronProcess.killed) {
+    if (!electronProcess || (electronProcess && electronProcess.killed)) {
       logger.debug('electron process already killed');
       return Promise.resolve();
     }
