@@ -12,3 +12,9 @@
 .container a {
   font-size: 1.4rem;
 }
+
+.btn {
+  margin-bottom: 8px;
+  display: block;
+  width: 100%;
+}

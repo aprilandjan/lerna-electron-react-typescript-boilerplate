@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { format } from 'url';
 import path from 'path';
 import MenuBuilder from './menu';
@@ -63,6 +63,12 @@ const createWindow = async () => {
 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
+
+  ipcMain.on('quit', () => {
+    // app.quit();
+    // console.log('123');
+    process.exit(1);
+  });
 };
 
 /**
