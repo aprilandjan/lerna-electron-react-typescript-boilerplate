@@ -146,6 +146,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] make clear electron app running environments while e2e tests
 - [x] when electron process exit as expected, do not quit dev process automatically
 - [ ] renderer webpack automatically exclude main dependencies
+- [ ] support multiple dev instance running in same computer
 
 ## References
 
