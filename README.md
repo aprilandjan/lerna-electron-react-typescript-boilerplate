@@ -147,6 +147,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] when electron process exit as expected, do not quit dev process automatically
 - [ ] renderer webpack automatically exclude main dependencies
 - [ ] support multiple dev instance running in same computer
+- [ ] allow press `C` to clear console if TTY
 
 ## References
 
