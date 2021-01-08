@@ -39,7 +39,7 @@ module.exports = merge.smart(baseConfig, {
   module: {
     rules: [
       {
-        //  css find order
+        //  resource resolve order
         oneOf: [
           //  the css in appSrc, which not started with global
           //  are treated as scoped style
@@ -121,39 +121,39 @@ module.exports = merge.smart(baseConfig, {
               },
             ],
           },
+          {
+            test: /\.(?:ico|gif|png|jpg|jpeg|webp|svg)$/,
+            use: {
+              loader: 'file-loader',
+              options: {
+                esModule: false,
+                name: 'assets/imgs/[name].[hash:8].[ext]',
+              },
+            },
+          },
+          // Audios
+          {
+            test: /\.(ogg|mp3|mp4|wav|mpe?g)$/i,
+            use: {
+              loader: 'file-loader',
+              options: {
+                esModule: false,
+                name: 'assets/audios/[name].[hash:8].[ext]',
+              },
+            },
+          },
+          // Fonts
+          {
+            test: /\.(woff|woff2|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+            use: {
+              loader: 'file-loader',
+              options: {
+                esModule: false,
+                name: 'assets/fonts/[name].[hash:8].[ext]',
+              },
+            },
+          },
         ],
-      },
-      {
-        test: /\.(?:ico|gif|png|jpg|jpeg|webp|svg)$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            esModule: false,
-            name: 'assets/imgs/[name].[hash:8].[ext]',
-          },
-        },
-      },
-      // Audios
-      {
-        test: /\.(ogg|mp3|mp4|wav|mpe?g)$/i,
-        use: {
-          loader: 'file-loader',
-          options: {
-            esModule: false,
-            name: 'assets/audios/[name].[hash:8].[ext]',
-          },
-        },
-      },
-      // Fonts
-      {
-        test: /\.(woff|woff2|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            esModule: false,
-            name: 'assets/fonts/[name].[hash:8].[ext]',
-          },
-        },
       },
     ],
   },
