@@ -129,7 +129,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] use `execa` instead of native `child_process`
 - [ ] inject bundle build information, such as `commitId`, `branchName`, `buildTime`, `buildMachine`, `buildPipelineId` into process env
 - [x] automatically generate changelog files(~~for different major/minor versions~~)
-- [x] when failed to launching electron, find if existed process is running and print warning (and force kill it in some seconds)
+- [ ] when failed to launching electron, find if existed process is running and print warning (and force kill it in some seconds)
 - [ ] ~~handle with "failed to fetch extension, trying x more times"~~
 - [x] skip use of `yarn` to run `dev` & `build`
 - [x] add timestamp before each output line
