@@ -19,6 +19,7 @@ const getElectronRunner = require('../utils/getElectronRunner');
 const webpackConfig = require('./webpack.config.dev');
 const webpackDev = require('../utils/webpackDev');
 const ipc = require('../utils/ipc');
+const clearConsole = require('../utils/clearConsole');
 
 (async () => {
   let compiledSuccess = null;
@@ -37,16 +38,29 @@ const ipc = require('../utils/ipc');
   }
 
   const rl = createReadline({
-    text: `${logger.prefix} You can press ${chalk.green('R')} (and then ${chalk.green(
-      'Enter'
-    )}) to restart electron at any time\n`,
-    matcher: 'R',
-    callback: () => {
-      if (!compiledSuccess) {
-        return;
-      }
-      logger.info('restart electron...');
-      runElectron();
+    R: {
+      desc: 'restart electron',
+      callback: () => {
+        if (!compiledSuccess) {
+          return;
+        }
+        logger.info('restart electron...');
+        runElectron();
+      },
+    },
+    C: {
+      desc: 'clear console',
+      callback: () => {
+        clearConsole(true);
+        rl.prompt();
+      },
+      disable: !process.stdout.isTTY,
+    },
+    X: {
+      desc: 'exit dev process',
+      callback: () => {
+        process.exit(1);
+      },
     },
   });
 

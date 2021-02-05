@@ -135,7 +135,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] add timestamp before each output line
 - [x] outputs from std error are marked as red
 - [x] allow disable console time prefix & suffix
-- [ ] bug: sometimes press ctrl+c cannot terminate process, for example, when press fn+c
+- [x] ~~bug: sometimes press ctrl+c cannot terminate process, for example, when press fn+c~~ allow press `X` to exit dev process
 - [x] the resources of each sub-modules when bundled support
 - [ ] use rollup to compile & bundle esm modules
 - [ ] create bundle at the root directory of the workspace
@@ -147,7 +147,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] when electron process exit as expected, do not quit dev process automatically
 - [ ] renderer webpack automatically exclude main dependencies
 - [ ] support multiple dev instance running in same computer
-- [ ] allow press `C` to clear console if TTY
+- [x] allow press `C` to clear console if TTY
 - [ ] bug: json serialized outstream does not displayed completely in main process
 - [ ] use [ultra-runner](https://github.com/folke/ultra-runner) to call npm scripts
 
