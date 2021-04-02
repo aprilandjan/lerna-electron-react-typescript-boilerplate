@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import { format } from 'url';
 import path from 'path';
 import MenuBuilder from './menu';
+import asyncHook from 'async_hooks';
 
 const isDev = process.env.NODE_ENV === 'development';
 

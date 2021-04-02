@@ -150,6 +150,9 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] allow press `C` to clear console if TTY
 - [ ] bug: json serialized outstream does not displayed completely in main process
 - [ ] use [ultra-runner](https://github.com/folke/ultra-runner) to call npm scripts
+- [ ] bugfix: set `PORT` env does not correctly apply to the `Electron: Main` launch script
+- [ ] bugfix: listener leaks when restart electron dev process
+- [ ] use esbuild to speed up dev & build
 
 ## References
 
