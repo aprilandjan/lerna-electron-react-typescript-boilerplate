@@ -153,6 +153,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] bugfix: set `PORT` env does not correctly apply to the `Electron: Main` launch script
 - [ ] bugfix: listener leaks when restart electron dev process
 - [ ] use esbuild to speed up dev & build
+- [ ] allow press `Q` to quit running electron app
 
 ## References
 
