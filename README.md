@@ -148,7 +148,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] renderer webpack automatically exclude main dependencies
 - [ ] support multiple dev instance running in same computer
 - [x] allow press `C` to clear console if TTY
-- [ ] bug: json serialized outstream does not displayed completely in main process
+- [x] bug: json serialized outstream does not displayed completely in main process
 - [ ] use [ultra-runner](https://github.com/folke/ultra-runner) to call npm scripts
 - [ ] bugfix: set `PORT` env does not correctly apply to the `Electron: Main` launch script
 - [x] bugfix: listener leaks when restart electron dev process

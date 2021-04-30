@@ -7,23 +7,28 @@ const logger = require('./logger');
 const env = require('./env');
 const chalk = require('chalk');
 
-function log(data, isError = false) {
-  const lines = data.toString().split('\n');
+const prefix = `[electron]`;
 
-  lines.forEach(line => {
-    let text = line.trimRight();
-    if (text === '') {
-      return;
-    }
-    if (isError) {
-      //  do not grep error outputs
-      logger.info(`[electron] ${chalk.red(text)}`);
-      return;
-    }
-    if (!env.grepElectron || text.includes(env.grepElectron)) {
-      logger.info(`[electron] ${text}`);
-    }
-  });
+function log(data, isError = false) {
+  const text = data.toString().trimLeft();
+  const lines = text
+    .split('\n')
+    .map(line => line.trimRight())
+    .filter(Boolean);
+
+  //  always keep error outputs
+  if (isError) {
+    lines.forEach(line => {
+      logger.info(`${prefix} ${chalk.red(line)}`);
+    });
+    return;
+  }
+  //  grep stdout outputs
+  if (!env.grepElectron || text.includes(env.grepElectron)) {
+    lines.forEach(line => {
+      logger.info(`${prefix} ${line}`);
+    });
+  }
 }
 
 module.exports = function getElectronRunner(config = {}) {
