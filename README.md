@@ -79,7 +79,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] add electron icons
 - [x] ensure `dev` & `build` progress
 - [x] add renderer compile time progress
-- [ ] ~~automatically dll compare & rebuild~~
+- [ ] automatically dll compare & rebuild
 - [x] check dll running speed
 - [x] app main watch & reload: reload: use webpack, listen its compile status
 - [x] main process ask for restart if needed
@@ -151,9 +151,9 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] bug: json serialized outstream does not displayed completely in main process
 - [ ] use [ultra-runner](https://github.com/folke/ultra-runner) to call npm scripts
 - [ ] bugfix: set `PORT` env does not correctly apply to the `Electron: Main` launch script
-- [ ] bugfix: listener leaks when restart electron dev process
+- [x] bugfix: listener leaks when restart electron dev process
 - [ ] use esbuild to speed up dev & build
-- [ ] allow press `Q` to quit running electron app
+- [x] allow press `Q` to quit running electron app
 
 ## References
 

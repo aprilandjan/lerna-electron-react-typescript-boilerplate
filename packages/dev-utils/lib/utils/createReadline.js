@@ -11,11 +11,11 @@ module.exports = function createReadline(mapping) {
     })
     .map(pair => {
       const [key, { desc }] = pair;
-      return chalk.bold(chalk.gray(`${chalk.green(key)} ${desc}`));
+      return chalk.bold(chalk.gray(`${chalk.green(key.toLowerCase())} ${desc}`));
     })
     .join(', ');
 
-  rl.setPrompt(`\nPress > ${text}\n\n`);
+  rl.setPrompt(`\nPress > ${text} (and then ${chalk.green(`Enter`)}) to continue...\n\n`);
 
   rl.on('line', line => {
     const input = line.toLowerCase().trim();
