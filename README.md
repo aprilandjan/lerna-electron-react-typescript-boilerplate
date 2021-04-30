@@ -154,6 +154,8 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] bugfix: listener leaks when restart electron dev process
 - [ ] use esbuild to speed up dev & build
 - [x] allow press `Q` to quit running electron app
+- [ ] specify different shortcut for vscode launch tasks
+- [ ] allow watch & reload env files and restart dev process
 
 ## References
 
