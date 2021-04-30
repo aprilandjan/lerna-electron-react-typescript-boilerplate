@@ -28,6 +28,7 @@
         "--remote-debugging-port=9223",
         "${workspaceFolder}/packages/app-main/dist/main.dev.js"
       ],
+      "envFile": "${workspaceFolder}/.env.local",
       "env": {
         "NODE_ENV": "development"
       },
