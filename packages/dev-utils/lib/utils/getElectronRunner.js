@@ -23,16 +23,23 @@ module.exports = function getElectronRunner(config = {}) {
     autoKilled = true;
     const pExit = new Promise(resolve => {
       electronProcess.on('exit', () => {
+        electronProcess.removeAllListeners();
+        logger.debug('electron process exit');
         resolve();
       });
     });
     const pKill = new Promise(resolve => {
       treeKill(electronProcess.pid, () => {
+        logger.debug('electron process killed successful');
         resolve();
       });
     });
     return Promise.all([pExit, pKill]);
   }
+
+  exitHook(callback => {
+    kill().then(callback);
+  });
 
   /**
    * 启动 Electron. 如果已有 Electron 进程了，则先关掉
@@ -100,9 +107,6 @@ module.exports = function getElectronRunner(config = {}) {
           exitCallback();
         }
       }
-    });
-    exitHook(callback => {
-      kill().then(callback);
     });
     return p;
   }
