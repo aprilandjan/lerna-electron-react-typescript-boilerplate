@@ -15,7 +15,7 @@ module.exports = function createReadline(mapping) {
     })
     .join(', ');
 
-  rl.setPrompt(`\nPress > ${text} (and then ${chalk.green(`Enter`)}) to continue...\n\n`);
+  rl.setPrompt(`Press > ${text} (and then ${chalk.green(`Enter`)}) to continue...\n`);
 
   rl.on('line', line => {
     const input = line.toLowerCase().trim();

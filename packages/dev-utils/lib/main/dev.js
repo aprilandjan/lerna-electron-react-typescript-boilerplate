@@ -32,6 +32,7 @@ const rl = createReadline({
       if (!compiledSuccess) {
         return;
       }
+      clearConsole(true);
       logger.info('restart electron...');
       electronRunner.start();
     },
@@ -54,7 +55,7 @@ const rl = createReadline({
   X: {
     desc: 'exit dev process',
     callback: () => {
-      process.exit(1);
+      process.exit(0);
     },
   },
 });
