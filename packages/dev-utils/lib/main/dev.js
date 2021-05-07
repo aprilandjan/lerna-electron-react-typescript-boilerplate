@@ -55,7 +55,8 @@ const rl = createReadline({
   X: {
     desc: 'exit dev process',
     callback: () => {
-      process.exit(0);
+      logger.info('exit dev...');
+      process.exit(1);
     },
   },
 });
