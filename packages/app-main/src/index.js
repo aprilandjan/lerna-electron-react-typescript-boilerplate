@@ -2,7 +2,6 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import { format } from 'url';
 import path from 'path';
 import MenuBuilder from './menu';
-import asyncHook from 'async_hooks';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -15,7 +14,17 @@ if (isDev) {
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const extensions = ['REACT_DEVELOPER_TOOLS', 'REACT_PERF', 'REDUX_DEVTOOLS'];
-  return installer.default(extensions.map(name => installer[name])).catch(console.log);
+  return installer
+    .default(
+      extensions.map(name => installer[name]),
+      {
+        loadExtensionOptions: {
+          // fix devtools installer for electron v11, see https://github.com/electron/electron/issues/23662
+          allowFileAccess: true,
+        },
+      }
+    )
+    .catch(console.log);
 };
 
 const createWindow = async () => {
