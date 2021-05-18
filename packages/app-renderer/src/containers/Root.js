@@ -13,8 +13,8 @@ const Root = ({ store, history }) => (
     <ConnectedRouter history={history}>
       <App>
         <Switch>
-          <Route path={routes.HOME} component={HomePage} />
           <Route path={routes.COUNTER} component={CounterPage} />
+          <Route path={routes.HOME} component={HomePage} />
         </Switch>
       </App>
     </ConnectedRouter>
