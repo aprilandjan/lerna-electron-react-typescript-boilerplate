@@ -156,6 +156,8 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] allow press `Q` to quit running electron app
 - [ ] specify different shortcut for vscode launch tasks
 - [ ] allow watch & reload env files and restart dev process
+- [ ] refactor the ipc controlling to distinguish the client and server logics
+- [ ] configure pipeline to run unit & e2e tests
 
 ## References
 

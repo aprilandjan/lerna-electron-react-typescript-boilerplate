@@ -61,14 +61,14 @@ const rl = createReadline({
   },
 });
 
-function promptReload() {
+function promptUsage() {
   if (!env.electronAutoStart) {
     return;
   }
   rl.prompt();
 }
 
-electronRunner.setExitCallback(promptReload);
+electronRunner.setExitCallback(promptUsage);
 
 async function startWebpackDev() {
   webpackDev(webpackConfig, (success, stats) => {
@@ -79,7 +79,7 @@ async function startWebpackDev() {
         logger.debug('initial compile successfully');
         //  成功则启动 Electron
         electronRunner.start();
-        promptReload();
+        promptUsage();
       } else {
         logger.debug('initial compile failed');
         //  do nothing
@@ -96,7 +96,7 @@ async function startWebpackDev() {
         //  自动重启
         electronRunner.start();
       } else {
-        promptReload();
+        promptUsage();
       }
     } else {
       logger.debug('re-compile failed');
