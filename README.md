@@ -158,6 +158,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] allow watch & reload env files and restart dev process
 - [ ] refactor the ipc controlling to distinguish the client and server logics
 - [ ] configure pipeline to run unit & e2e tests
+- [ ] use [pnpm](https://pnpm.io/) to speed up installation
 
 ## References
 
