@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["./src"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "./dist",
+    "declaration": true,
+    "rootDir": "./src",
+    "noEmit": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "module-a": ["../../packages/module-a/src"],
+      "module-b": ["../../packages/module-b/src"]
+    }
+  }
+}

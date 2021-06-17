@@ -1,7 +1,9 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { format } from 'url';
 import path from 'path';
-import MenuBuilder from './menu';
+import MenuBuilder from '@/menu';
+import show1 from 'module-a';
+import show3 from 'module-c';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -28,6 +30,8 @@ const installExtensions = async () => {
 };
 
 const createWindow = async () => {
+  console.log('@@@ show1', show1());
+  console.log('@@@ show3', show3());
   if (isDev) {
     await installExtensions();
   }

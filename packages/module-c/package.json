@@ -1,0 +1,21 @@
+{
+  "name": "module-c",
+  "version": "1.0.0",
+  "description": "test-module-c",
+  "main": "dist/",
+  "types": "dist/",
+  "license": "MIT",
+  "scripts": {
+    "clean": "tsc -b tsconfig.build.json --clean",
+    "dev": "tsc",
+    "build": "tsc -b -v tsconfig.build.json"
+  },
+  "dependencies": {
+    "module-a": "1.0.0",
+    "module-b": "1.0.0"
+  },
+  "devDependencies": {
+    "rimraf": "3.0.2",
+    "typescript": "3.7.5"
+  }
+}

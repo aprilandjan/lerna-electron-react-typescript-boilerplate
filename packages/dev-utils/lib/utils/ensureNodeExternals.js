@@ -8,6 +8,7 @@ module.exports = function ensureExternals() {
   const pkgNames = pkgList.map(pkg => pkg.name);
   const rootModuleDir = path.join(env.lernaRootPath, 'node_modules');
   const additional = ['electron', 'webpack', 'electron-devtools-installer'];
+  console.log('ignored', ...pkgNames);
   return [
     nodeExternals({
       additionalModuleDirs: [rootModuleDir],
