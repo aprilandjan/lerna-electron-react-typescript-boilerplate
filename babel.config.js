@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = (api, opts) => {
   let {
     //  use ts language
@@ -78,14 +76,6 @@ module.exports = (api, opts) => {
           libraryName: 'antd',
           libraryDirectory: 'lib',
           style: 'css',
-        },
-      ],
-      [
-        require('babel-plugin-module-resolver'),
-        {
-          alias: {
-            '^(module-.*)': path.join(__dirname, 'packages/\\1/src'),
-          },
         },
       ],
       // Transform dynamic import to require

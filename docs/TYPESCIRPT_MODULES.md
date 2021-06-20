@@ -4,7 +4,7 @@
 
 - [x] eslint will recognize typescript modules that didn't built
 - [x] `Go to definition` jumps to the source codes rather than declarations
-- [ ] when dev webpack modules, do not compile these typescript modules at all
+- [x] when dev webpack modules, do not compile these typescript modules at all
 - [x] when build webpack modules, do not compile these typescript modules at all
 - [x] when build typescript modules, dependent typescript modules will be build altogether, topologically, from module root
 - [ ] when build typescript modules, dependent typescript modules will be build altogether, topologically, from project root
