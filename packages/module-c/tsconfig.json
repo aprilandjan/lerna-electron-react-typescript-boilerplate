@@ -3,15 +3,24 @@
   "include": ["./src"],
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "./dist",
-    "declaration": true,
-    "rootDir": "./src",
+    "composite": true,
     "noEmit": false,
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
       "module-a": ["../../packages/module-a/src"],
       "module-b": ["../../packages/module-b/src"]
     }
-  }
+  },
+  "references": [
+    {
+      "path": "../../packages/module-a"
+    },
+    {
+      "path": "../../packages/module-b"
+    }
+  ]
 }

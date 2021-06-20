@@ -6,9 +6,9 @@
   "types": "dist/",
   "license": "MIT",
   "scripts": {
-    "clean": "tsc -b tsconfig.build.json --clean",
-    "dev": "tsc",
-    "build": "tsc -b tsconfig.build.json"
+    "clean": "tsc -b --clean",
+    "dev": "tsc -b --watch",
+    "build": "tsc -b"
   },
   "dependencies": {},
   "devDependencies": {

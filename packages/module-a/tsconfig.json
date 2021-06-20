@@ -2,9 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "include": ["./src"],
   "compilerOptions": {
-    "declaration": true,
-    "noEmit": true,
     "module": "commonjs",
+    "composite": true,
+    "noEmit": false,
+    "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src"
   }

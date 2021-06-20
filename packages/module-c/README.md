@@ -1,3 +1,3 @@
 # module-c
 
-a typescript module in monorepo, written in typescript
+a local maintained module in monorepo, written in typescript
