@@ -7,9 +7,11 @@
     "clean": "lerna clean -y && lerna run clean",
     "dev": "node ./scripts/dev",
     "dev-watch": "cross-env ELECTRON_AUTO_START=false node ./scripts/dev",
+    "dev-modules": "tsc -b --watch",
     "build": "node ./scripts/build",
     "build-main": "lerna exec --scope=app-main yarn build",
     "build-renderer": "lerna exec --scope=app-renderer yarn build",
+    "build-modules": "tsc -b",
     "start": "lerna exec --scope=app-main yarn start",
     "package": "yarn build && lerna exec --scope=app-main yarn package",
     "package-mac": "yarn build && lerna exec --scope=app-main yarn package-mac",
@@ -43,6 +45,7 @@
   "license": "MIT",
   "keywords": ["lerna", "electron", "react", "redux", "sass", "typescript"],
   "devDependencies": {
+    "dev-utils": "1.0.0",
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/plugin-proposal-decorators": "^7.7.4",
@@ -103,8 +106,7 @@
     "tree-kill": "^1.2.2"
   },
   "dependencies": {
-    "lerna": "^3.20.2",
-    "typescript": "^3.7.5"
+    "lerna": "^3.20.2"
   },
   "devEngines": {
     "node": ">=7.x",

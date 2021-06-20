@@ -7,7 +7,14 @@ module.exports = function run(map) {
   // const nodeArgs = cmdIndex > 0 ? args.slice(0, cmdIndex) : [];
 
   if (cmdList.includes(cmd)) {
-    require(map[cmd]);
+    const script = map[cmd];
+    if (typeof script === 'string') {
+      require(map[cmd]);
+    } else if (typeof script === 'function') {
+      script(cmd);
+    } else {
+      throw new Error('Unknown script for command "' + cmd + '".');
+    }
   } else {
     throw new Error('Unknown command "' + cmd + '".');
   }

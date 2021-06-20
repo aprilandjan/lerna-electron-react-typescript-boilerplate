@@ -1,0 +1,14 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/module-a"
+    },
+    {
+      "path": "./packages/module-b"
+    },
+    {
+      "path": "./packages/module-c"
+    }
+  ]
+}

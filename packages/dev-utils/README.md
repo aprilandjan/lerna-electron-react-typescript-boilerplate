@@ -8,7 +8,7 @@
 
 ### `app-main`
 
-主进程运行程序，提供：
+主进程编译运行程序，提供：
 
 - `app-main dev`: 开发运行
 - `app-main build`: 构建生产环境包
@@ -16,10 +16,14 @@
 
 ### `app-renderer`
 
+渲染进程代码编译程序，提供：
+
 - `app-renderer dev`: 开发运行
 - `app-renderer build`: 构建打包
 
 ### `app-module`
+
+独立模块代码编译程序，提供：
 
 - `app-module dev`: 开发运行
 - `app-module build`: 构建打包

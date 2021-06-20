@@ -29,4 +29,4 @@ if (!platform) {
 }
 args = args.filter(arg => !['--mac', '--win'].includes(arg));
 
-require('../lib/bundle/build')(platform, args);
+require('../lib/bundle')(platform, args);

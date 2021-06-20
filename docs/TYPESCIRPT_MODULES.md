@@ -11,6 +11,8 @@ packages
 
 The `module-a` and `module-b` is some individual functionalities, the `module-c` depends on them. When we developing `module-c`, the `module-a` and `module-b` must be already compiled, otherwise the typescript will complaint that it cannot find the `module-a` `module-b` entries. Image if we have more complex typescript modules, they might have more complex dependent relations, the building could be trouble because of that.
 
+## build from each module's own root directory
+
 Luckily we have [typescript project references](https://www.typescriptlang.org/docs/handbook/project-references.html) to handle that. It provides composite compilations against configured project references. Take `module-c` for example, we need:
 
 1. add `module-a` and `module-b` to its dependency list in `package.json`. `Lerna` will link these local modules together later.
@@ -52,6 +54,29 @@ Luckily we have [typescript project references](https://www.typescriptlang.org/d
 
 After doing above, we can freely compile any modules, without worrying about the dependent modules.
 
+## build from project root directory
+
+In order to build all modules from the root directory of the project, we can add an empty `tsconfig.json` which have only project references at the root, for example:
+
+```json
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/module-a"
+    },
+    {
+      "path": "./packages/module-b"
+    },
+    {
+      "path": "./packages/module-c"
+    }
+  ]
+}
+```
+
+It holds the references to every modules in the project, to make `tsc` recognize the module topological relations. Then we can simply add `tsc -b` script in root `package.json` to trigger a complete compilation.
+
 ## TODO
 
 - [x] eslint will recognize typescript modules that didn't built
@@ -59,10 +84,10 @@ After doing above, we can freely compile any modules, without worrying about the
 - [x] when dev webpack modules, do not compile these typescript modules at all
 - [x] when build webpack modules, do not compile these typescript modules at all
 - [x] when build typescript modules, dependent typescript modules will be build altogether, topologically, from module root
-- [x] when build typescript modules, dependent typescript modules will be build altogether, topologically, from project root
+- [ ] when build typescript modules, dependent typescript modules will be build altogether, topologically, from project root
 - [ ] extract all these ts config files and commands into centralized utility kits
   - [ ] `app-module clean`
-  - [ ] `app-module dev-watch`
+  - [ ] `app-module dev`
   - [ ] `app-module build`
 
 ## References
