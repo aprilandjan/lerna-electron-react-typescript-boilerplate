@@ -30,7 +30,7 @@
     "test-unit": "cross-env NODE_ENV=test jest --config ./test/config/jest.config.unit.js",
     "test-e2e": "cross-env NODE_ENV=test jest --config ./test/config/jest.config.e2e.js",
     "test-all": "yarn test-unit && yarn test-e2e",
-    "postinstall": "lerna link"
+    "postinstall": "yarn build-modules"
   },
   "lint-staged": {
     "*.{js,jsx}": ["eslint --format=pretty", "prettier --write", "git add"],

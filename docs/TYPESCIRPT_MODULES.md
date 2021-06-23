@@ -18,38 +18,37 @@ Luckily we have [typescript project references](https://www.typescriptlang.org/d
 1. add `module-a` and `module-b` to its dependency list in `package.json`. `Lerna` will link these local modules together later.
 2. add `tsconfig` for the `module-c` as following:
 
-```json
-{
-  "extends": "../../tsconfig.base.json",
-  "include": ["./src"],
-  "compilerOptions": {
-    "module": "commonjs",
-    "composite": true, // toggle on project reference
-    "noEmit": false,
-    "declaration": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "module-a": ["../../packages/module-a/src"], //  path alias to make IDE `go to definition` always jump to source codes rather than compiled dist
-      "module-b": ["../../packages/module-b/src"] // same as above
-    }
-  },
-  "references": [
-    //  define where references dependent project locates
-    {
-      "path": "../../packages/module-a"
-    },
-    {
-      "path": "../../packages/module-b"
-    }
-  ]
-}
-```
+   ```json
+   {
+     "extends": "../../tsconfig.base.json",
+     "include": ["./src"],
+     "compilerOptions": {
+       "module": "commonjs",
+       "composite": true, // toggle on project reference
+       "noEmit": false,
+       "declaration": true,
+       "outDir": "./dist",
+       "rootDir": "./src",
+       "baseUrl": ".",
+       "paths": {
+         "@/*": ["src/*"],
+         "module-a": ["../../packages/module-a/src"], //  path alias to make IDE `go to definition` always jump to source codes rather than compiled dist
+         "module-b": ["../../packages/module-b/src"] // same as above
+       }
+     },
+     "references": [
+       //  define where references dependent project locates
+       {
+         "path": "../../packages/module-a"
+       },
+       {
+         "path": "../../packages/module-b"
+       }
+     ]
+   }
+   ```
 
 3. The modules which is being referenced(`module-a` `module-b` in this example), must also be set to support the composite compilation. Just edit their `tsconfig` and set `compilerOptions.composite` to `true`.
-
 4. Use `tsc -b` to do compilation things, such as `--clean`, `--watch`, etc.
 
 After doing above, we can freely compile any modules, without worrying about the dependent modules.
