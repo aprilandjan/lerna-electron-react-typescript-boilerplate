@@ -6,13 +6,12 @@
   "types": "dist/",
   "license": "MIT",
   "scripts": {
-    "clean": "tsc -b --clean",
-    "dev": "tsc -b --watch",
-    "build": "tsc -b"
+    "clean": "app-module clean",
+    "dev": "app-module dev",
+    "build": "app-module build"
   },
   "dependencies": {},
   "devDependencies": {
-    "rimraf": "3.0.2",
-    "typescript": "3.7.5"
+    "dev-utils": "1.0.0"
   }
 }

@@ -15,10 +15,11 @@ const compilation = {
   startAt: 0,
 };
 
-function getWorkingDirectory() {
-  return env.lernaRootPath;
-}
 function getFileScope(file) {
+  // skip this if is already in a module scope
+  if (process.cwd().endsWith(env.target)) {
+    return '';
+  }
   const pkg = pkgList.find(pkg => {
     return file.startsWith(pkg.location);
   });
@@ -70,7 +71,7 @@ function extractTypescriptErrorInfo(message) {
   );
   if (result && result.groups) {
     // turn file path to absolute path
-    const absolutePath = path.join(getWorkingDirectory(), result.groups.file);
+    const absolutePath = path.join(process.cwd(), result.groups.file);
     //  parse scope
     return {
       ...result.groups,
@@ -104,10 +105,8 @@ function processOutput(data) {
   }
 }
 
-// TODO: onOk, onFail
-module.exports = (args = [], onOk, onFail) => {
+module.exports = (args = []) => {
   const p = execa('tsc', [...args], {
-    // execPath: getWorkingDirectory(),
     localDir: env.lernaRootPath,
     preferLocal: true,
     stdin: 'inherit',
@@ -118,7 +117,9 @@ module.exports = (args = [], onOk, onFail) => {
 
   p.on('exit', code => {
     p.removeAllListeners();
-    logger.info(`tsc exit(${code})`);
+    if (code !== 0) {
+      logger.info(`tsc ${args} exit unexpectedly(${code})!`);
+    }
   });
 
   return p;
