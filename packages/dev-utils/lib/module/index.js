@@ -1,18 +1,15 @@
-const execa = require('execa');
-const path = require('path');
-const env = require('../utils/env');
+const tsc = require('../utils/tsc');
 
 const commands = {
-  clean: '--clean',
-  dev: '--watch',
-  build: '',
+  clean: ['-b', '--clean'],
+  dev: ['-b', '--watch'],
+  build: ['-b'],
 };
 
 module.exports = cmd => {
-  return execa('tsc', ['-b', path.join(env.lernaRootPath, 'tsconfig.json'), ...commands[cmd]], {
-    execPath: env.lernaRootPath,
-    localDir: env.lernaRootPath,
-    preferLocal: true,
-    stdin: 'inherit',
-  });
+  const args = commands[cmd];
+  if (!args) {
+    throw new Error('module command must be `dev` `build` or `clean`');
+  }
+  return tsc(args);
 };

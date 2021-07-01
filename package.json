@@ -7,7 +7,7 @@
     "clean": "lerna clean -y && lerna run clean",
     "dev": "node ./scripts/dev",
     "dev-watch": "cross-env ELECTRON_AUTO_START=false node ./scripts/dev",
-    "dev-modules": "tsc -b --watch",
+    "dev-modules": "app-module dev",
     "build": "node ./scripts/build",
     "build-main": "lerna exec --scope=app-main yarn build",
     "build-renderer": "lerna exec --scope=app-renderer yarn build",

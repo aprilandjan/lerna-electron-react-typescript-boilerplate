@@ -83,7 +83,7 @@ It holds the references to every modules in the project, to make `tsc` recognize
 - [x] when dev webpack modules, do not compile these typescript modules at all
 - [x] when build webpack modules, do not compile these typescript modules at all
 - [x] when build typescript modules, dependent typescript modules will be build altogether, topologically, from module root
-- [ ] when build typescript modules, dependent typescript modules will be build altogether, topologically, from project root
+- [x] when build typescript modules, dependent typescript modules will be build altogether, topologically, from project root
 - [ ] extract all these ts config files and commands into centralized utility kits
   - [ ] `app-module clean`
   - [ ] `app-module dev`
