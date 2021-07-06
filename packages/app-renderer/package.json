@@ -9,6 +9,7 @@
   },
   "browserslist": "electron 1.6",
   "dependencies": {
+    "app-common": "1.0.0",
     "@types/history": "^4.7.7",
     "@types/redux-actions": "^2.6.1",
     "antd": "3.13.0",

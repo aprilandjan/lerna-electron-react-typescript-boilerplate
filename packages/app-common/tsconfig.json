@@ -1,10 +1,13 @@
 {
   "extends": "../../tsconfig.base.json",
+  "include": ["./src"],
   "compilerOptions": {
-    // path alias
-    "baseUrl": "src",
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["src/*"]
     }
   }
 }

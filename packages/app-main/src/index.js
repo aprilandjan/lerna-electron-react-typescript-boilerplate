@@ -30,8 +30,6 @@ const installExtensions = async () => {
 };
 
 const createWindow = async () => {
-  console.log('@@@ show1', show1());
-  console.log('@@@ show3', show3());
   if (isDev) {
     await installExtensions();
   }

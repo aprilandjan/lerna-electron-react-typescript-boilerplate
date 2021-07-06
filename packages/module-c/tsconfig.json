@@ -2,13 +2,9 @@
   "extends": "../../tsconfig.base.json",
   "include": ["./src"],
   "compilerOptions": {
-    "module": "commonjs",
     "composite": true,
-    "noEmit": false,
-    "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
       "module-a": ["../../packages/module-a/src"],

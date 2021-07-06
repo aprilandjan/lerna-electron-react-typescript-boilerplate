@@ -6,6 +6,7 @@
   "bin": {
     "app-main": "./bin/app-main.js",
     "app-renderer": "./bin/app-renderer.js",
+    "app-pack": "./bin/app-pack.js",
     "app-module": "./bin/app-module.js",
     "app-bundle": "./bin/app-bundle.js"
   },

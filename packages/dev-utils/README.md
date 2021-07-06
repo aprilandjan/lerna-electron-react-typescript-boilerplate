@@ -1,41 +1,51 @@
 # dev-utils
 
-对 electron 主进程、渲染进程模块进行 babel/ts/webpack 打包编译的工具库。
+Development utilities for managing main process webpack bundle, renderer process webpack bundle, modules that need webpack to bundle, and modules that need typescript to compile.
 
-## 可执行程序
+## Binary
 
-模块提供以下命令供其他子模块调用
+This module provides the following binary and commands for developing various modules associated with the electron app.
 
 ### `app-main`
 
-主进程编译运行程序，提供：
+CLI for electron main process bundle codes.
 
-- `app-main dev`: 开发运行
-- `app-main build`: 构建生产环境包
-- `app-main start`: 以 build 出来的主进程 js 运行 electron 程序
+- `app-main dev`: start webpack dev & watch
+- `app-main build`: build webpack production bundle
+- `app-main start`: run electron from the entry of the production bundle. This is useful if you want to test run the production bundle quickly.
 
 ### `app-renderer`
 
-渲染进程代码编译程序，提供：
+CLI for electron renderer process bundle codes.
 
-- `app-renderer dev`: 开发运行
-- `app-renderer build`: 构建打包
+- `app-renderer dev`: start webpack dev & watch & webpack-dev-server
+- `app-renderer build`: build webpack production bundle
+
+### `app-pack`
+
+CLI for modules that need webpack to bundle its codes.
+
+- `app-pack dev`: start webpack dev & watch
+- `app-pack build`: build webpack production bundle
 
 ### `app-module`
 
-独立模块代码编译程序，提供：
+CLI for modules that need typescript to bundle its codes.
 
-- `app-module dev`: 开发运行
-- `app-module build`: 构建打包
+- `app-module dev`: start tsc dev & watch
+- `app-module build`: build tsc production codes
+- `app-module clean`: clean tsc output files
 
 ### `app-bundle`
 
-A wrapper for `electron-builder` CLI, which will try to read `electron-builder` field from the `package.json` file of each local monorepo packages, and then merge the `files` field altogether, for self-management purpose.
+CLI wrapping up `electron-builder`. It will try to read `electron-builder` field from the `package.json` file of each local monorepo packages, and then merge the `files` field altogether, for **self-management** purpose.
 
 - `app-bundle --mac`: build for package
 - `app-bundle --win`: build win package
 
-## 环境变量配置
+Alternatively, additional `electron builder` arguments can be passed over.
+
+## Environments
 
 ### `HOST`
 

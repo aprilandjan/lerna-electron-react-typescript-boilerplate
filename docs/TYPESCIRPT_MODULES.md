@@ -86,8 +86,8 @@ It holds the references to every modules in the project, to make `tsc` recognize
 - [x] when build typescript modules, dependent typescript modules will be build altogether, topologically, from project root
 - [x] extract all these ts config files and commands into centralized utility kits
   - [x] `app-module clean`
-  - [ ] `app-module dev` with sourcemap
-  - [ ] `app-module build` without sourcemap
+  - [x] `app-module dev`
+  - [x] `app-module build`
 
 ## References
 

@@ -5,6 +5,7 @@
   "description": "A complete Lerna-Electron-React-TypeScript project boilerplate.",
   "scripts": {
     "clean": "lerna clean -y && lerna run clean",
+    "clean-modules": "app-module clean",
     "dev": "node ./scripts/dev",
     "dev-watch": "cross-env ELECTRON_AUTO_START=false node ./scripts/dev",
     "dev-modules": "app-module dev",
@@ -30,7 +31,7 @@
     "test-unit": "cross-env NODE_ENV=test jest --config ./test/config/jest.config.unit.js",
     "test-e2e": "cross-env NODE_ENV=test jest --config ./test/config/jest.config.e2e.js",
     "test-all": "yarn test-unit && yarn test-e2e",
-    "postinstall": "yarn build-modules"
+    "//postinstall": "yarn build-modules"
   },
   "lint-staged": {
     "*.{js,jsx}": ["eslint --format=pretty", "prettier --write", "git add"],
