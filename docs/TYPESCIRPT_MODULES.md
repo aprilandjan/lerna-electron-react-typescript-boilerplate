@@ -88,6 +88,8 @@ It holds the references to every modules in the project, to make `tsc` recognize
   - [x] `app-module clean`
   - [x] `app-module dev`
   - [x] `app-module build`
+- [ ] use tsc programmatically to compile typescript modules
+- [ ] use esbuild/swc to improve compile typescript modules
 
 ## References
 

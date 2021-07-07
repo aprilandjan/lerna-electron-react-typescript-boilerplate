@@ -6,3 +6,4 @@ const run = require('./utils/run');
 run('app-main', 'dev');
 run('app-renderer', 'dev');
 run('app-common', 'dev');
+run('dev-modules');

@@ -3,10 +3,11 @@ const path = require('path');
 const findLernaPackages = require('find-lerna-packages');
 const run = require('./utils/run');
 
-//  FIXME: build should be sequenced. use gulp instead?
 (async () => {
-  await run('app-renderer', 'build', false);
-  await run('app-main', 'build', false);
+  await run('build-modules');
+  await run('app-common', 'build');
+  await run('app-renderer', 'build');
+  await run('app-main', 'build');
 
   //  copy renderer dist into main dist
   console.log('copy dist assets...');

@@ -5,6 +5,7 @@
     "composite": true,
     "outDir": "./dist",
     "rootDir": "./src",
+    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
       "module-a": ["../../packages/module-a/src"],
