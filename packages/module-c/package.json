@@ -1,0 +1,20 @@
+{
+  "name": "module-c",
+  "version": "1.0.0",
+  "description": "test-module-c",
+  "main": "dist/",
+  "types": "dist/",
+  "license": "MIT",
+  "scripts": {
+    "clean": "app-module clean",
+    "dev": "app-module dev",
+    "build": "app-module build"
+  },
+  "dependencies": {
+    "module-a": "1.0.0",
+    "module-b": "1.0.0"
+  },
+  "devDependencies": {
+    "dev-utils": "1.0.0"
+  }
+}

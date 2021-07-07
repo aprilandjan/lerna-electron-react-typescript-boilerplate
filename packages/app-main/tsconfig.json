@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "module-a": ["../../packages/module-a/src"],
+      "module-c": ["../../packages/module-c/src"]
     }
   }
 }

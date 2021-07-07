@@ -4,15 +4,13 @@ const execa = require('execa');
 const findLernaPackages = require('find-lerna-packages');
 const treeKill = require('tree-kill');
 
-/** 如果 allowFailure 则允许失败 */
-module.exports = function run(packageName, cmd, allowFailure = false) {
+function runPkgScript(pkg, cmd, allowFailure = false) {
   // https://github.com/yarnpkg/yarn/issues/4667
   return new Promise((resolve, reject) => {
-    const pkg = findLernaPackages.getSync(packageName);
     const pkgLocation = pkg.location;
     const script = pkg.scripts[cmd];
     if (!script) {
-      reject(new Error(`Cannot find ${cmd} in ${packageName}`));
+      reject(new Error(`Cannot find ${cmd} in ${pkg}`));
       return;
     }
     const args = script.split(' ');
@@ -36,7 +34,7 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
       if (code === 0) {
         resolve();
       } else {
-        console.error(`[${packageName}: ${cmd}] exit unexpected with code ${code}`);
+        console.error(`[${pkg.name}: ${cmd}] exit unexpected with code ${code}`);
         if (allowFailure) {
           resolve();
         } else {
@@ -45,4 +43,21 @@ module.exports = function run(packageName, cmd, allowFailure = false) {
       }
     });
   });
+}
+
+module.exports = function(...args) {
+  if (
+    (args.length === 1 && typeof args[0] === 'string') ||
+    (args.length === 2 && typeof args[0] === 'string' && typeof args[1] === 'boolean')
+  ) {
+    // run('dev'), run('dev', true)
+    // will run current root's npm script
+    const root = findLernaPackages.getRoot();
+    return runPkgScript(root, ...args);
+  }
+  //  run('app-common', 'dev'), run('app-common', 'dev', true)
+  //  will run sub package's num script
+  const [name, ...rest] = args;
+  const pkg = findLernaPackages.getSync(name);
+  return runPkgScript(pkg, ...rest);
 };

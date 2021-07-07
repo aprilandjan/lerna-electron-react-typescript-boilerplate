@@ -159,6 +159,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] refactor the ipc controlling to distinguish the client and server logics
 - [ ] configure pipeline to run unit & e2e tests
 - [ ] use [pnpm](https://pnpm.io/) to speed up installation
+- [ ] multiple ts modules compilation together
 
 ## References
 
@@ -171,3 +172,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - <https://github.com/seymen/git-last-commit>
 - <https://github.com/electron-userland/spectron>
 - <http://v4.webdriver.io/api.html>
+- <https://www.typescriptlang.org/docs/handbook/project-references.html>
+- <https://github.com/RyanCavanaugh/project-references-demo>
+- <https://github.com/NiGhTTraX/ts-monorepo/tree/project-references>
+- <https://medium.com/@NiGhTTraX/how-to-set-up-a-typescript-monorepo-with-lerna-c6acda7d4559>

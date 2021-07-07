@@ -1,7 +1,9 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { format } from 'url';
 import path from 'path';
-import MenuBuilder from './menu';
+import MenuBuilder from '@/menu';
+import show1 from 'module-a';
+import show3 from 'module-c';
 
 const isDev = process.env.NODE_ENV === 'development';
 

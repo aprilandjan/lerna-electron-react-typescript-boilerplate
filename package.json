@@ -4,11 +4,15 @@
   "private": true,
   "description": "A complete Lerna-Electron-React-TypeScript project boilerplate.",
   "scripts": {
+    "clean": "lerna clean -y && lerna run clean",
+    "clean-modules": "app-module clean",
     "dev": "node ./scripts/dev",
     "dev-watch": "cross-env ELECTRON_AUTO_START=false node ./scripts/dev",
+    "dev-modules": "app-module dev",
     "build": "node ./scripts/build",
     "build-main": "lerna exec --scope=app-main yarn build",
     "build-renderer": "lerna exec --scope=app-renderer yarn build",
+    "build-modules": "app-module build",
     "start": "lerna exec --scope=app-main yarn start",
     "package": "yarn build && lerna exec --scope=app-main yarn package",
     "package-mac": "yarn build && lerna exec --scope=app-main yarn package-mac",
@@ -27,7 +31,7 @@
     "test-unit": "cross-env NODE_ENV=test jest --config ./test/config/jest.config.unit.js",
     "test-e2e": "cross-env NODE_ENV=test jest --config ./test/config/jest.config.e2e.js",
     "test-all": "yarn test-unit && yarn test-e2e",
-    "postinstall": "lerna link"
+    "postinstall": "yarn build-modules"
   },
   "lint-staged": {
     "*.{js,jsx}": ["eslint --format=pretty", "prettier --write", "git add"],
@@ -42,6 +46,7 @@
   "license": "MIT",
   "keywords": ["lerna", "electron", "react", "redux", "sass", "typescript"],
   "devDependencies": {
+    "dev-utils": "1.0.0",
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/plugin-proposal-decorators": "^7.7.4",
@@ -85,7 +90,7 @@
     "eslint-plugin-react-hooks": "^2.3.0",
     "eslint-plugin-sonarjs": "^0.5.0",
     "execa": "^4.0.3",
-    "find-lerna-packages": "^1.2.0",
+    "find-lerna-packages": "^1.3.0",
     "fs-extra": "^8.1.0",
     "husky": "^3.1.0",
     "identity-obj-proxy": "^3.0.0",
@@ -102,8 +107,7 @@
     "tree-kill": "^1.2.2"
   },
   "dependencies": {
-    "lerna": "^3.20.2",
-    "typescript": "^3.7.5"
+    "lerna": "^3.20.2"
   },
   "devEngines": {
     "node": ">=7.x",
@@ -111,8 +115,7 @@
     "yarn": ">=1.4.3"
   },
   "workspaces": {
-    "packages": ["packages/*"],
-    "nohoist": ["**/electron-builder", "**/electron-builder/**"]
+    "packages": ["packages/*"]
   },
   "husky": {
     "hooks": {

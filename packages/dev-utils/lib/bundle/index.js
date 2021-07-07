@@ -1,9 +1,9 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 const execa = require('execa');
 const fs = require('fs-extra');
 const path = require('path');
 const findLernaPackages = require('find-lerna-packages');
 const logger = require('../utils/logger');
+const env = require('../utils/env');
 
 const pkgList = findLernaPackages.sync();
 // FIXME: should configure this pkg name somewhere to make it less coupled
@@ -113,7 +113,7 @@ module.exports = function(platform, args) {
     ['--config', tempFile, platform === 'mac' ? '--mac' : '--win', ...args],
     {
       preferLocal: true,
-      localDir: path.join(__dirname, '../../'),
+      localDir: env.lernaRootPath,
       stdio: 'inherit',
     }
   );
