@@ -5,7 +5,7 @@ process.on('unhandledRejection', err => {
 });
 
 const run = require('../lib/utils/run');
-const moduleFunc = require('../lib/module');
+const moduleFunc = require('../lib/tsc');
 
 run({
   dev: () => moduleFunc('dev'),

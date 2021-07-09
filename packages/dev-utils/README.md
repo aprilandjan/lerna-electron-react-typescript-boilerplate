@@ -21,20 +21,20 @@ CLI for electron renderer process bundle codes.
 - `app-renderer dev`: start webpack dev & watch & webpack-dev-server
 - `app-renderer build`: build webpack production bundle
 
-### `app-pack`
+### `app-webpack`
 
 CLI for modules that need webpack to bundle its codes.
 
-- `app-pack dev`: start webpack dev & watch
-- `app-pack build`: build webpack production bundle
+- `app-webpack dev`: start webpack dev & watch
+- `app-webpack build`: build webpack production bundle
 
-### `app-module`
+### `app-tsc`
 
 CLI for modules that need typescript to bundle its codes.
 
-- `app-module dev`: start tsc dev & watch
-- `app-module build`: build tsc production codes
-- `app-module clean`: clean tsc output files
+- `app-tsc dev`: start tsc dev & watch
+- `app-tsc build`: build tsc production codes
+- `app-tsc clean`: clean tsc output files
 
 ### `app-bundle`
 

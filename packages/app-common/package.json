@@ -4,8 +4,8 @@
   "private": true,
   "description": "common codes for main and renderer codes",
   "scripts": {
-    "dev": "app-pack dev",
-    "build": "app-pack build"
+    "dev": "app-webpack dev",
+    "build": "app-webpack build"
   },
   "dependencies": {
     "lodash": "^4.17.15"

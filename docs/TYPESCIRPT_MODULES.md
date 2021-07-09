@@ -85,9 +85,9 @@ It holds the references to every modules in the project, to make `tsc` recognize
 - [x] when build typescript modules, dependent typescript modules will be build altogether, topologically, from module root
 - [x] when build typescript modules, dependent typescript modules will be build altogether, topologically, from project root
 - [x] extract all these ts config files and commands into centralized utility kits
-  - [x] `app-module clean`
-  - [x] `app-module dev`
-  - [x] `app-module build`
+  - [x] `app-tsc clean`
+  - [x] `app-tsc dev`
+  - [x] `app-tsc build`
 - [ ] use tsc programmatically to compile typescript modules
 - [ ] use esbuild/swc to improve compile typescript modules
 

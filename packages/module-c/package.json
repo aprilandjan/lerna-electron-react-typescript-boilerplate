@@ -6,9 +6,9 @@
   "types": "dist/",
   "license": "MIT",
   "scripts": {
-    "clean": "app-module clean",
-    "dev": "app-module dev",
-    "build": "app-module build"
+    "clean": "app-tsc clean",
+    "dev": "app-tsc dev",
+    "build": "app-tsc build"
   },
   "dependencies": {
     "module-a": "1.0.0",
