@@ -20,8 +20,8 @@ function getFileScope(file) {
   if (process.cwd().endsWith(env.target)) {
     return '';
   }
-  const pkg = pkgList.find(pkg => {
-    return file.startsWith(pkg.location);
+  const pkg = pkgList.find(p => {
+    return file.startsWith(p.location);
   });
   if (pkg) {
     return pkg.name;
@@ -106,6 +106,8 @@ function processOutput(data) {
 }
 
 function runTSC(args = []) {
+  const argString = args.join(' ');
+  logger.info(`Starting tsc ${argString}...`);
   const p = execa('tsc', [...args], {
     localDir: env.lernaRootPath,
     preferLocal: true,
@@ -117,9 +119,7 @@ function runTSC(args = []) {
 
   p.on('exit', code => {
     p.removeAllListeners();
-    if (code !== 0) {
-      logger.info(`tsc ${args} exit unexpectedly(${code})!`);
-    }
+    logger.info(`Exit(${code}) tsc ${argString}`);
   });
 
   return p;
