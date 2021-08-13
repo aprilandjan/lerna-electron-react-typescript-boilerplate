@@ -116,7 +116,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] allow filter electron output message
 - [x] bug: set env always later than read dotenv files
 - [x] allow app-module build without webpack (using tsc and babel only)
-- [ ] allow workspace code compile altogether
+- [x] allow workspace code compile altogether
 - [ ] configurable electron-builder options for mac/win separately
 - [x] bug: windows cannot quit dev process smoothly
 - [x] support `func?.()` in js files
@@ -137,7 +137,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] allow disable console time prefix & suffix
 - [x] ~~bug: sometimes press ctrl+c cannot terminate process, for example, when press fn+c~~ allow press `X` to exit dev process
 - [x] the resources of each sub-modules when bundled support
-- [ ] use rollup to compile & bundle esm modules
+- [ ] ~~use rollup to compile & bundle esm modules~~
 - [ ] create bundle at the root directory of the workspace
 - [x] bug: spawned child process did not exit when terminated in windows
 - [ ] add unittest for dev scripts
@@ -146,7 +146,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] make clear electron app running environments while e2e tests
 - [x] when electron process exit as expected, do not quit dev process automatically
 - [ ] renderer webpack automatically exclude main dependencies
-- [ ] support multiple dev instance running in same computer
+- [x] support multiple dev instance running in same computer
 - [x] allow press `C` to clear console if TTY
 - [x] bug: json serialized outstream does not displayed completely in main process
 - [ ] use [ultra-runner](https://github.com/folke/ultra-runner) to call npm scripts
