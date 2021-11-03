@@ -161,6 +161,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] use [pnpm](https://pnpm.io/) to speed up installation
 - [x] multiple ts modules compilation together
 - [ ] extract main/renderer/module configuration into root level configuration file
+- [ ] webpack injected env `APP_NAME` `APP_VERSION` should be loaded from project root
 
 ## References
 
