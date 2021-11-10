@@ -162,6 +162,8 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [x] multiple ts modules compilation together
 - [ ] extract main/renderer/module configuration into root level configuration file
 - [ ] webpack injected env `APP_NAME` `APP_VERSION` should be loaded from project root
+- [ ] defect: webpack & babel-loader cannot emit declarations, need a solution for this
+- [ ] defect: since `tsc` does not support [emit js with resolved alias path](https://github.com/microsoft/TypeScript/issues/26722#issuecomment-516935532), need a solution for this
 
 ## References
 
