@@ -20,7 +20,7 @@ That's why in this boilerplate we use [Lerna](https://github.com/lerna/lerna) to
 This boilerplate is constructed originally from [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate), but changed greatly to support `lerna` `typescript` things. The `webpack` related develop experience mainly comes from [CRA](https://github.com/facebook/create-react-app) and [electron-webpack](https://github.com/electron-userland/electron-webpack). It supports:
 
 - monorepo maintained by [lerna](https://github.com/lerna/lerna) and [yarn workspace mode](https://yarnpkg.com/lang/en/docs/workspaces/)
-- [typescript](https://github.com/microsoft/TypeScript)(v3.7+) and babel7 support
+- [typescript](https://github.com/microsoft/TypeScript)(v4.5+) and babel7 support
 - [eslint](https://github.com/eslint/eslint)(with ts support), [stylelint](https://github.com/stylelint/stylelint)(with scss support), [prettier](https://github.com/prettier/prettier) and [commitlint](https://github.com/conventional-changelog/commitlint) integrated
 - smooth and friendly development experience from [CRA](https://github.com/facebook/create-react-app) and [electron-webpack](https://github.com/electron-userland/electron-webpack).
 

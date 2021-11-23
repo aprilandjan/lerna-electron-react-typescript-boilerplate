@@ -10,9 +10,9 @@ export enum COUNTER {
 
 //=== the action creators ===//
 /** increase by specific value */
-export const createIncrease = createAction(COUNTER.INCREASE, (v: number = 1) => v);
+export const createIncrease = createAction(COUNTER.INCREASE, (v: number) => v);
 /** decrease by specific value */
-export const createDecrease = createAction(COUNTER.DECREASE, (v: number = 1) => v);
+export const createDecrease = createAction(COUNTER.DECREASE, (v: number) => v);
 
 /** thunk increase */
 export function createIncreaseIfOdd(): ThunkResult<void> {

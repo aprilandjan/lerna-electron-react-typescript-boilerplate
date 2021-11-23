@@ -38,12 +38,6 @@ module.exports = (api, opts) => {
       useTypesScript && [require('@babel/preset-typescript')],
     ].filter(Boolean),
     plugins: [
-      [
-        require('babel-plugin-add-module-exports'),
-        {
-          addDefaultProperty: false,
-        },
-      ],
       //  support export v from 'xxx'
       require('@babel/plugin-proposal-export-default-from'),
       // Turn on legacy decorators for TypeScript files
@@ -56,8 +50,25 @@ module.exports = (api, opts) => {
       // class { handleClick = () => { } }
       // Enable loose mode to use assignment instead of defineProperty
       // See discussion in https://github.com/facebook/create-react-app/issues/4263
+      // Note:
+      // 'loose' mode configuration must be the same for
+      // * @babel/plugin-proposal-class-properties
+      // * @babel/plugin-proposal-private-methods
+      // * @babel/plugin-proposal-private-property-in-object
       [
         require('@babel/plugin-proposal-class-properties'),
+        {
+          loose: true,
+        },
+      ],
+      [
+        require('@babel/plugin-proposal-private-methods'),
+        {
+          loose: true,
+        },
+      ],
+      [
+        require('@babel/plugin-proposal-private-property-in-object'),
         {
           loose: true,
         },
@@ -81,7 +92,6 @@ module.exports = (api, opts) => {
       // Transform dynamic import to require
       isEnvTest && require('babel-plugin-dynamic-import-node'),
       isEnvTest && require('babel-plugin-require-context-hook'),
-      isEnvTest && require('babel-plugin-rewire-ts'),
       ...(isEnvProduction && useReact
         ? [
             require('@babel/plugin-transform-react-constant-elements'),

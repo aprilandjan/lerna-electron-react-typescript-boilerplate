@@ -4,12 +4,21 @@ const moduleExtensions = ['.js', '.jsx', '.ts', '.tsx', '.json', 'yml', 'scss', 
 module.exports = {
   root: true,
   parser: 'babel-eslint',
-  plugins: ['babel', 'import', 'jsx-a11y', 'react', 'react-hooks', 'jest', 'sonarjs', 'deprecate'],
+  plugins: [
+    'babel',
+    'import',
+    'jsx-a11y',
+    'react',
+    'react-hooks',
+    'sonarjs',
+    'jest',
+    'testing-library',
+    'deprecate',
+  ],
   env: {
     browser: true,
     commonjs: true,
     es6: true,
-    jest: true,
     node: true,
   },
   parserOptions: {
@@ -318,12 +327,14 @@ module.exports = {
         // TypeScript's `noFallthroughCasesInSwitch` option is more robust (#6906)
         'default-case': 'off',
         // 'tsc' already handles this (https://github.com/typescript-eslint/typescript-eslint/issues/291)
-        // 'no-dupe-class-members': 'off',
+        'no-dupe-class-members': 'off',
         // 'tsc' already handles this (https://github.com/typescript-eslint/typescript-eslint/issues/477)
-        // 'no-undef': 'off',
+        'no-undef': 'off',
 
         // Add TypeScript specific rules (and turn off ESLint equivalents)
         '@typescript-eslint/consistent-type-assertions': 'warn',
+        'no-shadow': 'off',
+        '@typescript-eslint/no-shadow': 'warn',
         'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': 'warn',
         '@typescript-eslint/no-namespace': 'error',
@@ -356,6 +367,33 @@ module.exports = {
         ],
         'no-useless-constructor': 'off',
         '@typescript-eslint/no-useless-constructor': 'warn',
+      },
+    },
+    {
+      files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
+      env: {
+        'jest/globals': true,
+      },
+      rules: {
+        // https://github.com/jest-community/eslint-plugin-jest
+        'jest/no-conditional-expect': 'error',
+        'jest/no-identical-title': 'error',
+        'jest/no-interpolation-in-snapshots': 'error',
+        'jest/no-jasmine-globals': 'error',
+        'jest/no-jest-import': 'error',
+        'jest/no-mocks-import': 'error',
+        'jest/valid-describe-callback': 'error',
+        'jest/valid-expect': 'error',
+        'jest/valid-expect-in-promise': 'error',
+        'jest/valid-title': 'warn',
+
+        // https://github.com/testing-library/eslint-plugin-testing-library
+        'testing-library/await-async-query': 'error',
+        'testing-library/await-async-utils': 'error',
+        'testing-library/no-await-sync-query': 'warn',
+        'testing-library/no-dom-import': ['error', 'react'],
+        'testing-library/no-wait-for-empty-callback': 'error',
+        'testing-library/no-wait-for-snapshot': 'error',
       },
     },
   ],

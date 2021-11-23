@@ -11,6 +11,7 @@
     "strict": true,
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": false,
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
