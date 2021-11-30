@@ -1,5 +1,12 @@
 import React from 'react';
 
+import Button from '../Button';
+
 export default () => {
-  return <span>Loading...</span>;
+  return (
+    <div>
+      Loading...
+      <Button />
+    </div>
+  );
 };

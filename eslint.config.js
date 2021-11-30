@@ -4,17 +4,7 @@ const moduleExtensions = ['.js', '.jsx', '.ts', '.tsx', '.json', 'yml', 'scss', 
 module.exports = {
   root: true,
   parser: 'babel-eslint',
-  plugins: [
-    'babel',
-    'import',
-    'jsx-a11y',
-    'react',
-    'react-hooks',
-    'sonarjs',
-    'jest',
-    'testing-library',
-    'deprecate',
-  ],
+  plugins: ['babel', 'import', 'jsx-a11y', 'react', 'react-hooks', 'sonarjs', 'deprecate'],
   env: {
     browser: true,
     commonjs: true,
@@ -374,6 +364,7 @@ module.exports = {
       env: {
         'jest/globals': true,
       },
+      plugins: ['jest', 'testing-library'],
       rules: {
         // https://github.com/jest-community/eslint-plugin-jest
         'jest/no-conditional-expect': 'error',
@@ -391,9 +382,6 @@ module.exports = {
         'testing-library/await-async-query': 'error',
         'testing-library/await-async-utils': 'error',
         'testing-library/no-await-sync-query': 'warn',
-        'testing-library/no-dom-import': ['error', 'react'],
-        'testing-library/no-wait-for-empty-callback': 'error',
-        'testing-library/no-wait-for-snapshot': 'error',
       },
     },
   ],
