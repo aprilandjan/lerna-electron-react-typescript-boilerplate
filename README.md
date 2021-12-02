@@ -165,6 +165,7 @@ If you want to skip changes for specific files or modules, add [--ignore-changes
 - [ ] defect: webpack & babel-loader cannot emit declarations, need a solution for this
 - [ ] defect: since `tsc` does not support [emit js with resolved alias path](https://github.com/microsoft/TypeScript/issues/26722#issuecomment-516935532), need a solution for this
 - [ ] fix annoying electron main process error outputs caused by `electron-devtools-installer` and `react-hot` possibly
+- [ ] migrate spectron to [playwright](https://github.com/electron-userland/spectron)
 
 ## References
 
