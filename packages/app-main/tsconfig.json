@@ -7,7 +7,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "app-common": ["../../packages/app-common"],
+      "app-common": ["../../packages/app-common/src"],
       "module-a": ["../../packages/module-a/src"],
       "module-c": ["../../packages/module-c/src"]
     }
