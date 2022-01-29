@@ -22,11 +22,10 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.161",
-    "dev-utils": "^1.0.0",
     "cross-env": "^6.0.3",
     "debug": "^4.1.1",
-    "devtron": "^1.4.0",
-    "electron": "11.4.1",
+    "dev-utils": "^1.0.0",
+    "electron": "15",
     "electron-debug": "^3.0.1",
     "electron-devtools-installer": "3.2.0"
   },
