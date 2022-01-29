@@ -40,8 +40,6 @@ function checkBuildDLL() {
     }
     const compiler = createWebpackCompiler({
       config: webpackDllConfig,
-      useTypeScript: !env.disableTsCheck,
-      tscCompileOnError: env.compileOnTsError,
     });
 
     compiler.run((err, stats) => {
@@ -92,16 +90,8 @@ checkPort(env.port, env.host)
       },
     };
 
-    const devSocket = {
-      warnings: warnings => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
-      errors: errors => devServer.sockWrite(devServer.sockets, 'errors', errors),
-    };
-
     const compiler = createWebpackCompiler({
       config: webpackConfig,
-      devSocket,
-      useTypeScript: !env.disableTsCheck,
-      tscCompileOnError: env.compileOnTsError,
       onFirstCompiledSuccess: () => {
         logger.debug('first compiled');
         ipc.initClient(() => {

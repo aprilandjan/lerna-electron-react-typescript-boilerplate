@@ -106,8 +106,6 @@ module.exports = {
   rebuildDLL: getEnvBooleanValue(process.env.REBUILD_DLL, false),
   /** 关掉 webpack 编译时的 `typescript` 类型检查 */
   disableTsCheck: getEnvBooleanValue(process.env.DISABLE_TS_CHECK, false),
-  /** TS 报错时依然编译 */
-  compileOnTsError: getEnvBooleanValue(process.env.COMPILE_ON_TS_ERROR, false),
   /** 是否删除未被 webpack 编译的文件 */
   deleteUnused: getEnvBooleanValue(process.env.DELETE_UNUSED, false),
   /** 开发模式下启动 electron 前等待连接的 ipc clients */

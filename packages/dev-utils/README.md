@@ -28,6 +28,8 @@ CLI for modules that need webpack to bundle its codes.
 - `app-webpack dev`: start webpack dev & watch
 - `app-webpack build`: build webpack production bundle
 
+Note: the default entry file is `src/index.ts`, the default output file is `dist/index.js`, the default output typing file is `dist/index.d.ts`.
+
 ### `app-tsc`
 
 CLI for modules that need typescript to bundle its codes.
@@ -70,10 +72,6 @@ Alternatively, additional `electron builder` arguments can be passed over.
 ### `DISABLE_TS_CHECK`
 
 关掉 webpack 编译时的 `typescript` 类型检查。默认为 `false`
-
-### `COMPILE_ON_TS_ERROR`
-
-TS 报错时依然编译。默认为 `false`
 
 ### `ELECTRON_AUTO_START`
 

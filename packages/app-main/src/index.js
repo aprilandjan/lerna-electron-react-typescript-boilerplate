@@ -4,6 +4,9 @@ import path from 'path';
 import MenuBuilder from '@/menu';
 import show1 from 'module-a';
 import show3 from 'module-c';
+import { log } from 'app-common';
+
+log('do we got all sibling modules ready?', show1, show3, log);
 
 const isDev = process.env.NODE_ENV === 'development';
 

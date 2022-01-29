@@ -7,7 +7,7 @@
     "dev": "app-renderer dev",
     "build": "app-renderer build"
   },
-  "browserslist": "electron 1.6",
+  "browserslist": "electron 15",
   "dependencies": {
     "app-common": "1.0.0",
     "@types/history": "^4.7.7",

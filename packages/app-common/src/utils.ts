@@ -1,7 +1,7 @@
-export function log() {
-  console.log('log');
+export function log(...args: any[]) {
+  console.log(...args);
 }
 
-export function clone<T>(data: T): T {
+export function clone<A>(data: A): A {
   return data;
 }

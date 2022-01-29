@@ -6,12 +6,11 @@
 const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const typescriptFormatter = require('./utils/typescriptFormatter');
 const paths = require('./utils/paths');
 const env = require('./utils/env');
+const logger = require('./utils/logger');
 
 const isEnvDevelopment = process.env.NODE_ENV === 'development';
-const isEnvProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   mode: process.env.NODE_ENV,
@@ -32,6 +31,7 @@ module.exports = {
   },
 
   output: {
+    filename: 'index.js',
     path: paths.appDist,
     // https://github.com/webpack/webpack/issues/1114
     libraryTarget: 'commonjs2',
@@ -58,22 +58,45 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     !env.disableTsCheck &&
       new ForkTsCheckerWebpackPlugin({
-        // typescript: resolve.sync('typescript', {
-        //   basedir: paths.appNodeModules,
-        // }),
-        typescript: require.resolve('typescript'),
         async: isEnvDevelopment,
-        useTypescriptIncrementalApi: true,
-        checkSyntacticErrors: true,
-        tsconfig: paths.appTsConfig,
-        compilerOptions: {
-          checkJs: false,
-          allowJs: false,
+        typescript: {
+          typescriptPath: require.resolve('typescript'),
+          configOverwrite: {
+            compilerOptions: {
+              // FIXME: maybe in prod no need to generate sourcemap?
+              sourceMap: true,
+              skipLibCheck: true,
+              inlineSourceMap: false,
+              declarationMap: false,
+              noEmit: true,
+              incremental: true,
+              checkJs: false,
+              allowJs: false,
+            },
+          },
+          context: paths.appPath,
+          diagnosticOptions: {
+            syntactic: true,
+          },
+          // `build` and `mode` true are both needed
+          // if we want to generate d.ts automatically
+          // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/663
+          build: true,
+          mode: 'write-dts',
         },
-        reportFiles: ['**/*.(ts|tsx)', '!**/__tests__/**', '!**/?(*.)(spec|test).*'],
-        silent: true,
-        // The formatter is invoked directly in WebpackDevServerUtils during development
-        formatter: isEnvProduction ? typescriptFormatter : undefined,
+        issue: {
+          include: [{ file: '../**/src/**/*.{ts,tsx}' }, { file: '**/src/**/*.{ts,tsx}' }],
+          exclude: [{ file: '**/src/**/__tests__/**' }, { file: '**/src/**/?(*.){spec|test}.*' }],
+        },
+        logger: {
+          infrastructure: 'silent',
+          // add scope prefix
+          issues: {
+            info: logger.info,
+            log: logger.info,
+            error: logger.info,
+          },
+        },
       }),
 
     env.openAnalyzer && new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)(),

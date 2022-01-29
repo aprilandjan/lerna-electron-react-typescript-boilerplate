@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const logger = require('./logger');
 const formatWebpackMessages = require('./formatWebpackMessages');
-const typescriptFormatter = require('./typescriptFormatter');
 const clearConsole = require('./clearConsole');
 const getUserWebpackConfig = require('./getUserWebpackConfig');
 
@@ -14,9 +13,6 @@ module.exports = function createCompiler(options) {
   const {
     // webpack config
     config,
-    devSocket,
-    useTypeScript,
-    tscCompileOnError,
     //  compile callback
     onCompiled,
     onFirstCompiledSuccess,
@@ -57,33 +53,6 @@ module.exports = function createCompiler(options) {
     logger.info('Compiling...');
   });
 
-  let tsMessagesPromise;
-  let tsMessagesResolver;
-
-  if (useTypeScript) {
-    compiler.hooks.beforeCompile.tap('beforeCompile', () => {
-      tsMessagesPromise = new Promise(resolve => {
-        tsMessagesResolver = msgs => resolve(msgs);
-      });
-    });
-
-    // FIXME: require ts plugin
-    // eslint-disable-next-line
-    const forkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-
-    forkTsCheckerWebpackPlugin
-      .getCompilerHooks(compiler)
-      .receive.tap('afterTypeScriptCheck', (diagnostics, lints) => {
-        const allMsgs = [...diagnostics, ...lints];
-        const format = message => `${message.file}\n${typescriptFormatter(message, true)}`;
-
-        tsMessagesResolver({
-          errors: allMsgs.filter(msg => msg.severity === 'error').map(format),
-          warnings: allMsgs.filter(msg => msg.severity === 'warning').map(format),
-        });
-      });
-  }
-
   // "done" event fires when Webpack has finished recompiling the bundle.
   // Whether or not you have warnings or errors, you will get this event.
   compiler.hooks.done.tap('done', async stats => {
@@ -100,45 +69,6 @@ module.exports = function createCompiler(options) {
       warnings: true,
       errors: true,
     });
-
-    if (useTypeScript && statsData.errors.length === 0) {
-      const delayedMsg = setTimeout(() => {
-        logger.info(chalk.yellow('Files successfully emitted, waiting for typecheck results...'));
-      }, 100);
-
-      const messages = await tsMessagesPromise;
-      clearTimeout(delayedMsg);
-      // FIXME: this will make the following 'Teach some ESLint tricks' buggy
-      if (tscCompileOnError) {
-        statsData.warnings.push(...messages.errors);
-      } else {
-        statsData.errors.push(...messages.errors);
-      }
-      statsData.warnings.push(...messages.warnings);
-
-      // Push errors and warnings into compilation result
-      // to show them after page refresh triggered by user.
-      if (tscCompileOnError) {
-        stats.compilation.warnings.push(...messages.errors);
-      } else {
-        stats.compilation.errors.push(...messages.errors);
-      }
-      stats.compilation.warnings.push(...messages.warnings);
-
-      if (devSocket) {
-        if (messages.errors.length > 0) {
-          if (tscCompileOnError) {
-            devSocket.warnings(messages.errors);
-          } else {
-            devSocket.errors(messages.errors);
-          }
-        } else if (messages.warnings.length > 0) {
-          devSocket.warnings(messages.warnings);
-        }
-      }
-
-      clearConsole();
-    }
 
     const messages = formatWebpackMessages(statsData);
     const isSuccessful = !messages.errors.length && !messages.warnings.length;

@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "description": "common codes for main and renderer codes",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "app-webpack dev",
     "build": "app-webpack build"
