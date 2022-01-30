@@ -20,19 +20,17 @@ module.exports = function createCompiler(options) {
     useTypescript,
   } = options;
   let compiler;
-  let isFirstCompiledSuccess = true;
-  const handleCompiled = (success, s) => {
+  let successCount = 0;
+  const handleCompiled = (success, stat) => {
+    if (success) {
+      successCount++;
+    }
+    const isFirstCompiledSuccess = successCount === 1 && success;
     if (onCompiled) {
-      onCompiled(success, s);
+      onCompiled(success, stat, isFirstCompiledSuccess);
     }
-  };
-  const handleFirstCompiledSuccess = s => {
-    if (!isFirstCompiledSuccess) {
-      return;
-    }
-    isFirstCompiledSuccess = false;
-    if (onFirstCompiledSuccess) {
-      onFirstCompiledSuccess(s);
+    if (isFirstCompiledSuccess && onFirstCompiledSuccess) {
+      onFirstCompiledSuccess(stat);
     }
   };
   try {
@@ -104,7 +102,6 @@ module.exports = function createCompiler(options) {
     if (isSuccessful) {
       logger.info(chalk.green(`Compiled successfully in ${t} ms!`));
       handleCompiled(true, stats);
-      handleFirstCompiledSuccess(stats);
       return;
     }
 
@@ -144,7 +141,6 @@ module.exports = function createCompiler(options) {
         'To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n'
       );
       handleCompiled(true, stats);
-      handleFirstCompiledSuccess(stats);
     }
   });
   return compiler;
