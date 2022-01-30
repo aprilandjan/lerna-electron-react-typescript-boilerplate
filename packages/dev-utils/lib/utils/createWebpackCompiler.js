@@ -16,6 +16,8 @@ module.exports = function createCompiler(options) {
     //  compile callback
     onCompiled,
     onFirstCompiledSuccess,
+    // others
+    useTypescript,
   } = options;
   let compiler;
   let isFirstCompiledSuccess = true;
@@ -44,6 +46,31 @@ module.exports = function createCompiler(options) {
     process.exit(1);
   }
 
+  let tsCheckDefer = {
+    promise: null,
+    resolve: null,
+    reject: null,
+  };
+  if (useTypescript) {
+    tsCheckDefer.promise = new Promise((resolve, reject) => {
+      tsCheckDefer.resolve = resolve;
+      tsCheckDefer.reject = reject;
+    });
+
+    const hooks = require('fork-ts-checker-webpack-plugin').getCompilerHooks(compiler);
+    hooks.start.tap('ts-checker', () => {
+      tsCheckDefer.promise = new Promise((resolve, reject) => {
+        tsCheckDefer.resolve = resolve;
+        tsCheckDefer.reject = reject;
+      });
+    });
+    hooks.issues.tap('ts-checker', issues => {
+      tsCheckDefer.resolve(issues);
+    });
+  } else {
+    tsCheckDefer.promise = Promise.resolve([]);
+  }
+
   // "invalid" event fires when you have changed a file, and Webpack is
   // recompiling a bundle. WebpackDevServer takes care to pause serving the
   // bundle, so if you refresh, it'll wait instead of serving the old one.
@@ -70,12 +97,23 @@ module.exports = function createCompiler(options) {
       errors: true,
     });
 
+    const tsIssues = await tsCheckDefer.promise;
+
     const messages = formatWebpackMessages(statsData);
-    const isSuccessful = !messages.errors.length && !messages.warnings.length;
+    const isSuccessful = !messages.errors.length && !messages.warnings.length && !tsIssues.length;
     if (isSuccessful) {
       logger.info(chalk.green(`Compiled successfully in ${t} ms!`));
       handleCompiled(true, stats);
       handleFirstCompiledSuccess(stats);
+      return;
+    }
+
+    //
+    if (tsIssues.length) {
+      logger.info(chalk.red(`Typescript check failed. Found ${tsIssues.length} issue(s).`));
+      logger.info(messages.errors.join('\n\n'));
+      handleCompiled(false);
+      return;
     }
 
     // If errors exist, only show errors.
