@@ -8,6 +8,7 @@ const path = require('path');
 const findLernaPackages = require('find-lerna-packages');
 const env = require('../utils/env');
 const logger = require('../utils/logger');
+const paths = require('../utils/paths');
 
 const pkgList = findLernaPackages.sync();
 
@@ -109,7 +110,7 @@ function runTSC(args = []) {
   const argString = args.join(' ');
   logger.info(`Starting tsc ${argString}...`);
   const p = execa('tsc', [...args], {
-    localDir: env.lernaRootPath,
+    localDir: paths.workspaceRoot,
     preferLocal: true,
     stdin: 'inherit',
   });

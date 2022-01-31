@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const findLernaPackages = require('find-lerna-packages');
+const getWorkspaceRoot = require('./getWorkspaceRoot');
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
@@ -44,6 +45,8 @@ const resolveRenderer = filePath => {
 };
 
 module.exports = {
+  /** root directory of the current workspace */
+  workspaceRoot: getWorkspaceRoot(),
   /** 当前应用的路径 */
   appPath: resolveApp('.'),
   appMainPath: resolveMain('.'),

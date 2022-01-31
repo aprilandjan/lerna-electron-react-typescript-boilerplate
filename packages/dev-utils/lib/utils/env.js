@@ -1,49 +1,11 @@
-const fs = require('fs-extra');
-const path = require('path');
 const paths = require('./paths');
-const getLernaRootPath = require('./getLernaRootPath');
+const { loadEnvFiles } = require('./loadEnvFiles');
 // IMPORTANT: this file should not call `logger` because it depends on env, thus make env order not working
 // const logger = require('./logger');
 const pkg = require(paths.appPackageJson);
 
-const cwd = process.cwd();
-const lernaRootPath = getLernaRootPath();
-
-const NODE_ENV = process.env.NODE_ENV;
-
-// https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
-const dotenvPatterns = [
-  `.env.${NODE_ENV}.local`,
-  `.env.${NODE_ENV}`,
-  // Don't include `.env.local` for `test` environment
-  // since normally you expect tests to produce the same
-  // results for everyone
-  NODE_ENV !== 'test' && `.env.local`,
-  `.env`,
-].filter(Boolean);
-
-//  load these
-const dotenvFiles = [
-  cwd, // load env from cwd prior
-  lernaRootPath, //  also load env from lerna root path
-].reduce((files, dir) => {
-  dotenvPatterns.forEach(p => {
-    const fullPath = path.join(dir, p);
-    if (!files.includes(fullPath) && fs.existsSync(fullPath)) {
-      files.push(fullPath);
-    }
-  });
-  return files;
-}, []);
-
-//  load these env files
-dotenvFiles.forEach(dotenvFile => {
-  require('dotenv-expand')(
-    require('dotenv').config({
-      path: dotenvFile,
-    })
-  );
-});
+// load env from files
+loadEnvFiles();
 
 /** 获取需要注入到打包的代码里的环境变量 */
 function getInjectedEnv() {
@@ -84,9 +46,6 @@ function getEnvBooleanValue(v, d = false) {
 }
 
 module.exports = {
-  lernaRootPath,
-  /** loaded dot env files */
-  dotenvFiles,
   getInjectedEnv,
   /** 当前开发调试的目标 */
   target: getEnvValue(process.env.DEV_UTILS_TARGET, pkg.name),
