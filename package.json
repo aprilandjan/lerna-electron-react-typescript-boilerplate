@@ -15,6 +15,7 @@
     "build-modules": "app-tsc build",
     "start": "lerna exec --scope=app-main yarn start",
     "package": "yarn build && lerna exec --scope=app-main yarn package",
+    "package-only": "lerna exec --scope=app-main yarn package",
     "package-mac": "yarn build && lerna exec --scope=app-main yarn package-mac",
     "package-win": "yarn build && lerna exec --scope=app-main yarn package-win",
     "lint": "yarn lint-js && yarn lint-ts",

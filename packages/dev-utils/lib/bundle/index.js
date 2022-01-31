@@ -1,9 +1,8 @@
-const execa = require('execa');
 const fs = require('fs-extra');
 const path = require('path');
+const builder = require('electron-builder');
 const findLernaPackages = require('find-lerna-packages');
 const logger = require('../utils/logger');
-const env = require('../utils/env');
 
 const pkgList = findLernaPackages.sync();
 // FIXME: should configure this pkg name somewhere to make it less coupled
@@ -108,13 +107,13 @@ module.exports = function(platform, args) {
   logger.info('electron-builder complete config:', config);
 
   // https://www.electron.build/configuration/configuration
-  return execa(
-    'electron-builder',
-    ['--config', tempFile, platform === 'mac' ? '--mac' : '--win', ...args],
-    {
-      preferLocal: true,
-      localDir: env.lernaRootPath,
-      stdio: 'inherit',
-    }
-  );
+  console.log('platform', platform);
+  const targets = (platform === 'mac'
+    ? builder.Platform.MAC
+    : builder.Platform.WINDOWS
+  ).createTarget();
+  builder.build({
+    config,
+    targets,
+  });
 };
