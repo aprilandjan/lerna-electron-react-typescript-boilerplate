@@ -159,7 +159,6 @@ module.exports = {
     'no-with': 'warn',
     'no-whitespace-before-property': 'warn',
     'no-param-reassign': 'warn',
-    'react-hooks/exhaustive-deps': 'warn',
     'require-yield': 'warn',
     'rest-spread-spacing': ['warn', 'never'],
     strict: ['warn', 'never'],
@@ -250,6 +249,7 @@ module.exports = {
 
     // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
 
     // https://github.com/jest-community/eslint-plugin-jest#readme
     'jest/no-disabled-tests': 'warn',

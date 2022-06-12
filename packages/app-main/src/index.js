@@ -8,6 +8,8 @@ import { log } from 'app-common';
 
 log('do we got all sibling modules ready?', show1, show3, log);
 
+show1();
+
 const isDev = process.env.NODE_ENV === 'development';
 
 let mainWindow = null;
