@@ -109,11 +109,11 @@ module.exports = {
   /** 是否删除未被 webpack 编译的文件 */
   deleteUnused: getEnvBooleanValue(process.env.DELETE_UNUSED, false),
   /** 开发模式下启动 electron 前等待连接的 ipc clients */
-  devIpcClients: getEnvValue(process.env.DEV_IPC_CLIENTS, 'app-renderer; app-common'),
+  devIpcClients: getEnvValue(process.env.DEV_IPC_CLIENTS, 'app-worker; app-renderer; app-common'),
   /** 主进程是否编译后自动启动 */
   electronAutoStart: getEnvBooleanValue(process.env.ELECTRON_AUTO_START, true),
   /** 主进程是否编译后自动重载 */
-  electronAutoReload: getEnvBooleanValue(process.env.ELECTRON_AUTO_RELOAD, true),
+  electronAutoReload: getEnvBooleanValue(process.env.ELECTRON_AUTO_RELOAD, false),
   /** electron 关掉后自动退出开发进程 */
   exitDevWhenElectronQuit: getEnvBooleanValue(process.env.EXIT_DEV_WHEN_ELECTRON_QUIT, false),
   /** electron 打印信息的过滤 */

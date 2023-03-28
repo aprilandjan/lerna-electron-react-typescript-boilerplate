@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "app-common": "1.0.0",
+    "app-worker": "1.0.0",
     "lodash": "^4.17.20",
     "module-a": "1.0.0",
     "module-c": "1.0.0"

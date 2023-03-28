@@ -1,0 +1,22 @@
+{
+  "name": "app-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "app-webpack dev",
+    "build": "app-webpack build",
+    "start": "node ./dist/index.js"
+  },
+  "author": "aprilandjan",
+  "dependencies": {
+    "app-common": "1.0.0"
+  },
+  "devDependencies": {
+    "dev-utils": "1.0.0"
+  },
+  "electron-builder": {
+    "files": ["!**/*", "./package.json", "./dist/**/*.js"]
+  }
+}

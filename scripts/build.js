@@ -6,6 +6,7 @@ const run = require('./utils/run');
 (async () => {
   await run('build-modules');
   await run('app-common', 'build');
+  await run('app-worker', 'build');
   await run('app-renderer', 'build');
   await run('app-main', 'build');
 

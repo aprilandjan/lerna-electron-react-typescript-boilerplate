@@ -17,7 +17,7 @@
     "dev-utils": "^1.0.0"
   },
   "electron-builder": {
-    "files": ["!**/*", "package.json"],
+    "files": ["!**/*", "package.json", "./dist/**/*.js"],
     "mac": {
       "files": ["./lib/mac/**/*"]
     },

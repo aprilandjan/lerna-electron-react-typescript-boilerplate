@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+process.env.BABEL_CONFIG_REACT = 'false';
 process.on('unhandledRejection', err => {
   throw err;
 });

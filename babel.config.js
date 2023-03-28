@@ -5,6 +5,14 @@ module.exports = (api, opts) => {
     //  use react related plugins
     useReact = true,
   } = opts || {};
+
+  //  if defined via env, then use react configs
+  if (process.env.BABEL_CONFIG_REACT === 'true') {
+    useReact = true;
+  } else if (process.env.BABEL_CONFIG_REACT === 'false') {
+    useReact = false;
+  }
+
   const env = process.env.BABEL_ENV || process.env.NODE_ENV;
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';

@@ -5,8 +5,9 @@ import MenuBuilder from '@/menu';
 import show1 from 'module-a';
 import show3 from 'module-c';
 import { log } from 'app-common';
+import Worker from './Worker';
 
-log('do we got all sibling modules ready?', show1, show3, log);
+log('We have all local workspace modules ready', show1, show3, log);
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -17,19 +18,15 @@ if (isDev) {
 }
 
 const installExtensions = async () => {
-  const installer = require('electron-devtools-installer');
-  const extensions = ['REACT_DEVELOPER_TOOLS', 'REACT_PERF', 'REDUX_DEVTOOLS'];
-  return installer
-    .default(
-      extensions.map(name => installer[name]),
-      {
-        loadExtensionOptions: {
-          // fix devtools installer for electron v11, see https://github.com/electron/electron/issues/23662
-          allowFileAccess: true,
-        },
-      }
-    )
-    .catch(console.log);
+  const {
+    default: installExtension,
+    REACT_DEVELOPER_TOOLS,
+    REDUX_DEVTOOLS,
+  } = require('electron-devtools-installer');
+  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+  const options = { loadExtensionOptions: { allowFileAccess: true }, forceDownload };
+  // eslint-disable-next-line no-console
+  return installExtension([REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS], options).catch(console.log);
 };
 
 const createWindow = async () => {
@@ -81,8 +78,6 @@ const createWindow = async () => {
   menuBuilder.buildMenu();
 
   ipcMain.on('quit', () => {
-    // app.quit();
-    // console.log('123');
     process.exit(1);
   });
 };
@@ -105,4 +100,17 @@ app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) createWindow();
+});
+
+setInterval(() => {
+  global['m'] = Math.random();
+}, 1000);
+
+const t = Date.now();
+const worker = new Worker({
+  id: 'hello world',
+  socketName: 'name',
+});
+worker.whenReady().then(() => {
+  console.log(`tWorkerReady = ${Date.now() - t}`);
 });

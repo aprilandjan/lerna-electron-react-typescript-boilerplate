@@ -6,7 +6,7 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
-const webpackConfig = require('../webpack.config.base');
+const webpackConfig = require('./webpack.config.node.js');
 const webpackBuild = require('../utils/webpackBuild');
 
 webpackBuild(webpackConfig);
